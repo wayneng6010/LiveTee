@@ -16,6 +16,16 @@
 		</div>
 	</div>
 
+	<div class="notiBox">
+		<div class="title">Notification</div>
+		<a href="#"><div>1st notification</div></a>
+		<a href="#"><div>1st notification</div></a>
+		<a href="#"><div>1st notification</div></a>
+		<a href="#"><div>1st notification</div></a>
+		<a href="#"><div>1st notification</div></a>
+	</div>
+	
+
 	<div id="sideBar">
 		<a href="#">Dashboard</a>
 		<button class="collapse-btn">Clothing<img class="colEx" src="../Asset/Image/expand.svg" width="auto" height="10"></button>
@@ -43,7 +53,22 @@
 	</div>
 	
 	<script type="text/javascript">
+		
+		//top header
+		var flexRight = document.getElementById("flexRight");
+		var notiBox = document.getElementsByClassName("notiBox")[0];
+		var notiIcon = flexRight.getElementsByTagName("IMG")[0];
+		notiIcon.addEventListener("click", function() {
+			if(notiBox.style.display === "block"){
+				notiBox.style.display = "none";
+				notiIcon.style.filter = "brightness(.9)";
+			}else{
+				notiBox.style.display = "block";
+				notiIcon.style.filter = "drop-shadow(0px 0px 5px rgba(255, 255, 255, .5)) brightness(1)";
+			}
+		});
 
+		//side bar
 		var collapseBtn = document.getElementsByClassName("collapse-btn");
 		var collapseItemAll = document.getElementsByClassName("collapse-item");
 		var x, i;

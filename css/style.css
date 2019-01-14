@@ -87,7 +87,6 @@ div#loginOuter{
   	justify-content: center;
 }
 
-
 div#loginInner{
 	color: white;
 }
@@ -110,6 +109,7 @@ div#header{
 	height: 50px;
 	background-color: #2e4f84;
 	display: flex;
+	position: fixed;
 }
 
 div#header #flexLeft{
@@ -138,11 +138,16 @@ div#header #flexRight img{
 	cursor: pointer;
 }
 
+div#header #flexRight img:hover{
+	opacity: .8;
+}
+
 div#sideBar{
 	height: 100%;
 	width: 200px;
   	min-width: 100px;
   	position: fixed;
+  	top: 50px;
   	background-color: rgba(65,69,80,1);
   	padding-top: 20px;	
 }
@@ -168,7 +173,7 @@ div#sideBar a, .collapse-btn {
 }
 
 div#sideBar a:hover, .collapse-btn:hover{
-	text-shadow: 0px 0px 10px #FFFFFF;
+	text-shadow: 0px 0px 5px rgba(255, 255, 255, .5);
   	transition-duration: .2s;
 }
 
@@ -184,8 +189,46 @@ div#sideBar button img{
 }
 
 .collapse-item{
-  display: none;
-  background-color: #262626;
-  padding-left: 8px;
+  	display: none;
+  	background-color: #262626;
+  	padding-left: 8px;
+}
+
+.notiBox{
+	display: none;
+	width: 400px;
+	height: 500px;
+	background-color: #FFFFFF;
+	position: fixed;
+	top: 50px;
+	right: 0;
+	overflow-y: scroll;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	border-radius: 10px;
+	font-size: 16px;
+}
+
+.notiBox a{
+	color: black;
+	height: 80px;
+	border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
+	background-color: white;
+	padding-left: 15px;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	outline: none;
+}
+
+.notiBox a:hover{
+	background-color: #f7f7f7;
+}
+
+.notiBox .title{
+	display: flex;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.2);
+	height: 40px;
+	padding-left: 15px;
 }
 
