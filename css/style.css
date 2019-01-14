@@ -1,0 +1,191 @@
+body{
+	font-family: Roboto !important;
+	font-size: 20px !important;
+	line-height: 1.5;
+	background-color: rgb(239, 243, 246);
+}
+
+input[type=text], input[type=password]{
+	border: 2px solid white;
+	border-radius: 20px;
+	background-color: transparent;
+	box-sizing: border-box;
+	min-width: 250px;
+	min-height: 30px;
+	padding: 5px 10px;
+	color: white;
+	font-size: 16px;
+	margin-bottom: 15px;
+}
+
+input[type=submit]{
+	background-color: #0039A9;
+	border: none;
+	color: white;
+	border-radius: 20px;
+	min-width: 250px;
+	min-height: 30px;
+	box-sizing: border-box;
+	padding: 9px 14px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 20px;
+	transition-duration: .5s;
+	margin-top: 10px;
+}
+
+input[type=submit]:hover{
+	background-color: #0f4cc4;
+	transition-duration: .3s;
+	cursor: pointer;
+}
+
+input[type=text]:hover, input[type=password]:hover{
+	box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.54);
+}
+
+input[type=text]:focus, input[type=password]:focus{
+	outline: none;
+	background: rgba(255, 255, 255, 0.2); 
+	transition-duration: .3s;
+	box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.54);
+}
+
+input[type=text]:not(focus), input[type=password]:not(focus){
+	transition-duration: .5s;
+	box-shadow: none;
+}
+
+body{
+	margin: 0;
+}
+
+body#login {
+	background: url("../Asset/Image/adminLoginBG.jpg");
+	background-size: cover;
+	display: flex;
+}
+
+div#loginLeft{
+	flex: .7;
+}
+
+div#loginLeft img{
+	padding: 5px 0 0 5px;
+}
+
+div#loginOuter{
+	flex: .3;
+  	background-color: #77A6F7;
+  	min-width: 350px;
+	height: 100vh;
+	box-shadow: -10px 0px 5px rgba(0, 0, 0, 0.45);
+	opacity: .95;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+}
+
+
+div#loginInner{
+	color: white;
+}
+
+div#loginInner h3{
+	text-align: center;
+	color: white; 
+	margin: 0 0 -10px 0;
+	font-size: 28px;
+}
+
+div#loginInner p{
+	font-size: 24px;
+	padding-bottom: 5px;
+	border-bottom: 3px solid #D3E3FC;
+}
+
+div#header{
+	width: 100%;
+	height: 50px;
+	background-color: #2e4f84;
+	display: flex;
+}
+
+div#header #flexLeft{
+	flex: 0.15;
+}
+
+div#header #flexMiddle{
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	text-align: center;
+  	margin: auto;
+  	color: white;
+  	font-style: bold;
+}
+
+div#header #flexRight{
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+	flex: 0.15;
+}
+
+div#header #flexRight img{
+	padding-right: 25px;
+	cursor: pointer;
+}
+
+div#sideBar{
+	height: 100%;
+	width: 200px;
+  	min-width: 100px;
+  	position: fixed;
+  	background-color: rgba(65,69,80,1);
+  	padding-top: 20px;	
+}
+
+div#sideBar a, .collapse-btn {
+  	font-size: 18px;
+  	padding: 6px 8px 6px 16px;
+  	line-height: 2;
+  	margin: 0;
+  	text-decoration: none;
+  	color: white;
+  	display: block;
+  	border: none;
+  	background: none;
+  	text-align: left;
+  	cursor: pointer;
+  	outline: none;
+  	transition-duration: .5s;
+}
+
+.focusBar{
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+div#sideBar a:hover, .collapse-btn:hover{
+	text-shadow: 0px 0px 10px #FFFFFF;
+  	transition-duration: .2s;
+}
+
+div#sideBar button{
+	width: 200px;
+  	min-width: 100px;
+}
+
+div#sideBar button img{
+	float: right;
+	padding-top: 12px;
+	padding-right: 10px;
+}
+
+.collapse-item{
+  display: none;
+  background-color: #262626;
+  padding-left: 8px;
+}
+
