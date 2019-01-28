@@ -6,25 +6,45 @@
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
+	<div id="headerUserTopNav">
+		<div id="topNavLeft">
+
+		</div>
+
+		<div id="topNavRight">
+			<a href="#">Login</a>
+			<a href="#">Sign Up</a>
+			<a href="#">Shop</a>
+			<a href="#">Track My Order</a>
+			<a href="#">Notification</a>
+		</div>
+	</div>
+	
 	<div id="headerUser">
-		<div id="flexLeft"><a href="../html/adminHome.html"><img src="../Asset/Image/logo.jpg" width="auto" height="50"></a></div>
+		<div id="flexLeft">
+			<a href="../html/adminHome.html">
+				<p>LIVETEE</p>
+			</a>
+		</div>
 		<div id="flexMiddle">
 			<form action="/action_page.php" method="get">
 				<input type="text" name="searchTxt">
-				<input type="image" src="../Asset/Image/search.svg" width="20" height="auto" name="searchBtn">
+				<input type="image" src="../Asset/Image/search.png" width="20" height="auto" name="searchBtn">
 			</form>
 		</div>
 		<div id="flexRight1">
-			<img src="../Asset/Image/userProfile.svg" width="30" height="auto">
-			<p><a href="#">Login</a> / <a href="#">Register</a></p>
+			<img src="../Asset/Image/Profile.svg" width="30" height="auto">
+			<p><a href="#">Login</a> / <a href="#">Sign Up</a></p>
 		</div>
 		<div id="flexRight2">
-			<p>
 			<a href="#">
-				<img src="../Asset/Image/cart.svg" width="30" height="auto">
-				<p>Cart</p>
+				<div id="cartDiv">
+					<p>
+					<img src="../Asset/Image/cart.svg" width="30" height="auto">
+					<p>Cart</p>
+					</p>
+				</div>
 			</a>
-			</p>
 		</div>
 	</div>
 	<div id="userSidebar">
@@ -40,7 +60,7 @@
 
 		<div id="collSidebar">
 			<p><b>Collection</b></p>
-			<a href="#">Sale</a><br>
+			<a href="#">Sales</a><br>
 			<a href="#">New</a><br>
 		</div>
 		<br>
@@ -49,7 +69,7 @@
 			<p><b>Clothing</b></p>
 			<a href="#">Dresses</a><br>
 			<a href="#">Tops</a><br>
-			<a href="#">T-Skirts</a><br>
+			<a href="#">T-Shirts</a><br>
 			<a href="#">Pants</a><br>
 			<a href="#">Shorts</a><br>
 			<a href="#">Jeans</a><br>
