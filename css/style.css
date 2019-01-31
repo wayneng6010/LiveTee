@@ -1,8 +1,8 @@
 body{
-	font-family: Roboto !important;
+	font-family: 'Raleway', sans-serif;
 	font-size: 20px !important;
 	line-height: 1.5;
-	background-color: rgb(239, 243, 246);
+	background-color: #ffffff;
 }
 
 input[type=text], input[type=password]{
@@ -157,10 +157,9 @@ div#headerUser{
 
 div#headerUser #flexLeft{
 	flex: 0.2;
-	padding-left: 10px;
+	padding-left: 3%;
 	display: flex;
 	align-items: center;
-  	justify-content: center;
   	text-align: center;
   	letter-spacing: 5px;
   	font-weight: bold;
@@ -309,13 +308,22 @@ div#header #flexRight img:hover{
 	opacity: .8;
 }
 
-/*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+hr{
+	border: .5px solid #d5d5d6;
+	margin: 20px 0;
+}
 
-
-
-
-
-*/
+div#userSidebar{
+  	position: fixed;
+  	top: 80px;
+  	margin-top: 30px;
+  	margin-left: 3%;	
+  	padding: 0;
+  	box-sizing: border-box;
+  	width: 15%;
+  	min-width: 120px;
+  	line-height: 1;
+}
 
 div#userSidebar a{
 	padding-left: 0;
@@ -323,11 +331,16 @@ div#userSidebar a{
 	font-size: 14px;
   	width: 100%;
   	text-align: center;
+  	color: #595a5a;
+}
+
+div#userSidebar a:hover{
+	color: #3d3d3d;
 }
 
 div#userSidebar p{
-	line-height: .1;
 	font-size: 18px;
+
 }
 
 div#userSidebar div#genderSidebar{
@@ -335,11 +348,18 @@ div#userSidebar div#genderSidebar{
 }
 
 div#userSidebar div#genderSidebar p{
-	padding-left: 15px;
+
 }
 
 div#userSidebar div#genderSidebar div#genderFlex{
 	display: flex;
+}
+
+div#userSidebar div#genderSidebar div#genderFlex a{
+	height: 40px;
+	display: flex;
+	align-items: center;
+  	justify-content: center;
 }
 
 div#userSidebar div#genderSidebar div#gender1{
@@ -349,13 +369,11 @@ div#userSidebar div#genderSidebar div#gender1{
 	flex: .5;
 	box-sizing: border-box;
 	margin: 0px 7px;
-	transition-duration: .2s;
-	border-radius: 15px;
+	border: 1px solid white;
 }
 
 div#userSidebar div#genderSidebar div#gender1:hover{
 	border: 1px solid lightgrey;
-	transition-duration: .2s;
 }
 
 div#userSidebar div#genderSidebar div#gender2{
@@ -363,11 +381,10 @@ div#userSidebar div#genderSidebar div#gender2{
 	align-items: center;
   	justify-content: center;
 	flex: .5;
-	border: 1px solid #77a6f7;
+	border: 1px solid #595a5a;
 	box-sizing: border-box;
 	margin: 0px 7px;
 	transition-duration: .2s;
-	border-radius: 15px;
 }
 
 div#userSidebar div#genderSidebar div#gender2:hover{
@@ -376,11 +393,11 @@ div#userSidebar div#genderSidebar div#gender2:hover{
 }
 
 div#userSidebar div#collSidebar{
-	padding-left: 15px;
+
 }
 
 div#userSidebar div#clothSidebar{
-	padding-left: 15px;
+
 }
 
 div#sideBar{
@@ -419,6 +436,7 @@ div#sideBar a:hover, .collapse-btn:hover{
 }
 
 div#sideBar button{
+	font-family: 'Raleway', sans-serif;
 	width: 200px;
   	min-width: 100px;
 }
@@ -473,33 +491,45 @@ div#sideBar button img{
 	padding-left: 15px;
 }
 
-div#userSidebar{
-  	position: fixed;
-  	top: 80px;
-  	background-color: white;
-  	margin-top: 30px;
-  	margin-left: 3%;	
-  	padding: 10px;
-  	box-sizing: border-box;
-  	width: 15%;
-  	min-width: 120px;
-	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.45);
-	border-radius: 5px;
-}
-
 div#sorting{
 	width: 77%;
 	min-width: 200px;
-	height: 100px;
+	height: 50px;
 	position: relative;
 	left: 20%;
 	top: 110px;
-	background-color: lightgrey;
+	/*border: 1px solid black;*/
 	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+  	justify-content: flex-end;
+}
+
+div#sorting p{
+	font-size: 12px;
+	padding-right: 15px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+div#sorting select{
+	border-color: lightgrey;
+	padding: 10px;
+	font-family: 'Raleway', sans-serif;
+	outline: none;
+	transition-duration: .2s;
+}
+
+div#sorting select:focus{
+	border-color: grey;
+	transition-duration: .2s;
+}
+
+div#sorting select#sortSelect{
 }
 
 div#clothing{
-	width: 77%;
+	width: 80%;
 	min-width: 200px;
 	position: relative;
 	left: 20%;
@@ -507,49 +537,152 @@ div#clothing{
 	/*border: 1px solid red;*/
 }
 
+div#clothing a{
+
+}
+
+@media only screen and (max-width: 1000px) {
+	div#clothing div.itemMiddle{
+		min-width: 33% !important;
+	}
+
+	div#clothing{
+		left: 25%;
+		width: 72%;
+	}
+
+	div#sorting{
+		left: 25%;
+		width: 72%;
+	}
+}
+
+@media only screen and (max-width: 800px) {
+	div#clothing div.itemMiddle{
+		min-width: 50% !important;
+	}
+	
+	div#clothing{
+		left: 30%;
+		width: 67%;
+	}
+
+	div#sorting{
+		left: 30%;
+		width: 67%;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	div#clothing div.itemMiddle{
+		min-width: 100% !important;
+	}
+	
+	div#clothing{
+		left: 40%;
+		width: 57%;
+	}
+
+	div#sorting{
+		left: 40%;
+		width: 57%;
+	}
+}
+
+
 div#clothing div.itemOuter{
 	display: flex;
 	margin-bottom: 20px;
+	box-sizing: border-box;
+	/*border: red solid;*/
+	flex-wrap: wrap;
 }
 
 div#clothing div.itemMiddle{
 	height: 320px;
 	/*border: 1px solid black;*/
-	flex: .25;
 	display: flex;
+	flex: .25;
+	min-width: 25%;
 	align-items: center;
-  	justify-content: center;
+	box-sizing: border-box;
 }
 
 div#clothing div.itemInner{
   	width: 90%;
   	height: 100%;
-  	border: 1px solid #ededed;
-  	background-color: white;
-	border-radius: 5px;
 	box-sizing: border-box;
 	transition-duration: .2s;
+	padding: 3%;
+	border: 1px solid white;
+}
+
+div#clothing div.itemInnest{
+	height: 100%;
 }
 
 div#clothing div.itemInner:hover{
-	border: 1px solid #3b8beb;
-	transition-duration: .2s;
+	border: 1px solid lightgrey;
+}
+
+div#clothing div.itemInner:hover p.sizes{
+	opacity: 1;
+	transition: opacity .2s;
 }
 
 div#clothing div.itemInner img.image{
-	border-radius: 5px 5px 0 0;
+	margin-bottom: -8px;
 }
 
 div#clothing div.itemInner p.price{
 	line-height: .6;
-	padding: 0 10px;
-	color: #b23850;
-	font-weight: bold;
-	font-size: 16px;
+	color: #656667;
+	font-size: 14px;
 }
 
 div#clothing div.itemInner p.desp{
 	font-size: 14px;
-	padding: 0 10px;
-	color: grey;
+	color: black;
+}
+
+div#clothing div.itemInner p.sizes{
+	color: black;
+	font-size: 12px;
+	text-align: right;
+	word-spacing: 5px;
+	font-weight: bold;
+	padding-right: 10px;
+	opacity: 0;
+	transition: opacity .2s;
+}
+
+div#clothing div.itemInnest div.slideUpOuter{
+	position: relative; 
+	width: 100%;
+	height: auto;
+	overflow: hidden;
+	background-color: blue;	
+} 
+
+div#clothing div.itemInnest div.slideUpInner{
+	position: absolute; 
+	bottom: -50px; 
+	width: 100%;
+	background-color: rgba(255, 255, 255, .9); 
+	height: 50px; 
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+	transition: .2s ease-in-out;
+}
+
+div#clothing div.itemInnest div.slideUpInner p{
+	color: black;
+	font-size: 14px;
+	margin: 0;
+}
+
+div#clothing div.itemInner:hover div.slideUpInner{
+	bottom: 0;
+	transition: .2s ease-in-out;
 }
