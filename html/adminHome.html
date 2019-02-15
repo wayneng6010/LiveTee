@@ -2,8 +2,19 @@
 <html>
 <head>
 	<title>Dashboard | Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script>
+        $(function(){
+            $("#includedContent").load("adminHeaders.html");
+        });
+    </script>
 </head>
 <body>
 	<div id="header">
@@ -15,89 +26,8 @@
 			<img src="../Asset/Image/profile.svg" width="30" height="auto">
 		</div>
 	</div>
-
-	<div class="notiBox">
-		<div class="title">Notification</div>
-		<a href="#"><div>1st notification</div></a>
-		<a href="#"><div>1st notification</div></a>
-		<a href="#"><div>1st notification</div></a>
-		<a href="#"><div>1st notification</div></a>
-		<a href="#"><div>1st notification</div></a>
-	</div>
+	<div id="includedContent"></div>
 	
-
-	<div id="sideBar">
-		<a href="#">Dashboard</a>
-		<button class="collapse-btn">Clothing<img class="colEx" src="../Asset/Image/expand.svg" width="auto" height="10"></button>
-			<div class="collapse-item">
-				<a href="#">Add</a>
-				<a href="#">Edit</a>
-			</div>
-		<button class="collapse-btn">Stock<img class="colEx" src="../Asset/Image/expand.svg" width="auto" height="10"></button>
-			<div class="collapse-item">
-				<a href="#">Add</a>
-				<a href="#">View</a>
-			</div>
-		<button class="collapse-btn">Order<img class="colEx" src="../Asset/Image/expand.svg" width="auto" height="10"></button>
-			<div class="collapse-item">
-				<a href="#">Manage</a>
-				<a href="#">History</a>
-			</div>
-		<a href="#">Message</a>
-		<a href="#">Reviews</a>
-		<a href="#">Sales</a>
-		<button class="collapse-btn">Staff<img class="colEx" src="../Asset/Image/expand.svg" width="auto" height="10"></button>
-			<div class="collapse-item">
-				<a href="#">Add</a>
-				<a href="#">Edit</a>
-			</div>
-	</div>
-	
-	<script type="text/javascript">
-		
-		//top header
-		var flexRight = document.getElementById("flexRight");
-		var notiBox = document.getElementsByClassName("notiBox")[0];
-		var notiIcon = flexRight.getElementsByTagName("IMG")[0];
-		notiIcon.addEventListener("click", function() {
-			if(notiBox.style.display === "block"){
-				notiBox.style.display = "none";
-				notiIcon.style.filter = "none";
-			}else{
-				notiBox.style.display = "block";
-				notiIcon.style.filter = "drop-shadow(0px 0px 5px rgba(255, 255, 255, .5)) brightness(1)";
-			}
-		});
-
-		//side bar
-		var collapseBtn = document.getElementsByClassName("collapse-btn");
-		var collapseItemAll = document.getElementsByClassName("collapse-item");
-		var x, i;
-
-		for (x = 0; x < collapseBtn.length; x++) {
-			collapseBtn[x].addEventListener("click", function() {
-				this.classList.add("focusBar");
-				for (i = 0; i < collapseBtn.length; i++) {
-					if (collapseItemAll[i].style.display === "block" && collapseItemAll[i] != this.nextElementSibling) {
-						collapseItemAll[i].style.display = "none";
-						collapseBtn[i].childNodes[1].src = "../Asset/Image/expand.svg";
-						collapseBtn[i].classList.remove("focusBar");
-					}
-				}
-				var collapseItem = this.nextElementSibling;
-				var colExIcon = this.childNodes[1];
-				if (collapseItem.style.display === "block") {
-			  		collapseItem.style.display = "none";
-			  		colExIcon.src = "../Asset/Image/expand.svg";
-			  		this.classList.remove("focusBar");
-				} else {
-			  		collapseItem.style.display = "block";
-			  		colExIcon.src = "../Asset/Image/collapse.svg";
-			  		this.classList.add("focusBar");
-				}
-		  	});
-		}
-	</script>
 
 </body>
 </html>

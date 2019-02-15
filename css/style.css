@@ -2,7 +2,7 @@ body{
 	font-family: 'Raleway', sans-serif;
 	font-size: 20px !important;
 	line-height: 1.5;
-	background-color: #ffffff;
+	background-color: rgba(0, 0, 0, .1);
 }
 
 input[type=text], input[type=password]{
@@ -459,6 +459,7 @@ div#sideBar button img{
 	height: 500px;
 	background-color: #FFFFFF;
 	position: fixed;
+	z-index: 10;
 	top: 50px;
 	right: 0;
 	overflow-y: scroll;
@@ -686,3 +687,91 @@ div#clothing div.itemInner:hover div.slideUpInner{
 	bottom: 0;
 	transition: .2s ease-in-out;
 }
+
+h1#content_header{
+	position: absolute;
+	left: 18%;
+	top: 45px;
+	font-size: 24px;
+	font-family: Lato;
+}
+
+div#content_container{
+	position: absolute;
+	z-index: -10;
+	left: 18%;
+	top: 100px;
+	border-radius: 2px;
+	background-color: white;
+	width: 80%;
+	padding: 10px 3%;
+	box-sizing: border-box;
+	font-size: 16px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+div#content_container label{
+	width: 200px;
+	display: inline-block;
+}
+
+input.contentInput{
+	border: 1px solid black;
+	border-radius: 2px;
+	background-color: transparent;
+	box-sizing: border-box;
+	min-width: 250px;
+	width: 300px;
+	min-height: 30px;
+	padding: 5px 10px;
+	color: white;
+	font-size: 16px;
+	margin-bottom: 0;
+	transition-duration: .2s;
+	border-color: grey;
+}
+
+input.contentInput:focus{
+	border-color: lightgrey;
+	transition-duration: .2s;
+	outline: none;
+}
+
+div#content_container select{
+	border-color: black;
+	border-radius: 2px;
+	padding: 5px;
+	font-family: 'Raleway', sans-serif;
+	transition-duration: .2s;
+	border-color: grey;
+}
+
+div#content_container select:focus{
+	outline: none;
+	border-color: lightgrey;
+	transition-duration: .2s;
+}
+
+input.contentSubmit{
+	background-color: #2e4f84;
+	border: none;
+	color: white;
+	border-radius: 0px;
+	width: 200px;
+	min-width: 100px;
+	box-sizing: border-box;
+	padding: 9px 14px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	transition-duration: .5s;
+	margin-top: 10px;
+	font-size: 16px;
+}
+
+input.contentSubmit:hover{
+	background-color: #345d9e;
+	transition-duration: .3s;
+	cursor: pointer;
+}
+
