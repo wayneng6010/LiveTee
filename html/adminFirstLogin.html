@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Staff | Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script>
+        $(function(){
+            // $("#includedContent").load("html/adminHeaders.html");
+        });
+    </script>
+</head>
+<body>
+	<div id="header">
+		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
+		<div id="flexMiddle"><span>First Login - Change Password</span></div>
+		<div id="flexRight">
+			<!-- <img src="Asset/Image/noti.svg" width="30" height="auto"> -->
+			<!-- <img src="Asset/Image/chat.svg" width="30" height="auto"> -->
+			<img src="Asset/Image/profile.svg" width="30" height="auto">
+		</div>
+	</div>
+	<div id="includedContent"></div>
+	<h1 id="content_header" class="firstLogin">First Login - Change Password</h1>
+	<div id="content_container" class="firstLogin">
+      <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
+        <p>
+          <label>Old Password</label>
+          <input class="contentInput" type="password" name="oldPw" required>
+        </p>
+
+        <p>
+          <label>New Password</label>
+          <input class="contentInput" type="password" name="newPw" required>
+        </p>
+        
+        <p>
+          <label> Confirm New Password</label>
+          <input class="contentInput" type="password" name="newPw2" required>
+        </p>
+
+        <p>
+          <input class="contentSubmit" type="submit" name="chgPW" value="Save">
+        </p>
+
+        <p id="redirectText">Redirecting ...</p>
+    </form>
+	</div>
+  <?php
+    if(isset($_POST['chgPW'])){
+      echo "<script type='text/javascript'>
+        var btn = document.getElementsByClassName('contentSubmit')[0]; 
+        var txt = document.getElementById('redirectText'); 
+        btn.style.display = 'none';
+        txt.style.display = 'inline-block';
+        setTimeout(function(){ window.location.replace('adminHome.php'); }, 3000);
+      </script>";
+  }
+  ?>
+</body>
+</html>
