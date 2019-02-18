@@ -49,19 +49,24 @@
           <input class="contentSubmit" type="submit" name="chgPW" value="Save">
         </p>
 
-        <p id="redirectText">Redirecting ...</p>
+        <p id="redirectText">Password Changed Successful! Redirecting ...</p>
     </form>
 	</div>
   <?php
     if(isset($_POST['chgPW'])){
-      echo "<script type='text/javascript'>
-        var btn = document.getElementsByClassName('contentSubmit')[0]; 
-        var txt = document.getElementById('redirectText'); 
-        btn.style.display = 'none';
-        txt.style.display = 'inline-block';
-        setTimeout(function(){ window.location.replace('adminHome.php'); }, 3000);
-      </script>";
-  }
+      $oldPw = $_POST['oldPw'];
+      $newPw = $_POST['newPw'];
+      $newPw2 = $_POST['newPw2'];
+      if(password_verify($oldPw, $_SESSION['userPw']) && $newPw == $newPw2){
+        echo "<script type='text/javascript'>
+          var btn = document.getElementsByClassName('contentSubmit')[0]; 
+          var txt = document.getElementById('redirectText'); 
+          btn.style.display = 'none';
+          txt.style.display = 'inline-block';
+          setTimeout(function(){ window.location.replace('adminHome.php'); }, 2000);
+        </script>";
+      }
+    }
   ?>
 </body>
 </html>

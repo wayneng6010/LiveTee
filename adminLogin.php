@@ -10,6 +10,10 @@ if(isset($_SESSION['kickOut'])){
 	// echo "<script>alert('Please login first');</script>";	
 } 
 
+if(isset($_SESSION['islogin'])){
+	header('Location:adminHome.php');
+} 
+
 if(isset($_POST['sub'])){
 	$email = htmlentities($_POST['uemail']);
 	$password = $_POST['upassword'];

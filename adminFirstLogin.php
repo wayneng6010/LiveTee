@@ -1,6 +1,6 @@
 <?php
-// include 'verficationEP.php';
 	session_start();
+  	// include 'verficationAdmin.php';
 	require_once 'conn.php';
 	require 'html/adminFirstLogin.html';
 
