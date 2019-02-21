@@ -13,8 +13,23 @@
 	src="https://code.jquery.com/jquery-3.3.1.min.js"
 	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 	crossorigin="anonymous"></script>
+<script type="text/javascript">
+		function loadlink(){
 
+			$('.itemOuter').load(document.URL +  ' .itemOuter');
+<?php include 'userHome.php'; ?>
+			
+    // 	$('#clothing').load('userHome.php',function () {
+    //      // alert('yes');
+    // });
+}
+		loadlink();
+		setInterval(function(){
+    		loadlink() 
+		}, 1000);
 
+		
+	</script>
 	
 </head>
 <body id="userBody">
@@ -104,6 +119,8 @@
 	<div id="clothing">
 		<div class="itemOuter">
 			<?php
+				
+
 			while($row = mysqli_fetch_assoc($result1)){
 			echo '<div class="itemMiddle">
 				<div class="itemInner">
@@ -130,16 +147,6 @@
 			
 	</div>
 	<script type="text/javascript">
-		function loadlink(){
-    	$('#clothing').load('../userHome.php',function () {
-         // alert('yes');
-    });
-}
-		loadlink();
-		setInterval(function(){
-    		loadlink() 
-		}, 5000);
-
 		$('#sortSelect').on('change', function() {
         	var sort = $("#sortSelect option:selected").text();
         	var new_url = document.URL.substring(0, document.URL.indexOf('?'));

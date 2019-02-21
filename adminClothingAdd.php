@@ -17,10 +17,17 @@
 		$idescription = $_POST['idescription'];
 		// $isize = $_POST['isize'];
 		$isize = "";
+		$checked_count = count($_POST['isize']);
+		$counter = 1;
 		foreach($_POST['isize'] as $selected) {
-			echo "<script>alert('".$isize."')</script>";
-			$isize += $selected;
-			echo "<script>alert(".$selected.")</script>";
+			// echo "<script>alert('".$isize."')</script>";
+			if($counter < $checked_count){
+				$isize .= $selected . ",";
+			// echo "<script>alert('".$selected."')</script>";
+			}else{
+				$isize .= $selected;
+			}
+			$counter += 1;
 		}
 		$icat = $_POST['icat'];
 		$itag = $_POST['itag'];
@@ -33,7 +40,9 @@
 		if(substr($imageType, 0, 5) == "image"){
 			$sql1 = "INSERT INTO item VALUES(null, '$iname', '$iprice', '$idescription', '$isize', '$icat', '$imageData' , '$itag', '$istatus')";
 			if($result1 = mysqli_query($link,$sql1)){
-			echo "<script>alert('Success')</script>";
+				echo "<script>alert('Success')</script>";
+			}else{
+				echo mysqli_error($link);
 			}
 		}else{
 			echo "<script>alert('NAY')</script>";

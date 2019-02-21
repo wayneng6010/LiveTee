@@ -639,6 +639,7 @@ div#clothing div.itemInner{
 	transition-duration: .2s;
 	padding: 3%;
 	border: 1px solid white;
+	position: relative;
 }
 
 div#clothing div.itemInnest{
@@ -670,9 +671,11 @@ div#clothing div.itemInner p.desp{
 }
 
 div#clothing div.itemInner p.sizes{
+	position: absolute;
+	bottom: 0;
+	right: 0;
 	color: black;
 	font-size: 12px;
-	text-align: right;
 	word-spacing: 5px;
 	font-weight: bold;
 	padding-right: 10px;
@@ -692,7 +695,7 @@ div#clothing div.itemInnest div.slideUpInner{
 	position: absolute; 
 	bottom: -50px; 
 	width: 100%;
-	background-color: rgba(255, 255, 255, .9); 
+	background-color: rgba(0, 0, 0, .4); 
 	height: 50px; 
 	display: flex;
 	align-items: center;
@@ -701,7 +704,7 @@ div#clothing div.itemInnest div.slideUpInner{
 }
 
 div#clothing div.itemInnest div.slideUpInner p{
-	color: black;
+	color: white;
 	font-size: 14px;
 	margin: 0;
 }
@@ -738,6 +741,11 @@ div#content_container{
 	color: black;
 }
 
+div#content_container.container_below{
+	top: 240px !important;
+	padding: 10px 1%;
+}
+
 div#content_container.firstLogin{
 	left: 2%;
 	width: 50%;
@@ -747,6 +755,10 @@ div#content_container.firstLogin{
 div#content_container label{
 	width: 200px;
 	display: inline-block;
+}
+
+div#content_container label.filter_lbl{
+	width: 100px;
 }
 
 input.contentInput, textarea.contentInput{
@@ -765,6 +777,20 @@ input.contentInput, textarea.contentInput{
 	font-family: 'Lato';
 }
 
+input.contentInput.filter_txt{
+	float: right;
+	width: 200px;
+	min-width: 100px;
+	margin-right: 10px;
+}
+
+input.contentSubmit.filter_btn{
+	float: right;
+	width: 100px;
+	line-height: .84;
+	margin: 0;
+}
+
 input.contentInput[name=iprice]{
 	width: 15%;
 	min-width: 100px;
@@ -780,15 +806,19 @@ textarea.contentInput[name=idescription]{
 }
 
 div#content_container label.cboLbl{
-	width: 7%;
+	width: 4%;
 	border: 1px solid lightgrey;
 	text-align: center;
+	height: 20px;
+	line-height: 1.25;
 }
 
 div#content_container label.statusLbl{
 	width: 15%;
 	border: 1px solid lightgrey;
 	text-align: center;
+	height: 20px;
+	line-height: 1.25;
 }
 
 div#content_container label.cboLbl:hover, div#content_container label.statusLbl:hover{
@@ -797,7 +827,7 @@ div#content_container label.cboLbl:hover, div#content_container label.statusLbl:
 }
 
 div#content_container input[type=checkbox]{
-	/*display: none;*/
+	display: none;
 }
 
 div#content_container input[type=file]{
@@ -819,7 +849,7 @@ textarea.contentInput{
 }
 
 input.contentInput:focus, textarea.contentInput:focus{
-	border-color: lightgrey;
+	border-color: black;
 	transition-duration: .2s;
 	outline: none;
 }
@@ -840,7 +870,7 @@ div#content_container select{
 
 div#content_container select:focus{
 	outline: none;
-	border-color: lightgrey;
+	border-color: black;
 	transition-duration: .2s;
 }
 
@@ -867,3 +897,38 @@ input.contentSubmit:hover{
 	cursor: pointer;
 }
 
+table, th, td {
+	background-color: #2e4f84;
+  	color: white;
+  	font-weight: 100;
+  	padding: 5px;
+}
+
+td {
+	text-align: center;
+	color: black;
+}
+
+tr:nth-child(even) td{
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) td{
+	background-color: white;
+}
+
+td:nth-child(1){
+	max-width: 200px;
+	word-wrap:break-word;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+img.icon{
+	width: 20px;
+	padding-right: 5px;
+	transform: translate(0, 3px);
+}
