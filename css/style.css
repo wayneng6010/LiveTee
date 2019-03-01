@@ -688,7 +688,7 @@ div#clothing div.itemInnest div.slideUpOuter{
 	width: 100%;
 	height: auto;
 	overflow: hidden;
-	background-color: blue;	
+	background-color: white;	
 } 
 
 div#clothing div.itemInnest div.slideUpInner{
@@ -931,4 +931,245 @@ img.icon{
 	width: 20px;
 	padding-right: 5px;
 	transform: translate(0, 3px);
+}
+
+div#pdOutermost{
+	position: relative;
+	top: 120px;
+	width: 900px;
+	height: 400px;
+	border: 1px solid;
+	display: flex;
+	align-items: center;
+	margin: 0 auto;
+}
+
+/*div#pdOuter{
+	border: 1px solid blue;
+	display: block;
+}*/
+
+div#pdImgOuter{
+	/*min-width: 25%;*/
+	overflow: inherit;
+	display: inline-block;
+	position: absolute;
+	right: 55%;
+	/*border: 1px solid;*/
+}
+
+img#pdImg{
+
+}
+
+div#pdDetailsOuter{
+	/*border: 1px solid;*/
+	box-sizing: border-box;
+	display: inline-block;
+	/*width: 70%;*/
+	position: absolute;
+	left: 50%;
+}
+
+p#pdName{
+	margin: 0 auto;
+	font-weight: bold;
+	font-size: 24px;
+	text-transform: uppercase;
+}
+
+label#pdSizeTxt, label#pdQuanTxt{
+	width: 100px;
+	display: inline-block;
+}
+
+select#pdSelectSize, input#pdQuanInput{
+	border: solid 1px lightgrey;
+	padding: 10px;
+	font-family: 'Raleway', sans-serif;
+	transition-duration: .2s;
+	width: 100px;
+	box-sizing: border-box;
+	font-size: 16px;
+}
+
+select#pdSelectSize:focus, input#pdQuanInput:focus{
+	outline: none;
+	border-color: black;
+	transition-duration: .2s;
+}
+
+p#pdPrice{
+	font-size: 20px;
+	font-weight: thin;
+}
+
+label#pdSizeTxt, label#pdQuanTxt{
+	font-size: 16px;
+	color: grey;
+	display: block;
+	margin-bottom: 10px;
+}
+
+input.contentSubmit.user{
+	background-color: #303132;
+	font-weight: 200;
+	font-family: 'Raleway', sans-serif;
+	font-size: 14px;
+	height: 40px;
+}
+
+input.contentSubmit.user[name=buy]{
+	background-color: grey;
+}
+
+div#tabOuter{
+	border: 1px solid;
+	height: 300px;
+	display: flex;
+	margin: 0 auto;
+	margin-top: 150px;
+	width: 900px;
+	position: relative;
+	margin-bottom: 50px;
+}
+
+div#underTabBar{
+	border-bottom: 1px solid lightgrey;
+	height: 35px;
+	width: 100%;
+	position: absolute;
+	background: none;
+	pointer-events: none;
+}
+
+div#tabBar button{
+	background-color: white;
+	text-transform: uppercase;
+	border: none;
+  	cursor: pointer;
+  	padding: 8px 0px;
+  	font-family: 'Raleway', sans-serif;
+  	font-weight: bold;
+  	font-size: 14px;
+  	margin-right: 40px;
+  	outline: none;
+  	color: grey;
+  	box-sizing: border-box;
+  }
+
+div#tabBar button:nth-child(1){
+	color: black;
+	margin-left: 20px;
+  	border-bottom: 3px solid black;
+}
+
+div#tabBar button:hover{
+	color: black;
+  	border-bottom: 3px solid black;
+}
+
+div.tab{
+	position: absolute;
+	margin: 50px 2%;
+  	box-sizing: border-box;
+  	display: none;
+  	border: 1px solid;
+  	width: 96%;
+  	height: 250px;
+}
+
+div.tab#detTab{
+	display: block;
+}
+
+div#regOuter{
+	position: relative;
+	margin: 50px auto;
+	margin-top: 80px;
+	width: 1000px;
+	height: 440px;
+	border: 1px solid #7D7D7D;
+}
+
+p#regLabel{
+	margin-top: 0;
+	background-color: #7D7D7D;
+	color: white;
+	height: 50px;
+	display: flex;
+	align-items: center;
+	padding: 0 20px;
+}
+
+p#regLabel>a{
+	outline: none;
+	border: none;
+	position: absolute;
+	right: 30px;
+	height: 30px;
+	color: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 16px;
+	text-decoration: underline;
+}
+
+form p *{
+	vertical-align: middle;
+}
+
+div.regHalf .contentInput{
+	width: 300px;
+	border-radius: 0;
+	box-sizing: border-box;
+}
+
+textarea.contentInput.address{
+	width: 300px;
+	min-width: 250px;
+	box-sizing: border-box;
+}
+
+input.contentInput.birthday{
+	color: grey;
+}
+
+input.contentInput.birthday:focus{
+	color: black;
+}
+
+div.regHalf{
+	padding: 0 20px;
+	display: inline-block;
+	width: 50%;
+	box-sizing: border-box;
+}
+
+div#regLeft{
+	float: left;
+}
+
+div.regHalf label{
+	font-size: 14px;
+	width: 150px;
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+input.contentSubmit.register{
+	float: right;
+	margin-right: 45px;
+	box-sizing: border-box;
+	margin-top: -15px;
+	background-color: #535151;
+	height: 40px;
+	transition-duration: .2s;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+}
+
+input.contentSubmit.register:hover{
+	background-color: #434141;
+	transition-duration: .2s;
 }

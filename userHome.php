@@ -27,47 +27,7 @@
 </head>
 <body id="userBody">
 
-	<div id="headerUserTopNav">
-		<div id="topNavLeft">
-
-		</div>
-
-		<div id="topNavRight">
-			<a href="#">Login</a>
-			<a href="#">Sign Up</a>
-			<a href="#">Shop</a>
-			<a href="#">Track My Order</a>
-			<a href="#">Notification</a>
-		</div>
-	</div>
-	
-	<div id="headerUser">
-		<div id="flexLeft">
-			<a href="../html/adminHome.html">
-				<p>LIVETEE</p>
-			</a>
-		</div>
-		<div id="flexMiddle">
-			<form action="/action_page.php" method="get">
-				<input type="text" name="searchTxt">
-				<input type="image" src="Asset/Image/search.png" width="20" height="auto" name="searchBtn">
-			</form>
-		</div>
-		<div id="flexRight1">
-			<img src="Asset/Image/Profile.svg" width="30" height="auto">
-			<p><a href="#">Login</a> / <a href="#">Sign Up</a></p>
-		</div>
-		<div id="flexRight2">
-			<a href="#">
-				<div id="cartDiv">
-					<p>
-					<img src="Asset/Image/cart.svg" width="30" height="auto">
-					<p>Cart</p>
-					</p>
-				</div>
-			</a>
-		</div>
-	</div>
+	<?php include "html/userHeaders.html" ?>
 	<div id="userSidebar">
 
 		<div id="genderSidebar">
@@ -117,7 +77,7 @@
 			while($row = mysqli_fetch_assoc($result1)){
 			echo '<div class="itemMiddle">
 				<div class="itemInner">
-				<a href="'.$row['Item_ID'].'">
+				<a href="'."userProduct.php?item=".$row['Item_ID'].'">
 					<div class="itemInnest">
 						<div class="slideUpOuter">
 							<img class="image" src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" width="100%" alt="">
@@ -141,7 +101,6 @@
 	</div>
 	<script type="text/javascript">
 		var e = document.getElementById('sortSelect');
-		e.value = "<?php echo $_GET['sort'];?>";
 		$('#sortSelect').on('change', function() {
         	var sort = $("#sortSelect option:selected").text();
         	var new_url = document.URL.substring(0, document.URL.indexOf('?'));
