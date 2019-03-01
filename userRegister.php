@@ -14,7 +14,13 @@
 	crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
-		
+		function limitChar(){
+			var max_chars = 8;
+			if(event.target.value.length >= max_chars) { 
+			    event.target.value = event.target.value.substr(0, max_chars);
+			}
+			event.target.value = event.target.value.replace(/\D/g,'');
+		}
 	</script>
 </head>
 
@@ -47,7 +53,18 @@
 			<div class="regHalf" id="regRight">
 	            <p>
 	              	<label><b>Phone Number</b></label>
-	              	<input class="contentInput" type="text" name="phone" placeholder="e.g. 01112345678" required>
+	              	<select class="contentInput phone1" type="text" name="phone" required>
+	              		<option>010</option>
+	              		<option>011</option>
+	              		<option>012</option>
+	              		<option>013</option>
+	              		<option>014</option>
+	              		<option>016</option>
+	              		<option>017</option>
+	              		<option>018</option>
+	              		<option>019</option>
+	              	</select> 
+	              	<input class="contentInput phone2" id="phoneNo" type="text" name="phone" pattern="[0-9]{7,8}" placeholder="e.g. 12345678" onkeyup="limitChar()" required>
 	            </p>
 	            <p>
 	              	<label><b>Birthday</b></label>
