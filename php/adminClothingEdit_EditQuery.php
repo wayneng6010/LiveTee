@@ -1,18 +1,10 @@
 <?php
-// include 'verficationAdmin.php';
-	session_start();
+	include 'verficationAdmin.php';
 	require_once 'conn.php';
 
-	if($_SESSION['sRole']==1){
-		echo "<script>
-            var e = document.getElementsByClassName('addStaffbtn')[0];
-            e.style.display = 'inline-block';
-            </script>";
-	}
-
 	if(isset($_POST['update'])){
-		$eid = 40;
-		// $eid = $_GET['eid'];
+		// $eid = 40;
+		$eid = $_POST['eid'];
 		$iname = $_POST['iname'];
 		$iprice = $_POST['iprice'];
 		$idescription = $_POST['idescription'];

@@ -1,14 +1,6 @@
 <?php
-// include 'verficationAdmin.php';
-	session_start();
+	include 'verficationAdmin.php';
 	require_once 'conn.php';
-
-	if($_SESSION['sRole']==1){
-		echo "<script>
-            var e = document.getElementsByClassName('addStaffbtn')[0];
-            e.style.display = 'inline-block';
-            </script>";
-	}
 
 	$id = $_GET['iid'];
 	// $sql = "SELECT * FROM stock,item WHERE stock.Item_ID=item.Item_ID AND item.Item_ID='$id'";

@@ -1,19 +1,22 @@
 <?php
-// include 'verficationAdmin.php';
-	session_start();
+	include 'verficationAdmin.php';
 	require_once 'conn.php';
 
-	if($_SESSION['sRole']==1){
-		echo "<script>
-            var e = document.getElementsByClassName('addStaffbtn')[0];
-            e.style.display = 'inline-block';
-            </script>";
-	}
-
-	
 	$sql1 = "SELECT * FROM item";
-
 	$result1 = mysqli_query($link,$sql1);
+
+	if(isset($_GET['did'])){
+		$id = $_GET['did'];
+		$sql2 = "DELETE FROM `item` WHERE `Item_ID` = '$id'";
+		$sql3 = "DELETE FROM `stock` WHERE `Item_ID` = '$id'";
+		if($result2 = mysqli_query($link,$sql2)){
+			if($result3 = mysqli_query($link,$sql3)){
+				echo "<script>alert('Item has been deleted.');
+					window.location='adminClothingEdit.php';
+				</script>";
+			}
+		}
+	}
 	// $icat = $_POST['icat'];
 	// $sql1 = "SELECT * FROM item WHERE `Item_Cat`='$icat'";
 	// echo '<script>alert("'.$sql1.'")</script>';

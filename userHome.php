@@ -14,17 +14,18 @@
 	crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
-		function loadlink(){
-			$('.itemOuter').load(document.URL +  ' .itemOuter');
-			<?php include 'php/userHomeQuery.php'; ?>
-		}
-		loadlink();
-		setInterval(function(){
-    		loadlink();
-		}, 1000);
+		// function loadlink(){
+		// 	$('.itemOuter').load(document.URL +  ' .itemOuter');
+		// 	
+		// }
+		// loadlink();
+		// setInterval(function(){
+  //   		loadlink();
+		// }, 1000);
 	</script>
 	
 </head>
+<?php include 'php/userHomeQuery.php'; ?>
 <body id="userBody">
 
 	<?php include "html/userHeaders.html" ?>

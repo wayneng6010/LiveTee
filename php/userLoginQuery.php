@@ -1,6 +1,5 @@
 <?php
-// include 'verficationAdmin.php';
-	session_start();
+	include 'verficationAdmin.php';
 	require_once 'conn.php';
 
 	if(isset($_POST['login'])){

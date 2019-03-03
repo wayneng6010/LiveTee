@@ -1,17 +1,13 @@
 <?php
-	session_start();
-  	// include 'verficationAdmin.php';
+  	include 'verficationAdmin.php';
 	require_once 'conn.php';
 
-	if(!isset($_SESSION['sLogin'])){
-		header('Location:adminLogin.php');
-	} 
-	if(isset($_SESSION['kickOut'])){
+	if(isset($_SESSION['kick'])){
 		echo "<script>alert('You have to change your password before you can access to the system')</script>";
 	}
-	if($_SESSION['sFirstLog'] == 0){
-		header('location: adminHome.php');
-	}
+	// if($_SESSION['sFirstLog'] == 0){
+	// 	header('location: adminHome.php');
+	// }
 
 	require_once 'conn.php';
 	$sql = "SELECT * FROM staff WHERE Staff_ID = '$_SESSION[sID]'";
@@ -34,7 +30,7 @@
 			$newHashPw = password_hash($newPw, PASSWORD_DEFAULT);
 			$_SESSION['sPw'] = $newHashPw;
 			$sql2 = "UPDATE staff
-					SET Staff_Password ='$newHashPw', Staff_FirstLogin = 1
+					SET Staff_Password ='$newHashPw', Staff_FirstLogin = 0
 					WHERE Staff_ID = '$_SESSION[sID]'";
 			$result2 = mysqli_query($link,$sql2);
 			// echo "<script>alert('New password is set');</script>";
@@ -46,6 +42,7 @@
    //          </script>";
 
 			$_SESSION['sFirstLog'] = 0;	
+			unset($_SESSION['kick']);	
 			// sleep(3);
 			// header('location: adminHome.php');
 		}

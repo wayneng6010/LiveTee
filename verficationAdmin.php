@@ -1,19 +1,14 @@
 <?php 
 	session_start();
-	if(!isset($_SESSION['islogin'])){
-		$_SESSION['kickOut'] = "kick";
+	if(!isset($_SESSION['sLogin'])){
+		$_SESSION['kick'] = true;
 		header('Location:adminLogin.php');
 	} 
 
-	// if($_SESSION['role']!=0){
-	// 	echo "<script>alert('Access Denied. You are not authorized to access to that page.')</script>";
-	// 	header("refresh:0.001;url=user.php");
+	// if($_SESSION['sFirstLog']==1){
+	// 	$_SESSION['kick'] = true;
+	// 	header('Location:adminFirstLogin.php');
 	// } 
-
-	if($_SESSION['firstlogin']==1){
-		$_SESSION['kickOut'] = "kick";
-		header('Location:adminFirstLogin.php');
-	} 
 
 	// if($_SESSION['role']==1){
 	// 	echo "<script>

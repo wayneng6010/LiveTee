@@ -1,20 +1,20 @@
 <?php
-// include 'verficationEP.php';
-
+// include 'verficationAdmin.php';
 session_start();
 require_once 'conn.php';
 
-$_SESSION['islogin'] = null;
+$_SESSION['sLogin'] = null;
 
-if(isset($_SESSION['kickOut'])){
-	// echo "<script>alert('Please login first');</script>";	
+if(isset($_SESSION['kick'])){
+	echo "<script>alert('Please login first');</script>";	
 } 
 
-if(isset($_SESSION['islogin'])){
-	header('Location:adminHome.php');
-} 
+// if(isset($_SESSION['islogin'])){
+// 	header('Location:adminHome.php');
+// } 
 
 if(isset($_POST['sub'])){
+
 	$email = htmlentities($_POST['uemail']);
 	$password = $_POST['upassword'];
 	
@@ -30,7 +30,7 @@ if(isset($_POST['sub'])){
 			$hpass = $row['Staff_Password'];
 
 			if(password_verify($password,$hpass)){
-				$_SESSION['sLogin'] = true;
+				$_SESSION['sLogin'] = "Login";
 				$_SESSION['sUsername'] = $row['Staff_Name'];
 				$_SESSION['sID'] = $row['Staff_ID'];
 				$_SESSION['sPw'] = $row['Staff_Password'];
@@ -40,6 +40,8 @@ if(isset($_POST['sub'])){
 				$_SESSION['sLastLog'] = date("Y-m-d h:i:sa");
 
 				if($row['Staff_FirstLogin']){
+			// echo "<script>alert('New password is set');</script>";
+
 					header("Location: adminFirstLogin.php");
 				}else{
 					header('Location: adminHome.php');

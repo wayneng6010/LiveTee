@@ -29,6 +29,7 @@
 	<h1 id="content_header">Clothing - Edit</h1>
 	<div id="content_container">
           <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data" id="editForm">
+                <input class="contentInput" type="text" name="eid" title="Item Name" required value="<?php echo $_GET['eid']; ?>" style="display: none;">
             <p>
               	<label><b>Item Name</b></label>
               	<input class="contentInput" type="text" name="iname" title="Item Name" required value="<?php echo $item['Item_Name']; ?>">
@@ -112,7 +113,7 @@
             </p>
     </form>
 	</div>
-  <?php include_once 'html/adminHeaders.html'; ?>
+  <?php include_once 'html/adminHeaders.html';  include 'verficationAdminRole.php';?>
   
 <!--   <script type="text/javascript">
     $("#editForm").submit(function(e) {

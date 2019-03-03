@@ -11,7 +11,7 @@
 </head>
 <body id="login">
 	<?php
-		require 'php/adminLoginQuery.php';
+		require 'php/adminLoginQuery.php';		
 	?>
 	<div id="loginLeft">
 		<a id="liveteeLogo" href="adminLogin.php">
@@ -27,7 +27,7 @@
 			  	<input type="email" name="uemail"><br>
 			  	Password<br>
 			  	<input type="password" name="upassword"><br>
-			  	<input type="submit" name=sub value="Log In">
+			  	<input type="submit" name="sub" value="Log In">
 			</form>
 		</div>
 	</div>

@@ -1,7 +1,5 @@
 <?php
-// include 'verficationEP.php';
-
-
+include 'verficationEP.php';
 require_once 'conn.php';
 
 use PHPMailer\PHPMailer\PHPMailer;

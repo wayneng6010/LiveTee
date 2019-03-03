@@ -13,7 +13,9 @@
 	
 </head>
 <body>
-
+	<?php 
+		require 'php/adminHomeQuery.php'; 
+	?>
 
 	<div id="header">
 		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
@@ -24,9 +26,7 @@
 			<img src="Asset/Image/profile.svg" width="30" height="auto">
 		</div>
 	</div>
-	<?php include_once 'html/adminHeaders.html'; ?>
-	<?php 
-		require 'php/adminHomeQuery.php'; 
-	?>
+	<?php include_once 'html/adminHeaders.html';  include 'verficationAdminRole.php';?>
+	
 </body>
 </html>

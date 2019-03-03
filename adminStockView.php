@@ -133,7 +133,7 @@
     
   //     })
 </script>
-  <?php include_once 'html/adminHeaders.html'; ?>
+  <?php include_once 'html/adminHeaders.html';  include 'verficationAdminRole.php';?>
 
 </body>
 </html>
