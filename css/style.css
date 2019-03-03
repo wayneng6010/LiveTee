@@ -796,12 +796,16 @@ input.contentInput[name=iprice]{
 	min-width: 100px;
 }
 
+input.contentInput[name=iname]{
+	width: 60%;
+}
+
 textarea.contentInput[name=idescription]{
-	width: 100%;
+	width: 60%;
 }
 
 .fullWidth{
-	width: 100%;
+	width: 40%;
 	padding-bottom: 10px;
 }
 
@@ -826,7 +830,7 @@ div#content_container label.cboLbl:hover, div#content_container label.statusLbl:
 	border: 1px solid black;
 }
 
-div#content_container input[type=checkbox]{
+div#content_container input[type=checkbox], div#content_container input[type=radio]{
 	display: none;
 }
 
@@ -1088,7 +1092,7 @@ div#regOuter{
 	margin: 50px auto;
 	margin-top: 80px;
 	width: 1000px;
-	height: 440px;
+	height: 480px;
 	border: 1px solid #7D7D7D;
 }
 
@@ -1184,10 +1188,10 @@ div.regHalf label{
 
 input.contentSubmit.register{
 	float: right;
-	margin-right: 45px;
+	margin-right: 5%;
 	box-sizing: border-box;
 	margin-top: -15px;
-	background-color: #535151;
+	background-color: lightgrey;
 	height: 40px;
 	transition-duration: .2s;
 	box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
@@ -1196,4 +1200,15 @@ input.contentSubmit.register{
 input.contentSubmit.register:hover{
 	background-color: #434141;
 	transition-duration: .2s;
+}
+
+p#passWarn, p#cpassWarn, p#formWarn, p#passWarn{
+	font-size: 14px; 
+	margin-top: -10px; 
+	color: darkred;
+	display: none;	
+}
+
+input.contentSubmit.login{
+	background-color: #535151;
 }

@@ -32,11 +32,11 @@
 </head>
 <body>
   <?php
-    require 'php/adminClothingEditQuery.php';
+    require 'php/adminStockAddQuery.php';
   ?>
 	<div id="header">
 		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
-		<div id="flexMiddle"><span>Clothing - Edit</span></div>
+		<div id="flexMiddle"><span>Stock - Add</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
 			<img src="Asset/Image/chat.svg" width="30" height="auto">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Clothing - Edit</h1>
+	<h1 id="content_header">Stock - Add</h1>
 	<div id="content_container">
     <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <p>
@@ -86,8 +86,7 @@
                 while($row = mysqli_fetch_assoc($result1)){
                 (($row['Item_Status'])? $sStatus="Available":$sStatus="Unavailable");
                 echo "<tr><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>
-                <a href='adminClothingEdit_Edit.php?eid=$row[Item_ID]' title='Edit'><img class='icon' src='./Asset/Image/edit.svg'></a>
-                <a onclick='return confirm(".'"Are you sure you want to delete?"'.")' href='adminClothingEdit.php?did=$row[Item_ID]' title='Delete'><img class='icon' src='./Asset/Image/delete.svg'></a>
+                <a href='adminStockAdd_Add.php?iid=$row[Item_ID]' title='Add Stock' style='color: darkred;'>Add Stock</a>
                 </td></tr>";
                  $counter+=1;
                 }

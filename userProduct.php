@@ -43,7 +43,7 @@
 				<div id="pdDetailsOuter">
 					<p id="pdName">'.$row['Item_Name'].'</p>
 					<p id="pdPrice">RM '.$row['Item_Price'].'</p>
-					<p id="pdSize"><label id="pdSizeTxt">Size</label><select id="pdSelectSize">';
+					<p id="pdSize"><label id="pdSizeTxt">Size</label><select name="isize" id="pdSelectSize">';
 
 			foreach($itemSize as $i) {
 				echo '<option value="'.$i.'">'.$i.'</option>';

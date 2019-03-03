@@ -1,57 +1,75 @@
-<?php
-	session_start();
-  	// include 'verficationAdmin.php';
-	require_once 'conn.php';
-	require 'html/adminFirstLogin.html';
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Add Staff | Admin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<script
+	src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	crossorigin="anonymous"></script>
+	<script>
+        $(function(){
+            // $("#includedContent").load("html/adminHeaders.html");
+        });
+    </script>
+</head>
+<body>
+  <?php
+    require 'php/adminFirstLoginQuery.php';
+  ?>
+	<div id="header">
+		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
+		<div id="flexMiddle"><span>First Login - Change Password</span></div>
+		<div id="flexRight">
+			<!-- <img src="Asset/Image/noti.svg" width="30" height="auto"> -->
+			<!-- <img src="Asset/Image/chat.svg" width="30" height="auto"> -->
+			<img src="Asset/Image/profile.svg" width="30" height="auto">
+		</div>
+	</div>
+	<div id="includedContent"></div>
+	<h1 id="content_header" class="firstLogin">First Login - Change Password</h1>
+	<div id="content_container" class="firstLogin">
+      <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
+        <p>
+          <label>Old Password</label>
+          <input class="contentInput" type="password" name="oldPw" required>
+        </p>
 
-	if(!isset($_SESSION['islogin'])){
-		header('Location:adminLogin.php');
-	} 
-	if(isset($_SESSION['kickOut'])){
-		echo "<script>alert('You have to change your password before you can access to the system')</script>";
-	}
-	if($_SESSION['firstlogin'] == 0){
-		header('location: adminHome.php');
-	}
+        <p>
+          <label>New Password</label>
+          <input class="contentInput" type="password" name="newPw" required>
+        </p>
+        
+        <p>
+          <label> Confirm New Password</label>
+          <input class="contentInput" type="password" name="newPw2" required>
+        </p>
 
-	require_once 'conn.php';
-	$sql = "SELECT * FROM staff WHERE Staff_ID = '$_SESSION[userID]'";
-	$result = mysqli_query($link,$sql);
-	$result1 = mysqli_query($link,$sql);
-	$result3 = mysqli_query($link,$sql);
+        <p>
+          <input class="contentSubmit" type="submit" name="chgPW" value="Save">
+        </p>
 
-	if(isset($_POST['chgPW'])){
-		$oldPw = $_POST['oldPw'];
-		$newPw = $_POST['newPw'];
-		$newPw2 = $_POST['newPw2'];
-
-		if(!(password_verify($oldPw, $_SESSION['userPw']))){
-			echo "<script>alert('Password incorrect');</script>";
-		}
-		else if($newPw != $newPw2){
-			echo "<script>alert('New password not match');</script>";
-		}
-		else{
-			$newHashPw = password_hash($newPw, PASSWORD_DEFAULT);
-			$_SESSION['userPw'] = $newHashPw;
-			$sql2 = "UPDATE staff
-					SET Staff_Password ='$newHashPw', Staff_FirstLogin = 1
-					WHERE Staff_ID = '$_SESSION[userID]'";
-			$result2 = mysqli_query($link,$sql2);
-			// echo "<script>alert('New password is set');</script>";
-			// echo "<script type='text/javascript'>
-   //          	var btn = document.getElementsByClassName('contentSubmit')[0]; 
-   //          	var txt = document.getElementById('redirectText'); 
-			// 	btn.style.display = 'none';
-			// 	txt.style.display = 'inline-block';
-   //          </script>";
-
-			$_SESSION['firstlogin'] = 0;	
-			// sleep(3);
-			// header('location: adminHome.php');
-		}
-	}
-
-
-
-?>
+        <p id="redirectText">Password Changed Successful! Redirecting ...</p>
+    </form>
+	</div>
+  <?php
+    if(isset($_POST['chgPW'])){
+      $oldPw = $_POST['oldPw'];
+      $newPw = $_POST['newPw'];
+      $newPw2 = $_POST['newPw2'];
+      if(password_verify($oldPw, $_SESSION['sPw']) && $newPw == $newPw2){
+        echo "<script type='text/javascript'>
+          var btn = document.getElementsByClassName('contentSubmit')[0]; 
+          var txt = document.getElementById('redirectText'); 
+          btn.style.display = 'none';
+          txt.style.display = 'inline-block';
+          setTimeout(function(){ window.location.replace('adminHome.php'); }, 1000);
+        </script>";
+      }
+    }
+  ?>
+</body>
+</html>
