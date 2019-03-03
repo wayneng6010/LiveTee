@@ -11,7 +11,8 @@
 	}
 
 	if(isset($_POST['update'])){
-		$eid = $_GET['eid'];
+		$eid = 40;
+		// $eid = $_GET['eid'];
 		$iname = $_POST['iname'];
 		$iprice = $_POST['iprice'];
 		$idescription = $_POST['idescription'];
@@ -45,8 +46,56 @@
 		}
 
 		if(mysqli_query($link, $sql)){
+			$sql1 = "SELECT *, stock.Item_Size AS ssize, item.Item_Size AS isize FROM stock, item WHERE stock.Item_ID=item.Item_ID AND item.Item_ID=$eid";
+			$result1 = mysqli_query($link,$sql1);
+			$item1 = mysqli_fetch_assoc($result1);
+			$isize = explode(',', $item1['isize']);
+			$result2 = mysqli_query($link,$sql1);
+			$result3 = mysqli_query($link,$sql1);
+			
+			while ($item2 = mysqli_fetch_assoc($result2)){
+				$isInclude = true;
+				// foreach($isize as $i) {
+				if (!(in_array($item2['ssize'], $isize))){
+					$isInclude = false;
+				}
+				if (!$isInclude){
+					// break;
+					echo "<script>alert('".$item2['Item_ID']."')</script>";
+					$ssize = $item2['ssize'];
+					$sid = $item2['Item_ID'];
+					$sqlDel = "DELETE FROM stock WHERE Item_Size='$ssize' AND Item_ID='$sid'";
+					if ($resultDel = mysqli_query($link,$sqlDel)){
+						echo "<script>alert('Delete successfully')</script>";
+					}
+
+				}
+				// }
+			}
+
+			$ssize = array();
+			while ($item3 = mysqli_fetch_assoc($result3)){
+				$ssize[] = $item3['ssize'];
+			}
+
+			foreach($isize as $i) {
+				// if ($isize == $item3['ssize']){
+				// 	$isAdd = true;
+				// }
+				$isAdd = false;
+				if (!(in_array($i, $ssize))){
+					$isAdd = true;
+				}
+				if ($isAdd){
+           	 		$sql4 = "INSERT INTO stock VALUES(null, '$eid', '$i', 0)";
+           	 		if ($result4 = mysqli_query($link,$sql4)){
+						echo "<script>alert('".$i."Add successfully')</script>";
+           	 		}
+				}
+			}
+
 			echo "<script>
-				alert('".$eid."Update succesfully');
+				alert('".$eid."Update successfully');
 				location.assign('adminClothingEdit.php'); 
 			</script>";
 		}else{
