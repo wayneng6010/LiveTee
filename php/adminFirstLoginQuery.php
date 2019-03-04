@@ -1,15 +1,19 @@
 <?php
-  	include 'verficationAdmin.php';
+	session_start();
 	require_once 'conn.php';
 
-	if(isset($_SESSION['kick'])){
+	if(!isset($_SESSION['sLogin'])){
+		$_SESSION['kick'] = true;
+		header('Location:adminLogin.php');
+	} 
+
+	if($_SESSION['kick']=="sFirstLog"){
 		echo "<script>alert('You have to change your password before you can access to the system')</script>";
 	}
 	// if($_SESSION['sFirstLog'] == 0){
 	// 	header('location: adminHome.php');
 	// }
 
-	require_once 'conn.php';
 	$sql = "SELECT * FROM staff WHERE Staff_ID = '$_SESSION[sID]'";
 	$result = mysqli_query($link,$sql);
 	$result1 = mysqli_query($link,$sql);
@@ -33,6 +37,11 @@
 					SET Staff_Password ='$newHashPw', Staff_FirstLogin = 0
 					WHERE Staff_ID = '$_SESSION[sID]'";
 			$result2 = mysqli_query($link,$sql2);
+
+			$_SESSION['kick'] = "none";	
+			$_SESSION['sFirstLog'] = 0;	
+
+			// echo "<script>alert('Password changed successful');</script>";
 			// echo "<script>alert('New password is set');</script>";
 			// echo "<script type='text/javascript'>
    //          	var btn = document.getElementsByClassName('contentSubmit')[0]; 
@@ -41,8 +50,6 @@
 			// 	txt.style.display = 'inline-block';
    //          </script>";
 
-			$_SESSION['sFirstLog'] = 0;	
-			unset($_SESSION['kick']);	
 			// sleep(3);
 			// header('location: adminHome.php');
 		}

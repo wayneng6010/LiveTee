@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +31,7 @@
 <?php include 'php/userHomeQuery.php'; ?>
 <body id="userBody">
 
-	<?php include "html/userHeaders.html" ?>
+	<?php include "headers/userHeaders.php" ?>
 	<div id="userSidebar">
 
 		<div id="genderSidebar">

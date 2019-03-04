@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+  	<link rel="icon" href="Asset/Image/icon.png">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
 	<script
 	src="https://code.jquery.com/jquery-3.3.1.min.js"

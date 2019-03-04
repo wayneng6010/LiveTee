@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +23,7 @@
 
 <body id="userBody">
 	<?php include 'php/userRegisterQuery.php'; ?>
-	<?php include "html/userHeaders.html" ?>
+	<?php include "headers/userHeaders.php" ?>
 	<br>
 	<div id="regOuter">
 		<p id="regLabel">Create Your LiveTee Account<a href="userLogin.php">Login Here</a></p>

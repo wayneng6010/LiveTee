@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,13 +37,19 @@
 
 <body id="userBody">
 	<?php include 'php/userProductQuery.php'; ?>
-	<?php include "html/userHeaders.html" ?>
+	<?php include "headers/userHeaders.php" ?>
+
+	<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+	
 	<?php
 		if($row = mysqli_fetch_assoc($result1)){
 		$itemSize = explode(',', $row['Item_Size']);
+
+		
 		echo '<div id="pdOutermost">
-			<div id="pdImgOuter"><img id="pdImg" src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" width="400" height="auto" alt=""></div>
+				<div id="pdImgOuter"><img id="pdImg" src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" width="400" height="auto" alt=""></div>
 				<div id="pdDetailsOuter">
+					<input style="display: none;" type="text" name="iid" value="'.$row['Item_ID'].'"></p>
 					<p id="pdName">'.$row['Item_Name'].'</p>
 					<p id="pdPrice">RM '.$row['Item_Price'].'</p>
 					<p id="pdSize"><label id="pdSizeTxt">Size</label><select name="isize" id="pdSelectSize">';
@@ -50,11 +59,12 @@
 			}
 					
 				echo '</select></p>
-					<p id="pdQuan"><label id="pdQuanTxt">Quantity</label><input type="number" id="pdQuanInput" name="pdquan" min="0" value="1" title="Item Quantity" required></p>
+					<p id="pdQuan"><label id="pdQuanTxt">Quantity</label><input type="number" id="pdQuanInput" name="pdquan" min="1" value="1" title="Item Quantity" required></p>
 					<p id="pdSubmit"><input class="contentSubmit user" type="submit" name="buy" value="BUY NOW">
 					<input class="contentSubmit user" type="submit" name="cart" value="ADD TO CART"></p>
 					</div>
-					</div>';
+					</div>
+					</form>';
 
 			}
 	?>

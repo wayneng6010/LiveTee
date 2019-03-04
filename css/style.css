@@ -1181,7 +1181,7 @@ div#regLeft{
 
 div.regHalf label{
 	font-size: 14px;
-	width: 150px;
+	width: 100%;
 	display: inline-block;
 	box-sizing: border-box;
 }
@@ -1212,3 +1212,73 @@ p#passWarn, p#cpassWarn, p#formWarn, p#passWarn{
 input.contentSubmit.login{
 	background-color: #535151;
 }
+
+div#checkOutDiv {
+	position: fixed; 
+	bottom: 0;
+	width: 95%;
+	color: grey;
+	background-color: #e5e5e5;
+	height: 60px;
+	display: flex;
+	align-items: center;
+}
+
+table#checkOutDivTable tr td{
+	background-color: #e5e5e5;
+}
+
+input.contentSubmit.checkout {
+	font-size: 16px;
+	width: 60%;
+	min-width: 50px;
+	height: 40px;
+	background-color: #515151;
+	font-family: 'Raleway', sans-serif;
+	letter-spacing: 2px;
+	font-weight: bold;
+	margin-top: 0px;
+}
+
+div.checkoutTxt {
+	display: inline-block;
+	font-size: 16px;
+	/*margin-right: 3%;*/
+}
+
+div.checkoutTxt.ttl {
+	/*margin-left: 30%;*/
+}
+
+span.bold {
+	font-weight: bold;
+	color: #515151;
+}
+
+/*span.bold.num {
+	color: #000000;
+}*/
+
+span.bold.total{
+	font-size: 24px;
+	color: #000000;
+}
+
+div.cartItem{
+	/*border: 1px solid;*/
+}
+
+table.cartHeaderTable th{
+	background-color: white;
+	color: #515151;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 10px 0;
+	margin-bottom: 100px;
+}
+
+table.cartHeaderTable td{
+	font-size: 14px;
+}
+
+

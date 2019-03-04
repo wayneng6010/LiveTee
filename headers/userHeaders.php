@@ -4,8 +4,8 @@
 		</div>
 
 		<div id="topNavRight">
-			<a href="#">Login</a>
-			<a href="#">Sign Up</a>
+			<a href="userLogin.php">Login</a>
+			<a href="userRegister.php">Sign Up</a>
 			<a href="#">Shop</a>
 			<a href="#">Track My Order</a>
 			<a href="#">Notification</a>
@@ -26,10 +26,24 @@
 		</div>
 		<div id="flexRight1">
 			<img src="Asset/Image/Profile.svg" width="30" height="auto">
-			<p><a href="userLogin.php">Login</a> / <a href="userRegister.php">Sign Up</a></p>
+			<?php
+				$url = $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
+				if (strpos($url,'userLogin.php')) {
+					if (isset($_SESSION['uLogin'])){
+						session_destroy();
+						unset($_SESSION['uLogin']);
+					}
+				}
+
+				if(isset($_SESSION['uLogin'])){
+					echo '<p>'.$_SESSION['uUsername'].'</p>';
+				} else {
+					echo '<p><a href="userLogin.php">Login</a> / <a href="userRegister.php">Sign Up</a></p>';
+				}
+			?>
 		</div>
 		<div id="flexRight2">
-			<a href="#">
+			<a href="userCart.php">
 				<div id="cartDiv">
 					<p>
 					<img src="Asset/Image/cart.svg" width="30" height="auto">

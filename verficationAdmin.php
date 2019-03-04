@@ -5,10 +5,10 @@
 		header('Location:adminLogin.php');
 	} 
 
-	// if($_SESSION['sFirstLog']==1){
-	// 	$_SESSION['kick'] = true;
-	// 	header('Location:adminFirstLogin.php');
-	// } 
+	if($_SESSION['sFirstLog']==1){
+		$_SESSION['kick'] = "sFirstLog";
+		header('Location:adminFirstLogin.php');
+	} 
 
 	// if($_SESSION['role']==1){
 	// 	echo "<script>

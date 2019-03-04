@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,10 @@
 </head>
 
 <body id="userBody">
-	<?php include "html/userHeaders.html" ?>
+	<?php 
+		include "headers/userHeaders.php";
+		
+	?>
 	<br>
 	<div id="regOuter" style="height: 310px; width: 80%;">
 		<p id="regLabel">Welcome to LiveTee! Please login.</p>
