@@ -32,10 +32,9 @@
 <body id="userBody">
 	<?php 
 		include "headers/userHeaders.php";
-		
 	?>
 	<br>
-	<div id="regOuter" style="height: 310px; width: 80%;">
+	<div id="regOuter" style="height: 350px; width: 80%;">
 		<p id="regLabel">Welcome to LiveTee! Please login.</p>
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 			<div class="regHalf" id="regLeft" style="width: 100%">

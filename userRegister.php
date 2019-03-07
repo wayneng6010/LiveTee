@@ -25,7 +25,7 @@
 	<?php include 'php/userRegisterQuery.php'; ?>
 	<?php include "headers/userHeaders.php" ?>
 	<br>
-	<div id="regOuter">
+	<div id="regOuter" style="height: 510px;">
 		<p id="regLabel">Create Your LiveTee Account<a href="userLogin.php">Login Here</a></p>
 
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">

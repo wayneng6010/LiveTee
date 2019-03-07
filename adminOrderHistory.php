@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Manage Order | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -32,11 +32,12 @@
 </head>
 <body>
   <?php
-    require 'php/adminStockViewQuery.php';
+    require 'php/adminOrderHistoryQuery.php';
   ?>
+  <div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Order Confirmed</div>
 	<div id="header">
 		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
-		<div id="flexMiddle"><span>Stock - View</span></div>
+		<div id="flexMiddle"><span>Order - Manage</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
 			<img src="Asset/Image/chat.svg" width="30" height="auto">
@@ -44,68 +45,65 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Stock - View</h1>
+	<h1 id="content_header">Order - Manage</h1>
 	<div id="content_container">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-      <p>
-        <label class="filter_lbl"><b>Category</b></label>
-        <select id="selectCat" name="icat">
-          <option disabled>Category</option>
-          <option value="All">All</option>
-          <option value="Dresses">Dresses</option>
-          <option value="Tops">Tops</option>
-          <option value="T-Shirts">T-Shirts</option>
-          <option value="Pants">Pants</option>
-          <option value="Shorts">Shorts</option>
-          <option value="Jeans">Jeans</option>
-        </select>
-      </p>
-      <p>
-        <label class="filter_lbl"><b>Status</b></label>
-        <select id="selectStatus" name="istatus">
-          <option disabled>Status</option>
-          <option value="All">All</option>
-          <option value="1">Available</option>
-          <option value="0">Not Available</option>
-        </select>
+    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
         <input class="contentSubmit filter_btn" type="submit" name="add" value="Search">
         <input class="contentInput filter_txt" type="text" name="isearch" required>
       </p>
     </form>
   </div>
-
-  <div id="content_container" class="container_below">
+  
+  <div id="content_container" class="container_below" style="margin-top: -70px;">
     <table id="tableClothing">
-      <th>Clothing Name</th>
-      <th>Category</th>
-      <th>Size Available</th>
-      <th>Status</th>
-      <th>Total Stock</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Date Time Order Confirmed</th>
+      <th>Item Quantity</th>
+      <th>Order Status</th>
       <th>Action</th>
       <?php 
-        $counter=0;
-        while($row = mysqli_fetch_assoc($result1)){
-          (($row['Item_Status'])? $sStatus="Available":$sStatus="Unavailable");
-          echo "<tr><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>".
-          $row['ttlStock']
-          ."</td><td><a href='adminStockView_View.php?iid=$row[Item_ID]' title='View Stock' style='color: darkred;'>View Stock</a>
-          </td></tr>";
-          $counter+=1;
-        }
-        // while($row = mysqli_fetch_assoc($result2)){
-        //   (($row['Item_Status'])? $sStatus="Available":$sStatus="Unavailable");
-        //   echo "<tr><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td colspan='2'>No stock added</td>";
-        //   $counter+=1;
-        // }
-        if($counter==0){
-          echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No item found</td></tr>";
-        }
+                $counter=0;
+                while($row = mysqli_fetch_assoc($result1)){
+                switch ($row['Order_Status']){
+                  case '01':
+                    $status = "Processing";
+                    break;
+                  case '02':
+                    $status = "Delivering";
+                    break;
+                  case '03':
+                    $status = "Received";
+                    break;  
+                  default:
+                    $status = "Unknown";
+                    break;
+                }
+                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$row['Order_ConDateTime']."</td><td>".$row['SUM(Order_ItemQuan)']."</td><td>".$status."</td><td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&dateTime=$row[Order_ConDateTime]' title='Manage Order' style='color: darkred;'>View Order</a>
+                </td></tr>";
+                 $counter+=1;
+                }
+              if($counter==0){
+                echo "<tr><td colspan='5' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
+              }
 
-      ?>
+            ?>
     </table>
-          
+      <?php
+        if(isset($_GET['success'])){
+          echo "<script>
+            var e = document.getElementById('popUpMsg');
+            e.style.display = 'flex';
+          </script>";
+        }
+      ?>
 	</div>
   <script type="text/javascript">
+    setInterval(function(){
+      var msg = document.getElementById('popUpMsg');
+      msg.style.opacity = "0";
+      msg.style.visibility = "hidden";
+    }, 1000);
 
   // $('#selectCat').on('change', function(e) {
   //     document.sorting.submit();

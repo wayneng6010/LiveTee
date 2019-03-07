@@ -12,6 +12,10 @@ body#userBody{
 	background-color: white;
 }
 
+input.contentSubmit{
+	font-family: 'Raleway', sans-serif !important;
+}
+
 input[type=email], input[type=password]{
 	border: 2px solid white;
 	border-radius: 20px;
@@ -1260,8 +1264,7 @@ span.bold {
 }*/
 
 span.bold.total{
-	font-size: 24px;
-	color: #000000;
+	color: #cc1c1c;
 }
 
 div.cartItem{
@@ -1274,11 +1277,36 @@ table.cartHeaderTable th{
 	font-size: 14px;
 	font-weight: bold;
 	padding: 10px 0;
-	margin-bottom: 100px;
 }
+
+table.cartHeaderTable{
+	margin-bottom: 70px;
+}
+
 
 table.cartHeaderTable td{
 	font-size: 14px;
 }
 
+img.delCart {
+	cursor: pointer;
+	position: absolute;
+	top: 7%;
+	right: 10%;
+}
 
+div#popUpMsg{
+	line-height: 1.5; 
+	color: white;
+	background-color: #6ac259;
+	display: none; 
+	position: fixed;
+	padding: 20px 35px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+    align-items: center;
+    right: 2%;
+    top: 80px;
+	/*transform: translate(230px, 100px);*/
+	z-index: 100;
+	transition: 1s ease-in-out;
+}

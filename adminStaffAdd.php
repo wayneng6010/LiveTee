@@ -42,8 +42,8 @@
             <p>
               	<label><b>Role</b></label>
             	<select name="role">
-                	<option value="1">User</option>
-                	<option value="0">Admin</option>
+                	<option value="0">Staff</option>
+                	<option value="1">Admin</option>
             	</select>
             </p>
             <p>
@@ -51,7 +51,7 @@
             </p>
     </form>
 	</div>
-  <?php include_once 'html/adminHeaders.html';  include 'verficationAdminRole.php';?>
+  <?php include_once 'headers/adminHeaders.html';  include 'verficationAdminRole.php';?>
 
 </body>
 </html>

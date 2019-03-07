@@ -53,9 +53,10 @@
 	            <div class="cartItem">
 	            		<?php
 	            		while ($row = mysqli_fetch_assoc($result)){
-		            		echo '<tr>
+		            		echo '
+		            		<tr>
 			            	<td style="width: 2%;">
-			            		<input type="checkbox" class="citem" name="citem" value="" style="">
+			            		<input type="checkbox" class="citem" name="cartID[]" value="'.$row['Cart_ID'].'" style="">
 			            	</td>
 							<td style="width: 20%;">
 								<!-- <div style="display: flex; align-items: center; justify-content: center; border: 1px solid; width: 100%;"> -->
@@ -63,10 +64,24 @@
 								<!-- </div> -->
 							</td>
 							<td style="width: 30%;">'.$row['Item_Name'].'</td>
-		            		<td style="width: 12%;">'.$row['Cart_ItemSize'].'</td>
+		            		<td style="width: 12%;"><select name="isize" id="pdSelectSize" style="width: 80px; min-width: 80px;">';
+
+							$itemSize = explode(',', $row['Item_Size']);
+		            		foreach($itemSize as $i) {
+		            			if ($i != $row['Cart_ItemSize']){
+									echo '<option value="'.$i.'">'.$i.'</option>';
+								} else {
+									echo '<option value="'.$i.'" selected>'.$i.'</option>';
+								}
+							}
+
+		            		echo '</select></td>
 		            		<td style="width: 12%;">RM'.$row['Item_Price'].'</td>
-		            		<td style="width: 12%;">'.$row['Cart_ItemQuan'].'</td>
-		            		<td class="iprice" style="width: 12%;">RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'</td>
+		            		<td style="width: 12%;"><input type="number" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required></td>
+		            		<td class="iprice" style="width: 12%; position: relative;">
+		            		RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'
+							<img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart">
+		            		</td>
 		            		</tr>
 		              		';
 		              	}
@@ -78,9 +93,9 @@
 			<div id="checkOutDiv">
             	<table id="checkOutDivTable">
 					<tr>
-						<td style="width: 25%;"><div style="margin-left: 20px;" class="checkoutTxt">Subtotal ( <span class="bold num">1</span> items ): <span class="bold">RM16</span></div></td>
-						<td style="width: 25%;"><div class="checkoutTxt">Shipping Fee: <span class="bold">RM1</span></div></td>
-						<td style="width: 25%; text-align: right"><div class="checkoutTxt ttl">Total: <span class="bold total">RM17</span></div></td>
+						<td style="width: 25%;"><div style="margin-left: 20px;" class="checkoutTxt">Subtotal ( <span class="bold num">0</span> items ): <span class="bold sub">RM0</span></div></td>
+						<td style="width: 25%;"><div class="checkoutTxt">Shipping Fee: <span class="bold fee">RM0</span></div></td>
+						<td style="width: 25%; text-align: right"><div class="checkoutTxt ttl">Total: <span class="bold total">RM0</span></div></td>
             			<td style="width: 25%;"><input class="contentSubmit checkout" type="submit" value="CHECKOUT" name="checkout"></td>
             		</tr>
             	</table>
@@ -92,10 +107,15 @@
     		var shippingFee = 0;
     		var total = 0;
     		var citem = document.getElementsByClassName('citem');
+
+    		var subtotal = document.getElementsByClassName('bold sub')[0];
+    		var itemNum = document.getElementsByClassName('bold num')[0];
+    		var totalCheckout = document.getElementsByClassName('bold total')[0];
     		for (let i = 0; i < citem.length; i++) {
 				citem[i].onclick = function() {
 					if (citem[i].checked) {
 						itemChecked += 1;
+						itemNum.innerHTML = itemChecked;
 						var parentofChecked = citem[i].parentNode.parentNode;
 						var children = parentofChecked.childNodes;
 						// alert(parentofChecked.outerHTML);
@@ -104,15 +124,31 @@
 						    if (children[x].classList == "iprice") {
 						    	var iprice = parseInt(children[x].innerHTML.split('RM')[1]);
 						        total += iprice;
-								alert(total);
-
+						        subtotal.innerHTML = "RM" + total;
+						        totalCheckout.innerHTML = "RM" + (total + shippingFee);
+ 								// alert(total);
 						        break;
 						    }
 						}
 					} else {
 						itemChecked -= 1;
+						itemNum.innerHTML = itemChecked;
+						var parentofChecked = citem[i].parentNode.parentNode;
+						var children = parentofChecked.childNodes;
+						// alert(parentofChecked.outerHTML);
+						for (var y = 0; y < children.length; y++) {
+							// alert(children[x].classList);
+						    if (children[y].classList == "iprice") {
+						    	var iprice = parseInt(children[y].innerHTML.split('RM')[1]);
+						        total -= iprice;
+						        subtotal.innerHTML = "RM" + total;
+						        totalCheckout.innerHTML = "RM" + (total + shippingFee);
+ 								// alert(total);
+						        break;
+						    }
+						}
 					}
-					alert(itemChecked);
+					// alert(itemChecked);
 				}
 			}
     	</script>

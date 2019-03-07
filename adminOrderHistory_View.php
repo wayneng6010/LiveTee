@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Manage Order | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -32,11 +32,11 @@
 </head>
 <body>
   <?php
-    require 'php/adminStockAdd_AddQuery.php';
+    require 'php/adminOrderHistory_ViewQuery.php';
   ?>
 	<div id="header">
 		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
-		<div id="flexMiddle"><span>Stock - Add</span></div>
+		<div id="flexMiddle"><span>Order - Manage</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
 			<img src="Asset/Image/chat.svg" width="30" height="auto">
@@ -44,48 +44,64 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Stock - Add</h1>
+	<h1 id="content_header">Order - Manage</h1>
 
-  <div id="content_container" class="container_below" style="margin-top: -130px; padding: 10px 40px;">
-    <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data" id="editForm">
+  <div id="content_container" class="container_below" style="margin-top: -140px; padding: 10px 40px;">
       <p>
-        <input class="contentInput" type="text" name="iid" title="Item Name" style="display:none;" required value="<?php echo $item['Item_ID']; ?>">
-      </p>
-
-      <p>
-        <label><b>Item Name</b></label>
-        <?php echo $item['Item_Name']; ?>
-      </p>
-
-      <p>
-        <label><b>Size</b></label>
-        <select name="isize">
-        <?php
-          foreach($itemSize as $i) {
-            echo '<option value="'.$i.'">'.$i.'</option>';
-          }
-        ?>
-        </select>
-      </p>
-
-      <p>
-        <label><b>Quantity</b></label>
-        <input class="contentInput" type="number" name="iquan" title="Quantity" style="min-width: 100px; width: 100px;" min="1" placeholder="1" required>
+        <label><b>Username</b></label>
+        <?php echo $row['User_Name']; ?>
       </p>
       
       <p>
-        <input class="contentSubmit" type="submit" value="Add Stock" name="add">
-        <div id="successMsg" style="line-height: 1.5; color: darkgreen; display: none;">Stock up successful</div>
+        <label><b>Email</b></label>
+        <?php echo $row['User_Email']; ?>
       </p>
-      <?php
-        if(isset($_GET['success'])){
-    echo "<script>
-      var e = document.getElementById('successMsg');
-      e.style.display = 'block';
-    </script>";
-  }
-      ?>
-    </form>
+
+      <p>
+        <label><b>Staff in Charge</b></label>
+        <?php echo $row['Staff_Name']; ?>
+      </p>
+
+      <p>
+        <label><b>Order Confirmed on</b></label>
+        <?php echo $row['Order_ConDateTime']; ?>
+      </p>
+      
+      <?php 
+        $counter = 0;
+        while($row = mysqli_fetch_assoc($result)){
+        if ($counter == 0){
+          echo '<hr><p><label><b>Order Date & Time</b></label>'.$row['Order_DateTime'].'</p>
+                <table id="tableClothing">
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Size</th>
+                <th>Quantity</th>';
+          echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+        } else {
+          if ($row['Order_DateTime'] == $dateTime){
+            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+          } else {
+            echo '</table><hr><p><label><b>Order Date & Time</b></label>'.$row['Order_DateTime'].'</p>
+                <table id="tableClothing">
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Size</th>
+                <th>Quantity</th>';
+            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+          }
+        }
+            $dateTime = $row['Order_DateTime'];
+            $counter+=1;
+          }
+          if($counter==0){
+            echo "<table id='tableClothing'><th>Item ID</th><th>Item Name</th><th>Size</th>
+                <th>Quantity</th>'<tr><td colspan='4' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
+          }
+
+            ?>
+    </table>
+    
 	</div>
   <script type="text/javascript">
 
