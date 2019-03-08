@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Manage Order | Admin</title>
+	<title>Order History | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -36,7 +36,7 @@
   ?>
 	<div id="header">
 		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
-		<div id="flexMiddle"><span>Order - Manage</span></div>
+		<div id="flexMiddle"><span>Order - History</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
 			<img src="Asset/Image/chat.svg" width="30" height="auto">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Order - Manage</h1>
+	<h1 id="content_header">Order - History</h1>
 
   <div id="content_container" class="container_below" style="margin-top: -140px; padding: 10px 40px;">
       <p>
@@ -64,14 +64,14 @@
 
       <p>
         <label><b>Order Confirmed on</b></label>
-        <?php echo $row['Order_ConDateTime']; ?>
+        <?php echo date("Y-m-d h:iA", strtotime($row['Order_ConDateTime'])); ?>
       </p>
       
       <?php 
         $counter = 0;
         while($row = mysqli_fetch_assoc($result)){
         if ($counter == 0){
-          echo '<hr><p><label><b>Order Date & Time</b></label>'.$row['Order_DateTime'].'</p>
+          echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
                 <th>Item ID</th>
                 <th>Item Name</th>
@@ -82,7 +82,7 @@
           if ($row['Order_DateTime'] == $dateTime){
             echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
           } else {
-            echo '</table><hr><p><label><b>Order Date & Time</b></label>'.$row['Order_DateTime'].'</p>
+            echo '</table><hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
                 <th>Item ID</th>
                 <th>Item Name</th>

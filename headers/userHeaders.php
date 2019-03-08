@@ -4,11 +4,16 @@
 		</div>
 
 		<div id="topNavRight">
-			<a href="userLogin.php">Login</a>
-			<a href="userRegister.php">Sign Up</a>
+			<?php
+				if(isset($_SESSION['uLogin'])){
+					echo '<a href="userLogout.php">Logout</a>';
+				} else {
+					echo '<a href="userLogin.php">Login</a>';
+				}
+			?>
 			<a href="#">Shop</a>
-			<a href="#">Track My Order</a>
-			<a href="#">Notification</a>
+			<a href="#">Track Order</a>
+			<a href="userAccount.php">My Account</a>
 		</div>
 	</div>
 	
@@ -36,7 +41,7 @@
 				}
 
 				if(isset($_SESSION['uLogin'])){
-					echo '<p>'.$_SESSION['uUsername'].'</p>';
+					echo '<a href="userAccount.php">'.$_SESSION['uUsername'].'</a>';
 				} else {
 					echo '<p><a href="userLogin.php">Login</a> / <a href="userRegister.php">Sign Up</a></p>';
 				}

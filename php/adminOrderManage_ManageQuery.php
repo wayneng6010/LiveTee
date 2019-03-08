@@ -20,7 +20,8 @@
         while($row = mysqli_fetch_assoc($result1)){
         	$itemid = $row['Order_ItemID'];
         	$sid = $_SESSION['sID'];
-			$sql1 = "UPDATE orders SET `Order_Status`= '02',`Order_ConStaffID`= '$sid', `Order_ConDateTime`= now()  WHERE orders.User_ID='$uid' AND Order_Status = '01'";
+        	$trackNo = $_POST['trackNo'];
+			$sql1 = "UPDATE orders SET `Order_Status`= '02',`Order_ConStaffID`= '$sid', `Order_ConDateTime`= now(), `Order_TrackNo`= '$trackNo' WHERE orders.User_ID='$uid' AND Order_Status = '01'";
 			if($queryResult = mysqli_query($link, $sql1)){
 				echo "<script>alert('Order Confirmed');</script>";
 				header("location: adminOrderManage.php?success=true");

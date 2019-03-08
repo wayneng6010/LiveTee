@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Manage Order | Admin</title>
+	<title>Order History | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -37,7 +37,7 @@
   <div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Order Confirmed</div>
 	<div id="header">
 		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
-		<div id="flexMiddle"><span>Order - Manage</span></div>
+		<div id="flexMiddle"><span>Order - History</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
 			<img src="Asset/Image/chat.svg" width="30" height="auto">
@@ -45,7 +45,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Order - Manage</h1>
+	<h1 id="content_header">Order - History</h1>
 	<div id="content_container">
     <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
         <input class="contentSubmit filter_btn" type="submit" name="add" value="Search">
@@ -58,9 +58,8 @@
     <table id="tableClothing">
       <th>Username</th>
       <th>Email</th>
-      <th>Date Time Order Confirmed</th>
-      <th>Item Quantity</th>
-      <th>Order Status</th>
+      <th>Order Confirmed On</th>
+      <th>Tracking Number</th>
       <th>Action</th>
       <?php 
                 $counter=0;
@@ -79,7 +78,11 @@
                     $status = "Unknown";
                     break;
                 }
-                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$row['Order_ConDateTime']."</td><td>".$row['SUM(Order_ItemQuan)']."</td><td>".$status."</td><td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&dateTime=$row[Order_ConDateTime]' title='Manage Order' style='color: darkred;'>View Order</a>
+                $ConDateTime = date("Y-m-d h:iA", strtotime($row['Order_ConDateTime']));
+                
+                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['Order_TrackNo']."</td>";
+
+                echo "<td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&dateTime=$row[Order_ConDateTime]' title='View Order' style='color: darkred;'>View Order</a>
                 </td></tr>";
                  $counter+=1;
                 }

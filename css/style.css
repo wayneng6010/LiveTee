@@ -130,21 +130,20 @@ div#headerUserTopNav{
 }
 
 div#headerUserTopNav div#topNavLeft{
-	display: flex;
-	flex: .6;
+
 }
 
 div#headerUserTopNav div#topNavRight{
 	display: flex;
-	flex: .4;
+	flex: 1;
 	align-items: center;
   	justify-content: flex-end;
 }
 
 div#headerUserTopNav div#topNavRight a{
 	text-decoration: none;
-	margin-right: 30px;
-	font-size: 12px;
+	margin-right: 20px;
+	font-size: 11px;
 	display: flex;
 	align-items: center;
   	justify-content: center;
@@ -1310,3 +1309,14 @@ div#popUpMsg{
 	z-index: 100;
 	transition: 1s ease-in-out;
 }
+
+span.inputLbl {
+	font-size: 16px;
+	display: inline-block;
+	width: 200px;
+}
+
+input.contentInput.profile {
+	width: 200px;
+}
+

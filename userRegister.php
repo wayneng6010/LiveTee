@@ -96,8 +96,6 @@
 			}
 		}, 10);
 
-		
-
 		function limitChar(){
 			var max_chars = 8;
 			if(event.target.value.length >= max_chars) { 

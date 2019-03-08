@@ -66,7 +66,7 @@
         $counter = 0;
         while($row = mysqli_fetch_assoc($result)){
         if ($counter == 0){
-          echo '<hr><p><label><b>Order Date & Time</b></label>'.$row['Order_DateTime'].'</p>
+          echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
                 <th>Item ID</th>
                 <th>Item Name</th>
@@ -77,7 +77,7 @@
           if ($row['Order_DateTime'] == $dateTime){
             echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
           } else {
-            echo '</table><hr><p><label><b>Order Date & Time</b></label>'.$row['Order_DateTime'].'</p>
+            echo '</table><hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
                 <th>Item ID</th>
                 <th>Item Name</th>
@@ -97,7 +97,11 @@
 
             ?>
     </table>
-      
+      <hr>
+      <p>
+        <label><b>Tracking Number</b></label>
+        <input class="contentInput" type="text" name="trackNo" required>
+      </p>
       <p>
         <input class="contentSubmit" type="submit" value="Confirm Order" name="con">
       </p>

@@ -64,7 +64,8 @@
       <?php 
                 $counter=0;
                 while($row = mysqli_fetch_assoc($result1)){
-                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$row['Order_DateTime']."</td><td>".$row['SUM(Order_ItemQuan)']."</td><td>
+                $DateTime = date("Y-m-d h:iA", strtotime($row['Order_DateTime']));
+                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$DateTime."</td><td>".$row['SUM(Order_ItemQuan)']."</td><td>
                 <a href='adminOrderManage_Manage.php?uid=$row[User_ID]' title='Manage Order' style='color: darkred;'>Manage Order</a>
                 </td></tr>";
                  $counter+=1;

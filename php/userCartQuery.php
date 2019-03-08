@@ -25,15 +25,23 @@
 					$Order_ItemID = $row1['Cart_ItemID'];
 					$Order_ItemSize = $row1['Cart_ItemSize'];
 					$Order_ItemQuan = $row1['Cart_ItemQuan'];
+
+					$sqlDel = "DELETE FROM cart WHERE `User_ID` = '$uid1' AND `Cart_ID` = '$checked'";
+
 					// echo "<script>alert('".$Order_ItemID."')</script>";
 					// echo "<script>alert('".$Order_ItemSize."')</script>";
 					// echo "<script>alert('".$Order_ItemQuan."')</script>";
 
-					$sql2 = "INSERT INTO orders VALUES(null, '$uid1', '$Order_ItemID', '$Order_ItemSize', '$Order_ItemQuan', '01', 0, now(), null, null)";
+					$sql2 = "INSERT INTO orders VALUES(null, '$uid1', '$Order_ItemID', '$Order_ItemSize', '$Order_ItemQuan', '01', 0, now(), null, null, null)";
 					if ($result2 = mysqli_query($link,$sql2)){
-						echo "<script>alert('Order placed successfully')</script>";
-					} else {
+						if ($resultDel = mysqli_query($link,$sqlDel)){
+							echo "<script>alert('Order placed successfully')</script>";
+							header("Refresh:0");
+						} else {
 						echo "<script>alert('Error occured while placing order')</script>";
+						}
+					} else {
+						echo "<script>alert('Error occured while placing you')</script>";
 					}
 				}
 			}
