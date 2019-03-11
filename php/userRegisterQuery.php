@@ -19,11 +19,11 @@
 		$phone2 = $_POST['phone2'];
 		$phone = $phone1 . $phone2;
 
-		$birthday = $_POST['birthday'];
-
+		$state = $_POST['state'];
+		$postal = $_POST['postal'];
 		$address = $_POST['address'];
 
-		$sql1 = "INSERT INTO user VALUES(null, '$fname', '$email', '$passHash', '$phone', '$birthday', now())";
+		$sql1 = "INSERT INTO user VALUES(null, '$fname', '$email', '$passHash', '$phone', '$address', now(), '$postal', '$state')";
 		
 		if ($result1 = mysqli_query($link,$sql1)){
 			echo "<script>alert('Added Successfully')</script>";

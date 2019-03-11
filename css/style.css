@@ -850,7 +850,7 @@ div#content_container input[type=checkbox]:checked div#content_container label.c
 textarea.contentInput{
 	box-sizing: border-box;
 	resize: inherit;
-	height: 150px;
+	height: 70px;
 	width: 100%;
 	min-width: 250px;
 }
@@ -1094,7 +1094,7 @@ div#regOuter{
 	position: relative;
 	margin: 50px auto;
 	margin-top: 80px;
-	width: 1000px;
+	width: 70%;
 	height: 480px;
 	border: 1px solid #7D7D7D;
 }
@@ -1128,18 +1128,19 @@ form p *{
 }
 
 div.regHalf .contentInput{
-	width: 60%;
+	width: 90%;
 	border-radius: 0;
 	box-sizing: border-box;
 }
 
 div.regHalf .contentInput.phone1{
-	width: 14%;
-	min-width: 50px;
+	width: 15%;
+	min-width: 60px;
+	height: 31.5px;
 }
 
 div.regHalf .contentInput.phone2{
-	width: 45%;
+	width: 74%;
 	min-width: 50px;
 }
 
@@ -1158,7 +1159,7 @@ select.contentInput:focus{
 }
 
 textarea.contentInput.address{
-	width: 60%;
+	width: 90%;
 	min-width: 250px;
 	box-sizing: border-box;
 }
@@ -1180,6 +1181,7 @@ div.regHalf{
 
 div#regLeft{
 	float: left;
+	padding-left: 5%;
 }
 
 div.regHalf label{
@@ -1191,7 +1193,7 @@ div.regHalf label{
 
 input.contentSubmit.register{
 	float: right;
-	margin-right: 5%;
+	margin-right: 7%;
 	box-sizing: border-box;
 	margin-top: -15px;
 	background-color: lightgrey;
@@ -1205,7 +1207,7 @@ input.contentSubmit.register:hover{
 	transition-duration: .2s;
 }
 
-p#passWarn, p#cpassWarn, p#formWarn, p#passWarn{
+p#passWarn, p#cpassWarn, p#formWarn, p#passWarn, p#passWarn1{
 	font-size: 14px; 
 	margin-top: -10px; 
 	color: darkred;
@@ -1316,7 +1318,125 @@ span.inputLbl {
 	width: 200px;
 }
 
-input.contentInput.profile {
-	width: 200px;
+input.contentInput.profile, select.contentInput.profile {
+	width: 350px;
+}
+
+div#myAccNav {
+	width: 15%;
+	height: 290px;
+	position: fixed;
+	left: 2%;
+	top: 110px;
+	/*border: solid 1px black;*/
+	padding-top: 60px;
+}
+
+div#myAccNav img {
+	margin-right: 10px;
+}
+
+div#myAccNav a {
+	color: #515151;
+	font-size: 16px; 
+}
+
+div#myAccNav a:hover {
+	color: darkgrey;
+}
+
+div.disFlex {
+	display:flex; 
+	align-items:center;
+}
+
+div.disFlex > div.disFlex{
+	margin-bottom: 20px;
+}
+
+a#selected {
+	color: black !important; 
+	font-weight: bold;
+}
+
+textarea.contentInput.address1 {
+	width: 350px;
+	height: 100px;
+}
+
+div.perOrder {
+	width: 95%;
+	height: auto;
+	margin: 0 auto;
+}
+
+div.orderHeader {
+	border-bottom: 1px solid lightgrey;
+	padding: 0px 10px;
+	margin-bottom: 10px;
+	width: 25%;
+}
+
+div.orderHeader p{
+	line-height: .2;
+	font-size: 14px;
+}
+
+div.orderHeader p:nth-child(1){
+	font-weight: bold;
+}
+
+div.orderHeader p:nth-child(2){
+	color: #515151;
+}
+
+div.orderContent {
+	padding: 20px;
+}
+
+table.tableOrder tr {
+}
+
+table.tableOrder tr td {
+	font-size: 14px;
+}
+
+table.tableOrder tr:nth-child(even) td{
+	background-color: white;
+}
+
+table.tableOrder tr td:nth-child(1){
+	width: 10%;
+}
+
+table.tableOrder tr td:nth-child(2){
+	width: 40%;
+}
+
+table.tableOrder tr td:nth-child(3){
+	width: 15%;
+}
+
+table.tableOrder tr td:nth-child(4){
+	width: 15%;
+}
+
+table.tableOrder tr td:nth-child(5){
+	width: 20%;
+}
+
+table.tableOrder tr td:nth-child(4) span{
+	background-color: lightgrey;
+	padding: 5px 13px;
+	border-radius: 20px;
+	font-size: 12px;
+}
+
+table.tableOrder tr td:nth-child(5) a{
+	color: black;
+}
+
+table.tableOrder tr td:nth-child(5) a:hover{
+	color: grey;
 }
 

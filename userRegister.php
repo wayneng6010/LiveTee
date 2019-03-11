@@ -65,13 +65,32 @@
 	              	</select> 
 	              	<input class="contentInput phone2" id="phoneNo" type="text" name="phone2" pattern="[0-9]{7,8}" placeholder="e.g. 12345678" onkeyup="limitChar()" required>
 	            </p>
-	            <p>
-	              	<label><b>Birthday</b></label>
-	              	<input class="contentInput birthday" type="date" name="birthday" value="2000-01-01" onclick="changeColor()" required>
-	            </p>
 	            <p id="addressField">
 	              	<label><b>Address</b></label>
 	              	<textarea class="contentInput address" type="text" name="address" title="Home Address" cols="30" rows="5" required></textarea>
+	            </p>
+	            <p>
+	              	<label><b>Postal Code</b></label>
+	              	<input class="contentInput" type="text" name="postal" placeholder="e.g. 11600" onkeyup="postalValid()" required>
+	            </p>
+	             <p>
+	              	<label><b>State</b></label>
+	              	<select class="contentInput" type="text" name="state" required>
+	              		<option disabled>State</option>
+	              		<option>Johor</option>
+	              		<option>Kedah</option>
+	              		<option>Kelantan</option>
+	              		<option>Malacca</option>
+	              		<option>Negeri Sembilan</option>
+	              		<option>Pahang</option>
+	              		<option>Penang</option>
+	              		<option>Perak</option>
+	              		<option>Perlis</option>
+	              		<option>Sabah</option>
+	              		<option>Sarawak</option>
+	              		<option>Selangor</option>
+	              		<option>Terengganu</option>
+	              	</select> 
 	            </p>
         	</div>
             <p style="vertical-align: middle;">
@@ -98,6 +117,14 @@
 
 		function limitChar(){
 			var max_chars = 8;
+			if(event.target.value.length >= max_chars) { 
+			    event.target.value = event.target.value.substr(0, max_chars);
+			}
+			event.target.value = event.target.value.replace(/\D/g,'');
+		}
+
+		function postalValid(){
+			var max_chars = 5;
 			if(event.target.value.length >= max_chars) { 
 			    event.target.value = event.target.value.substr(0, max_chars);
 			}

@@ -12,8 +12,12 @@
 				}
 			?>
 			<a href="#">Shop</a>
-			<a href="#">Track Order</a>
-			<a href="userAccount.php">My Account</a>
+			<?php
+				if(isset($_SESSION['uLogin'])){
+					echo '<a href="#">My Order</a>
+					<a href="userAccount.php">My Account</a>';
+				}
+			?>
 		</div>
 	</div>
 	
