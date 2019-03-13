@@ -1181,7 +1181,7 @@ div.regHalf{
 
 div#regLeft{
 	float: left;
-	padding-left: 5%;
+	/*padding-left: 5%;*/
 }
 
 div.regHalf label{

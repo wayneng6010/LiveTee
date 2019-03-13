@@ -53,6 +53,22 @@
       </p>
 
       <p>
+        <input class="contentInput" type="text" name="orderID" title="Item Name" style="display:none;" required 
+        value="<?php 
+        $i = 0;
+        $len = count($orderIDArr);
+        foreach ($orderIDArr as $dt) { 
+          if ($i != $len - 1) {
+            echo $dt.',';
+          } else {
+            echo $dt;
+          }
+          $i++; 
+        }
+        ?>">
+      </p>
+
+      <p>
         <label><b>Username</b></label>
         <?php echo $row['User_Name']; ?>
       </p>
@@ -61,6 +77,11 @@
         <label><b>Email</b></label>
         <?php echo $row['User_Email']; ?>
       </p>
+
+      <p>
+        <label><b>Address</b></label>
+        <?php echo $row['User_Address'].', '.$row['User_Postal'].' '.$row['User_State']; ?>
+      </p>
       
       <?php 
         $counter = 0;
@@ -68,22 +89,24 @@
         if ($counter == 0){
           echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
+                <th>Order ID</th>
                 <th>Item ID</th>
                 <th>Item Name</th>
                 <th>Size</th>
                 <th>Quantity</th>';
-          echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+          echo "<tr><td>#".$row['Order_ID']."</td><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
         } else {
           if ($row['Order_DateTime'] == $dateTime){
-            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+            echo "<tr><td>#".$row['Order_ID']."</td><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
           } else {
             echo '</table><hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
+                <th>Order ID</th>
                 <th>Item ID</th>
                 <th>Item Name</th>
                 <th>Size</th>
                 <th>Quantity</th>';
-            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+            echo "<tr><td>#".$row['Order_ID']."</td><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
           }
         }
           

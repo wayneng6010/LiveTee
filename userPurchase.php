@@ -105,14 +105,23 @@
        	 	if ($counter == 0){
 				echo '<div class="perOrder">
 						<div class="orderHeader">
-							<p>Order #'.$row['Order_ID'].'</p>
-							<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['Order_ConDateTime'])).'</p>
-						</div>
-						<table class="tableOrder">';
+							<p>Order #'.$row['Order_ID'].'</p>';
+							if ($row['Order_ConDateTime'] != NULL) {
+								echo '<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['Order_ConDateTime'])).'</p>';
+							}
+				echo		'</div>
+						<table class="tableOrder">
+						<tr>
+							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
+							<td>'.$row['Item_Name'].'</td>
+							<td>Qty: '.$row['Order_ItemQuan'].'</td>
+							<td><span>'.$status.'</span></td>
+							<td>'.$review.'</td>
+						</tr>';
 			}
 
 			else {
-          	if ($row['Order_ConDateTime'] == $dateTime){
+          		if ($row['Order_ConDateTime'] == $dateTime){
 				echo '
 						<tr>
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
@@ -120,10 +129,8 @@
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
 							<td><span>'.$status.'</span></td>
 							<td>'.$review.'</td>
-						</tr>
-						
-					';
-			} else {
+						</tr>';
+				} else {
 				echo '</table></div><hr>
 						<div class="perOrder">
 							<div class="orderHeader">
@@ -138,12 +145,12 @@
 										<td><span>'.$status.'</span></td>
 										<td>'.$review.'</td>
 									</tr>';
-			}
+				}
 			}
 			$dateTime = $row['Order_ConDateTime'];
             $counter+=1;
 		} 
-		echo "</table></div><hr>";
+		echo "</table></div>";
 	?>
 	</div>
 

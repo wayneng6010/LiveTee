@@ -52,6 +52,7 @@
 	            
 	            <div class="cartItem">
 	            		<?php
+	            		$rowcount = mysqli_num_rows($result);
 	            		while ($row = mysqli_fetch_assoc($result)){
 		            		echo '
 		            		<tr>
@@ -84,6 +85,9 @@
 		            		</td>
 		            		</tr>
 		              		';
+		              	} 
+		              	if ($rowcount == 0) {
+		              		echo "<tr style='height: 100px;'><td colspan='7'>CART IS EMPTY</td></tr>";
 		              	}
 	              		?>
 					</table>

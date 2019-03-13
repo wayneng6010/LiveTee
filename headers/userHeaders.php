@@ -9,12 +9,13 @@
 					echo '<a href="userLogout.php">Logout</a>';
 				} else {
 					echo '<a href="userLogin.php">Login</a>';
+					echo '<a href="userRegister.php">Sign Up</a>';
 				}
 			?>
-			<a href="#">Shop</a>
+			<a href="userHome.php">Shop</a>
 			<?php
 				if(isset($_SESSION['uLogin'])){
-					echo '<a href="#">My Order</a>
+					echo '<a href="userPurchase.php">My Purchase</a>
 					<a href="userAccount.php">My Account</a>';
 				}
 			?>
