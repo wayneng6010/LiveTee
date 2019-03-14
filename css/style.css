@@ -1374,7 +1374,7 @@ div.orderHeader {
 	border-bottom: 1px solid lightgrey;
 	padding: 0px 10px;
 	margin-bottom: 10px;
-	width: 25%;
+	width: 35%;
 }
 
 div.orderHeader p{
@@ -1386,8 +1386,13 @@ div.orderHeader p:nth-child(1){
 	font-weight: bold;
 }
 
-div.orderHeader p:nth-child(2){
+div.orderHeader p:nth-child(2), div.orderHeader p:nth-child(3){
 	color: #515151;
+}
+
+div.orderHeader p span {
+	width: 100px;
+	display: inline-block;
 }
 
 div.orderContent {
@@ -1440,3 +1445,34 @@ table.tableOrder tr td:nth-child(5) a:hover{
 	color: grey;
 }
 
+table.tableOrder tr td:nth-child(5) span{
+	font-size: 16px;
+	font-weight: bold;
+}
+
+button.conReceiveBtn {
+	background: white;
+	border: none;
+	font-family: 'Raleway', sans-serif;
+	cursor: pointer;
+	background-color: #515151;
+	color: white !important;
+	padding: 7px 10px;
+	transition-duration: .2s;
+}
+
+button.conReceiveBtn:hover {
+	background-color: #282828;
+	transition-duration: .2s;
+}
+
+form#reviewForm p label {
+	font-size: 16px;
+	width: 100px;
+	display: inline-block;
+	text-align: center;
+}
+
+form#reviewForm p textarea {
+	height: 100px;
+}

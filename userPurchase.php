@@ -73,42 +73,70 @@
 		</div>
 			
 	</div>
-
 	<br>
 	<div id="regOuter" style="height: auto; width: 77%; margin-left: 18%;">
 		<p id="regLabel">My Purchase</p>
-	
 	<?php
+  //       $counter1 = 0;
+		// while($row1 = mysqli_fetch_assoc($result1)){
+
+  //      	 	if ($counter1 == 0){
+
+		// 	echo '<div class="perOrder">
+		// 				<div class="orderHeader">
+		// 					<p>Placed On'.$row1['Order_DateTime'].'</p>';
+		// 	}
+		// 	echo		'</div>
+		// 				<table class="tableOrder">
+		// 				<tr>
+		// 					<td><img src="data:image/jpeg;base64,'.base64_encode( $row1['Item_Image'] ).'" height="100" width="auto"></td>
+		// 					<td>'.$row1['Item_Name'].'</td>
+		// 					<td>Qty: '.$row1['Order_ItemQuan'].'</td>
+		// 					<td><span>Processing</span></td>
+		// 				</tr>';
+  //           $counter1+=1;
+  //       }
+		// echo "</table></div>";
+
+		
+
+
         $counter = 0;
 		while($row = mysqli_fetch_assoc($result)){
 			switch ($row['Order_Status']){
               	case '01':
                 	$status = "Processing";
+                	$review = "";
                 	break;
               	case '02':
                 	$status = "Delivering";
+                	// $review = '<a class="conReceive" href="php/userConReceiveQuery.php?oid='.$row['perOrder_ID'].'">Confirm Receive</a>';
+		           	$review = '<button class="conReceiveBtn" onclick="conReceive('.$row['perOrder_ID'].')">Confirm Receive</button>';
                 	break;
               	case '03':
                 	$status = "Received";
+                	if ($row['Order_Review']){
+		           		$review = '<a href="userViewReview.php?oid='.$row['Order_ID'].'">View Review</a>';
+		           	} else {
+		           		$review = '<a href="userWriteReview.php?oid='.$row['Order_ID'].'">Write Review</a>';
+		           	}
                 	break;  
               	default:
                 	$status = "Unknown";
                 	break;
            }
 
-           	if ($row['Order_Review']){
-           		$review = '<a href="userViewReview.php?dateTime=$row[Order_ConDateTime]">View Review</a>';
-           	} else {
-           		$review = '<a href="userWriteReview.php?dateTime=$row[Order_ConDateTime]">Write Review</a>';
-           	}
+           	
 
        	 	if ($counter == 0){
-				echo '<div class="perOrder">
+				echo '<div class="perOrder" id="'.$row['perOrder_ID'].'">
 						<div class="orderHeader">
-							<p>Order #'.$row['Order_ID'].'</p>';
-							if ($row['Order_ConDateTime'] != NULL) {
-								echo '<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['Order_ConDateTime'])).'</p>';
-							}
+							<p>Order #'.$row['perOrder_ID'].'</p>';
+							// if ($row['Order_Status'] == '01') {
+								echo '<p>Placed on '.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>';
+							// } else {
+								// echo '<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime'])).'</p>';
+							// }
 				echo		'</div>
 						<table class="tableOrder">
 						<tr>
@@ -121,7 +149,7 @@
 			}
 
 			else {
-          		if ($row['Order_ConDateTime'] == $dateTime){
+          		if ($row['perOrder_ID'] == $dateTime){
 				echo '
 						<tr>
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
@@ -132,11 +160,15 @@
 						</tr>';
 				} else {
 				echo '</table></div><hr>
-						<div class="perOrder">
+						<div class="perOrder" id="'.$row['perOrder_ID'].'">
 							<div class="orderHeader">
-								<p>Order #'.$row['Order_ID'].'</p>
-								<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
-							</div>
+								<p>Order #'.$row['perOrder_ID'].'</p>';
+							// if ($row['Order_Status'] == '01') {
+								echo '<p>Placed on '.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>';
+							// } else {
+								// echo '<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime'])).'</p>';
+							// }	
+				echo		'</div>
 								<table class="tableOrder">
 									<tr>
 										<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
@@ -147,15 +179,31 @@
 									</tr>';
 				}
 			}
-			$dateTime = $row['Order_ConDateTime'];
+			$dateTime = $row['perOrder_ID'];
             $counter+=1;
 		} 
 		echo "</table></div>";
 	?>
 	</div>
+	<?php
+        if(isset($_GET['oid'])){
+        	$oid = $_GET['oid'];
+         	echo "<script>
+            $(document).ready(function () {
+			  	$('html, body').animate({
+			    	scrollTop: $('#".$oid."').offset().top - 120
+			  	}, 1000)
+			});
+          	</script>";
+        }
+    ?>
 
 	<script type="text/javascript">
-
+		function conReceive(oid) {
+			if (confirm('Confirm receive item?')) {
+				window.location.replace("php/userConReceiveQuery.php?oid=" + oid);
+			}
+		}
 	</script>
 	
 </body>

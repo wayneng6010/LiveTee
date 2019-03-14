@@ -64,7 +64,7 @@
 
       <p>
         <label><b>Order Confirmed on</b></label>
-        <?php echo date("Y-m-d h:iA", strtotime($row['Order_ConDateTime'])); ?>
+        <?php echo date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime'])); ?>
       </p>
       
       <?php 

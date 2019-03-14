@@ -56,6 +56,7 @@
   
   <div id="content_container" class="container_below" style="margin-top: -70px;">
     <table id="tableClothing">
+      <th>Order ID</th>
       <th>Username</th>
       <th>Email</th>
       <th>Order Confirmed On</th>
@@ -64,25 +65,25 @@
       <?php 
                 $counter=0;
                 while($row = mysqli_fetch_assoc($result1)){
-                switch ($row['Order_Status']){
-                  case '01':
-                    $status = "Processing";
-                    break;
-                  case '02':
-                    $status = "Delivering";
-                    break;
-                  case '03':
-                    $status = "Received";
-                    break;  
-                  default:
-                    $status = "Unknown";
-                    break;
-                }
-                $ConDateTime = date("Y-m-d h:iA", strtotime($row['Order_ConDateTime']));
+                // switch ($row['Order_Status']){
+                //   case '01':
+                //     $status = "Processing";
+                //     break;
+                //   case '02':
+                //     $status = "Delivering";
+                //     break;
+                //   case '03':
+                //     $status = "Received";
+                //     break;  
+                //   default:
+                //     $status = "Unknown";
+                //     break;
+                // }
+                $ConDateTime = date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime']));
                 
-                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['Order_TrackNo']."</td>";
+                echo "<tr><td>".$row['perOrder_ID']."</td><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['perOrder_TrackNo']."</td>";
 
-                echo "<td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&dateTime=$row[Order_ConDateTime]' title='View Order' style='color: darkred;'>View Order</a>
+                echo "<td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&oid=$row[perOrder_ID]' title='View Order' style='color: darkred;'>View Order</a>
                 </td></tr>";
                  $counter+=1;
                 }

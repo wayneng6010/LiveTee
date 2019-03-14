@@ -51,7 +51,9 @@
       <p>
         <input class="contentInput" type="text" name="uid" title="Item Name" style="display:none;" required value="<?php echo $uid ?>">
       </p>
-
+      <p>
+        <input class="contentInput" type="text" name="oid" title="Item Name" style="display:none;" required value="<?php echo $oid ?>">
+      </p>
       <p>
         <input class="contentInput" type="text" name="orderID" title="Item Name" style="display:none;" required 
         value="<?php 
@@ -66,6 +68,11 @@
           $i++; 
         }
         ?>">
+      </p>
+      
+      <p>
+        <label><b>Order ID</b></label>
+        <?php echo '#'.$_GET['oid']; ?>
       </p>
 
       <p>
@@ -89,28 +96,13 @@
         if ($counter == 0){
           echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
-                <th>Order ID</th>
                 <th>Item ID</th>
                 <th>Item Name</th>
                 <th>Size</th>
                 <th>Quantity</th>';
-          echo "<tr><td>#".$row['Order_ID']."</td><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
-        } else {
-          if ($row['Order_DateTime'] == $dateTime){
-            echo "<tr><td>#".$row['Order_ID']."</td><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
-          } else {
-            echo '</table><hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
-                <table id="tableClothing">
-                <th>Order ID</th>
-                <th>Item ID</th>
-                <th>Item Name</th>
-                <th>Size</th>
-                <th>Quantity</th>';
-            echo "<tr><td>#".$row['Order_ID']."</td><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
-          }
-        }
-          
-          $dateTime = $row['Order_DateTime'];
+          } 
+          echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+
           
           $counter+=1;
           }

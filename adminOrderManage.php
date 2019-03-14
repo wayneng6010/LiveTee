@@ -56,17 +56,17 @@
   
   <div id="content_container" class="container_below" style="margin-top: -70px;">
     <table id="tableClothing">
+      <th>Order ID</th>
       <th>Username</th>
       <th>Email</th>
       <th>Date & Time</th>
-      <th>Item Quantity</th>
       <th>Action</th>
       <?php 
                 $counter=0;
                 while($row = mysqli_fetch_assoc($result1)){
                 $DateTime = date("Y-m-d h:iA", strtotime($row['Order_DateTime']));
-                echo "<tr><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$DateTime."</td><td>".$row['SUM(Order_ItemQuan)']."</td><td>
-                <a href='adminOrderManage_Manage.php?uid=$row[User_ID]' title='Manage Order' style='color: darkred;'>Manage Order</a>
+                echo "<tr><td>#".$row['perOrder_ID']."</td><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$DateTime."</td><td>
+                <a href='adminOrderManage_Manage.php?uid=$row[User_ID]&oid=$row[perOrder_ID]' title='Manage Order' style='color: darkred;'>Manage Order</a>
                 </td></tr>";
                  $counter+=1;
                 }
