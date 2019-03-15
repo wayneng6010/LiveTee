@@ -35,7 +35,7 @@
 	<?php 
 		include "headers/userHeaders.php";
 	?>
-	<?php include 'php/userWriteReviewQuery.php'; ?>
+	<?php include 'php/userViewReviewQuery.php'; ?>
 
 	<div id="myAccNav">
 		<div class="disFlex">
@@ -80,7 +80,21 @@
 		<p id="regLabel">Write Review</p>
 	<?php
 		if($row = mysqli_fetch_assoc($result)){
-
+		$Rv_Rating = $row['Rv_Rating'];
+		// switch ($row['Rv_AprvStatus']) {
+		// 	case '01':
+		// 		$rvStatus = "Pending";
+		// 		break;
+		// 	case '02':
+		// 		$rvStatus = "Approved";
+		// 		break;
+		// 	case '03':
+		// 		$rvStatus = "Rejected";
+		// 		break;
+		// 	default:
+		// 		$rvStatus = "Unknown";
+		// 		break;
+		// }
   		echo '<div class="perOrder" id="'.$row['perOrder_ID'].'">
 							<div class="orderHeader">
 								<p>Order #'.$row['perOrder_ID'].'</p>';
@@ -99,12 +113,11 @@
 	?>
 
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" id="reviewForm">
-    	<input class="contentInput" type="text" name="oid" title="Item Name" required value="<?php echo $_GET['oid']; ?>" style="display: none;">
 		<input class="contentInput" type="text" name="poid" title="Item Name" required value="<?php echo $_GET['poid']; ?>" style="display: none;">
-
+		
     	<p>
     		<label>Review</label>
-        	<textarea class="contentInput" type="text" name="review" title="Item Description" cols="38" rows="5" required></textarea>
+        	<textarea class="contentInput view" type="text" name="review" title="Item Description" cols="38" rows="5" disabled><?php echo $row['Rv_Txt']; ?></textarea>
     	</p>
 
 		<p style="display: inline-block;">
@@ -113,24 +126,24 @@
 	    		<table id="rateTable">
 	    			<tr>
 	    				<td>
-	    					<input type="radio" name="rate" value="1" class="rateInput" required>
-	    					<span class="fa fa-star"></span>
+	    					<input type="radio" name="rate" value="1" class="rateInput">
+	    					<span class="<?php if ($Rv_Rating == 1) echo 'fa fa-star checked'; else echo 'fa fa-star';?>" ></span>
 	    				</td>
 	    				<td>
 	    					<input type="radio" name="rate" value="2" class="rateInput">
-	    					<span class="fa fa-star"></span>
+	    					<span class="<?php if ($Rv_Rating == 2) echo 'fa fa-star checked'; else echo 'fa fa-star';?>" ></span>
 	    				</td>
 	    				<td>
 	    					<input type="radio" name="rate" value="3" class="rateInput">
-	    					<span class="fa fa-star"></span>
+	    					<span class="<?php if ($Rv_Rating == 3) echo 'fa fa-star checked'; else echo 'fa fa-star';?>" ></span>
 	    				</td>
 	    				<td>
 	    					<input type="radio" name="rate" value="4" class="rateInput">
-	    					<span class="fa fa-star"></span>
+	    					<span class="<?php if ($Rv_Rating == 4) echo 'fa fa-star checked'; else echo 'fa fa-star';?>" ></span>
 	    				</td>
 	    				<td>
 	    					<input type="radio" name="rate" value="5" class="rateInput">
-	    					<span class="fa fa-star"></span>
+	    					<span class="<?php if ($Rv_Rating == 5) echo 'fa fa-star checked'; else echo 'fa fa-star';?>" ></span>
 	    				</td>
 	    			</tr>
 	    		</table>
@@ -138,8 +151,7 @@
 		</p>
 
 		<p>
-            <input class="contentSubmit" style="margin-top: -15px;" type="submit" name="add">
-			<a href="userPurchase.php?oid=<?php echo $_GET['poid']?>" class="backLink">Back</a>
+            <input class="contentSubmit" style="margin-top: -15px;" type="submit" name="add" value="< Back">
         </p>
 
     </form>
@@ -147,54 +159,34 @@
 	</div>
 
 	<script type="text/javascript">
-		var star = document.getElementsByClassName('fa fa-star');
-		var input = document.getElementsByClassName('rateInput');
-		function clearAllChecked() {
-			for (var x = 0; x < 5; x++) {
-				star[x].classList.remove("checked");
+		var table = document.getElementById('rateTable');
+		var star = table.getElementsByTagName('span');
+		for (var x = 0; x < 5; x++) {
+			if (star[x].classList.contains("checked")){
+				switch (x) {
+					case 1:
+						star[0].classList.add("checked");
+						break;
+					case 2:
+						star[0].classList.add("checked");
+						star[1].classList.add("checked");
+						break;
+					case 3:
+						star[0].classList.add("checked");
+						star[1].classList.add("checked");
+						star[2].classList.add("checked");
+						break;
+					case 4:
+						star[0].classList.add("checked");
+						star[1].classList.add("checked");
+						star[2].classList.add("checked");
+						star[3].classList.add("checked");
+						break;
+					default:
+						break;
+				}
 			}
 		}
-
-		star[0].onclick = function(){
-			clearAllChecked();
-			input[0].checked = true;
-			star[0].classList.add("checked");
-		}
-
-		star[1].onclick = function(){
-			clearAllChecked();
-			input[1].checked = true;
-			star[0].classList.add("checked");
-			star[1].classList.add("checked");
-		}
-
-		star[2].onclick = function(){
-			clearAllChecked();
-			input[2].checked = true;
-			star[0].classList.add("checked");
-			star[1].classList.add("checked");
-			star[2].classList.add("checked");
-		}
-
-		star[3].onclick = function(){
-			clearAllChecked();
-			input[3].checked = true;
-			star[0].classList.add("checked");
-			star[1].classList.add("checked");
-			star[2].classList.add("checked");
-			star[3].classList.add("checked");
-		}
-
-		star[4].onclick = function(){
-			clearAllChecked();
-			input[4].checked = true;
-			star[0].classList.add("checked");
-			star[1].classList.add("checked");
-			star[2].classList.add("checked");
-			star[3].classList.add("checked");
-			star[4].classList.add("checked");
-		}
-
 
 	</script>
 	

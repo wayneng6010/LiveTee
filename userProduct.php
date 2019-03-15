@@ -4,11 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Home | LiveTee</title>
+	<title>Product | LiveTee</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  	<!-- star font -->
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   	<link rel="icon" href="Asset/Image/icon1.png">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
@@ -65,9 +67,10 @@
 					</div>
 					</div>
 					</form>';
-
 			}
 	?>
+
+	<br>
 
 	<div id="tabOuter">
 		<div id="tabBar">
@@ -81,11 +84,94 @@
 				}
 			?>
 		</div>
-		<div class="tab" id="RevTab">Reviews</div>
+		<div class="tab" id="RevTab">
+		<?php
+		while ($rowRv = mysqli_fetch_assoc($result4)){
+			echo '<div class="eachRv">
+				<div class="profileRv">
+					<img src="Asset/Image/Profile1.svg" width="30" height="auto">
+				</div>
+				<div class="leftDiv">
+					<div class="userRv">'
+						.$rowRv['User_Name'].
+						'<table class="rateTable rvRate">
+			    			<tr>
+			    				<td>
+			    					<span class="';
+			    					if ($rowRv['Rv_Rating'] == 1) echo 'fa fa-star checked'; else echo 'fa fa-star';
+			    					echo '"></span>
+			    				</td>
+			    				<td>
+			    					<span class="';
+			    					if ($rowRv['Rv_Rating'] == 2) echo 'fa fa-star checked'; else echo 'fa fa-star';
+			    					echo '"></span>
+			    				</td>
+			    				<td>
+			    					<span class="';
+			    					if ($rowRv['Rv_Rating'] == 3) echo 'fa fa-star checked'; else echo 'fa fa-star';
+			    					echo '"></span>
+			    				</td>
+			    				<td>
+			    					<span class="';
+			    					if ($rowRv['Rv_Rating'] == 4) echo 'fa fa-star checked'; else echo 'fa fa-star';
+			    					echo '"></span>
+			    				</td>
+			    				<td>
+			    					<span class="';
+			    					if ($rowRv['Rv_Rating'] == 5) echo 'fa fa-star checked'; else echo 'fa fa-star';
+			    					echo '"></span>
+			    				</td>
+			    			</tr>
+			    		</table>
+					</div>
+					<div class="txtRv">'.
+						nl2br($rowRv['Rv_Txt']).'
+					</div>
+					<div class="DateTimeRv">'.
+						date("Y-m-d h:iA", strtotime($rowRv['Rv_DateTime'])).'
+					</div>
+				</div>
+			</div>
+			<hr>';
+		}
+		?>
+		</div>
 		<div id="underTabBar"></div>
 	</div>
-
-
 	
+	<script type="text/javascript">
+		var table = document.getElementsByClassName('rateTable');
+		
+		for (var i = 0; i < table.length; ++i) {
+			var star = table[i].getElementsByTagName('span');
+
+			for (var x = 0; x < 5; x++) {
+				if (star[x].classList.contains("checked")){
+					switch (x) {
+						case 1:
+							star[0].classList.add("checked");
+							break;
+						case 2:
+							star[0].classList.add("checked");
+							star[1].classList.add("checked");
+							break;
+						case 3:
+							star[0].classList.add("checked");
+							star[1].classList.add("checked");
+							star[2].classList.add("checked");
+							break;
+						case 4:
+							star[0].classList.add("checked");
+							star[1].classList.add("checked");
+							star[2].classList.add("checked");
+							star[3].classList.add("checked");
+							break;
+						default:
+							break;
+					}
+				}
+			}
+		}
+	</script>
 </body>
 </html>

@@ -803,7 +803,7 @@ input.contentInput[name=iname]{
 	width: 60%;
 }
 
-textarea.contentInput[name=idescription]{
+textarea.contentInput[name=idescription], textarea.contentInput[name=review]{
 	width: 60%;
 }
 
@@ -945,7 +945,6 @@ div#pdOutermost{
 	top: 120px;
 	width: 900px;
 	height: 400px;
-	border: 1px solid;
 	display: flex;
 	align-items: center;
 	margin: 0 auto;
@@ -970,12 +969,14 @@ img#pdImg{
 }
 
 div#pdDetailsOuter{
-	/*border: 1px solid;*/
+	border-left: 1px solid grey;
 	box-sizing: border-box;
 	display: inline-block;
 	/*width: 70%;*/
 	position: absolute;
 	left: 50%;
+	padding-left: 25px;
+	margin-left: -25px;
 }
 
 p#pdName{
@@ -1031,7 +1032,7 @@ input.contentSubmit.user[name=buy]{
 }
 
 div#tabOuter{
-	border: 1px solid;
+	border: 1px solid white;
 	height: 300px;
 	display: flex;
 	margin: 0 auto;
@@ -1081,13 +1082,13 @@ div.tab{
 	margin: 50px 2%;
   	box-sizing: border-box;
   	display: none;
-  	border: 1px solid;
   	width: 96%;
   	height: 250px;
 }
 
 div.tab#detTab{
 	display: block;
+	font-size: 16px;
 }
 
 div#regOuter{
@@ -1470,9 +1471,102 @@ form#reviewForm p label {
 	font-size: 16px;
 	width: 100px;
 	display: inline-block;
-	text-align: center;
 }
 
 form#reviewForm p textarea {
 	height: 100px;
+}
+
+form#reviewForm p textarea.contentInput.view{
+	border-radius: 0px;
+	background-color: rgba(0, 0, 0, .1);
+	border: none;
+}
+
+span.fa.fa-star.checked {
+	color: orange;
+}
+
+div#rateDiv {
+	display: inline-block;
+	width: 200px;
+}
+
+table#rateTable, table.rateTable {
+	width: 100px;
+}
+
+table#rateTable tr td input[type=radio]{
+	/*display: none;*/
+	/*visibility: hidden;*/
+	opacity: 0;
+	position: absolute;
+	z-index: -10;
+}
+
+table#rateTable.rvRate tr td, table.rateTable.rvRate tr td{
+	height: 10px;
+	padding: 0px;
+}
+
+p span#rvStatus {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+a.backLink {
+	color: grey;
+	font-size: 18px;
+	margin-left: 10px; 
+	font-style: italic;
+	text-decoration: underline;
+}
+
+a.backLink:hover {
+	color: black;
+}
+
+div.eachRv {
+	position: relative;
+	/*border: 1px solid;*/
+	height: auto;
+}
+
+div.profileRv {
+	width: 5%;
+	/*border: 1px solid;*/
+	height: 40px;
+	position: absolute;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.leftDiv {
+	width: 90%;
+	position: relative;
+	/*border: 1px solid pink;*/
+	height: auto;
+	left: 5%;
+}
+
+div.userRv {
+	width: 100%;
+	/*border: 1px solid;*/
+	font-size: 14px;
+}
+
+div.txtRv {
+	width: 100%;
+	/*border: 1px solid;*/
+	font-size: 16px;
+	padding: 10px 0px; 
+}
+
+div.DateTimeRv {
+	width: 100%;
+	/*border: 1px solid;*/
+	font-size: 14px;
+	color: grey;
 }

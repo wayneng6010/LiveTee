@@ -34,7 +34,9 @@
 		include "headers/userHeaders.php";
 	?>
 	<?php include 'php/userPurchaseQuery.php'; ?>
-	
+
+	<div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Review Submitted</div>
+
 	<div id="myAccNav">
 		<div class="disFlex">
 			<div class="disFlex">
@@ -116,9 +118,9 @@
               	case '03':
                 	$status = "Received";
                 	if ($row['Order_Review']){
-		           		$review = '<a href="userViewReview.php?oid='.$row['Order_ID'].'">View Review</a>';
+		           		$review = '<a href="userViewReview.php?oid='.$row['Order_ID'].'&poid='.$row['perOrder_ID'].'">View Review</a>';
 		           	} else {
-		           		$review = '<a href="userWriteReview.php?oid='.$row['Order_ID'].'">Write Review</a>';
+		           		$review = '<a href="userWriteReview.php?oid='.$row['Order_ID'].'&poid='.$row['perOrder_ID'].'">Write Review</a>';
 		           	}
                 	break;  
               	default:
@@ -196,6 +198,13 @@
 			});
           	</script>";
         }
+
+        if(isset($_GET['rvSuccess'])){
+          echo "<script>
+            var e = document.getElementById('popUpMsg');
+            e.style.display = 'flex';
+          </script>";
+        }
     ?>
 
 	<script type="text/javascript">
@@ -204,6 +213,12 @@
 				window.location.replace("php/userConReceiveQuery.php?oid=" + oid);
 			}
 		}
+
+		setInterval(function(){
+	      	var msg = document.getElementById('popUpMsg');
+	      	msg.style.opacity = "0";
+	      	msg.style.visibility = "hidden";
+	    }, 1000);
 	</script>
 	
 </body>

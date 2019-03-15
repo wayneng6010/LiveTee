@@ -5,7 +5,7 @@
 	if(isset($_POST['add'])){
 		$iname = $_POST['iname'];
 		$iprice = $_POST['iprice'];
-		$idescription = $_POST['idescription'];
+		$idescription = mysql_real_escape_string($_POST['idescription']);
 		// $isize = $_POST['isize'];
 		$isize = "";
 		$checked_count = count($_POST['isize']);

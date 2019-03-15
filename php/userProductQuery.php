@@ -5,11 +5,12 @@
 	
 	$itemID = $_GET['item'];
 	$sql1 = "SELECT * FROM item WHERE Item_ID='$itemID'";
+	$sql4 = "SELECT Rv_Txt, Rv_Rating, Rv_DateTime, User_Name FROM review, orders, user WHERE review.Rv_OrderID = orders.Order_ID AND orders.User_ID = user.User_ID AND Order_ItemID='$itemID'";
 	
 	$result1 = mysqli_query($link,$sql1);
 	$result2 = mysqli_query($link,$sql1);
 	$result3 = mysqli_query($link,$sql1);
-
+	$result4 = mysqli_query($link,$sql4);
 	$item = mysqli_fetch_assoc($result3);
 
 	if (isset($_SESSION['uLogin'])){
