@@ -479,7 +479,7 @@ div#sideBar button img{
   	padding-left: 8px;
 }
 
-.notiBox{
+.notiBox {
 	display: none;
 	width: 400px;
 	height: 500px;
@@ -490,8 +490,30 @@ div#sideBar button img{
 	right: 0;
 	overflow-y: scroll;
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-	border-radius: 10px;
 	font-size: 16px;
+}
+
+.accBox {
+	display: none;
+	width: 100px;
+	height: 80px;
+	background-color: #fefefe;
+	position: fixed;
+	z-index: 10;
+	top: 50px;
+	right: 0;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+	font-size: 16px;
+	padding: 0 10px;
+	text-align: center;
+}
+
+.accBox a {
+	color: #515151;
+}
+
+.accBox a:hover {
+	color: black;
 }
 
 .notiBox a{
@@ -1509,6 +1531,12 @@ table#rateTable.rvRate tr td, table.rateTable.rvRate tr td{
 	padding: 0px;
 }
 
+table.rateTable.rvRate tr td span.fa.fa-star{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 p span#rvStatus {
 	font-size: 16px;
 	text-transform: uppercase;
@@ -1569,4 +1597,50 @@ div.DateTimeRv {
 	/*border: 1px solid;*/
 	font-size: 14px;
 	color: grey;
+}
+
+table#reviewView tr th, table#reviewView tr td { 
+	font-size: 14px;
+	text-align: left;
+	padding: 10px 0px;
+}
+
+table#reviewView tr th{
+	background-color: white;
+	color: grey;
+}
+
+table#reviewView tr th:nth-child(1){
+	width: 20%;
+}
+
+table#reviewView tr th:nth-child(2){
+	width: 35%;
+}
+
+table#reviewView tr th:nth-child(3){
+	width: 25%;
+}
+
+table#reviewView tr th:nth-child(4){
+	width: 20%;
+}
+
+table#reviewView tr:nth-child(even) td table.rateTable.rvRate tr td{
+	background-color: #f2f2f2;
+}
+
+div#logoutBtn {
+	position: fixed; 
+	bottom: 0; 
+	background-color: darkred !important;
+	width: 200px; 
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div#logoutBtn a {
+	padding: 5px 0px;
 }

@@ -6,6 +6,11 @@
 		<a href="#"><div>1st notification</div></a>
 		<a href="#"><div>1st notification</div></a>
 	</div>
+
+	<div class="accBox">
+		<p><a href="adminAccount.php">My Account</a></p>
+		<p><a href="adminLogout.php">Logout</a></p>
+	</div>
 	
 
 	<div id="sideBar">
@@ -25,8 +30,8 @@
 				<a href="adminOrderManage.php">Manage</a>
 				<a href="adminOrderHistory.php">History</a>
 			</div>
-		<a href="#">Message</a>
-		<a href="#">Reviews</a>
+		<!-- <a href="#">Message</a>
+		<a href="#">Reviews</a> -->
 		<a href="#">Sales</a>
 		
 		<div class="addStaffbtn" style="display:none;">
@@ -35,6 +40,10 @@
 				<a href='adminStaffAdd.php'>Add</a>
 				<a href='#'>Edit</a>
 			</div>
+		</div>
+
+		<div id="logoutBtn">
+			<a href="adminLogout.php">Logout</a>
 		</div>
 	</div>
 	
@@ -45,12 +54,34 @@
 		var notiBox = document.getElementsByClassName("notiBox")[0];
 		var notiIcon = flexRight.getElementsByTagName("IMG")[0];
 		notiIcon.addEventListener("click", function() {
+			if(accBox.style.display === "block"){
+				accBox.style.display = "none";
+				accIcon.style.filter = "none";
+			}
 			if(notiBox.style.display === "block"){
 				notiBox.style.display = "none";
 				notiIcon.style.filter = "none";
 			}else{
 				notiBox.style.display = "block";
 				notiIcon.style.filter = "drop-shadow(0px 0px 5px rgba(255, 255, 255, .5)) brightness(1)";
+			}
+		});
+
+		//top header
+		var flexRight = document.getElementById("flexRight");
+		var accBox = document.getElementsByClassName("accBox")[0];
+		var accIcon = flexRight.getElementsByTagName("IMG")[2];
+		accIcon.addEventListener("click", function() {
+			if(notiBox.style.display === "block"){ 
+				notiBox.style.display = "none";
+				notiIcon.style.filter = "none";
+			}
+			if(accBox.style.display === "block"){
+				accBox.style.display = "none";
+				accIcon.style.filter = "none";
+			}else{
+				accBox.style.display = "block";
+				accIcon.style.filter = "drop-shadow(0px 0px 5px rgba(255, 255, 255, .5)) brightness(1)";
 			}
 		});
 

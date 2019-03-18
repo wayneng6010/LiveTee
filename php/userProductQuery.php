@@ -37,6 +37,15 @@
 			header("Location: userLogin.php");
 		}
 	}
+
+	if(isset($_POST['buy'])){
+		if ($uLogin != ""){
+
+		} else {
+			header("Location: userLogin.php");
+		}
+	}
+
 	
 
 	?>
