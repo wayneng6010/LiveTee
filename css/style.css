@@ -1644,3 +1644,9 @@ div#logoutBtn {
 div#logoutBtn a {
 	padding: 5px 0px;
 }
+
+span#stockNo {
+	margin-left: 10px;
+	font-size: 16px;
+	color: grey;
+}

@@ -2,7 +2,7 @@
 	include 'verficationAdmin.php';
 	require_once 'conn.php';
 
-	$dateTimeArr = array();
+	// $iidArr = array();
 
 	if(isset($_GET['uid'])) {
 		$uid = $_GET['uid'];
@@ -10,10 +10,16 @@
 		$sql = "SELECT * FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '01' AND Order_perOrderID='$oid' ORDER BY Order_DateTime";
 
 		$item = mysqli_query($link,$sql);
+		// $item1 = mysqli_query($link,$sql);
 		$row = mysqli_fetch_assoc($item);
 
 		$result = mysqli_query($link,$sql);
 
+		// while($rowiid = mysqli_fetch_assoc($item1)){
+		//     $iidArr[] = $rowiid['Order_ItemID']; 
+		//   	$iidArr[$rowiid['Order_ItemID']] = $rowiid['value'];
+
+		// }
 		// $sql1 = "SELECT Order_ID FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '01' ORDER BY Order_DateTime";
 		// $result1 = mysqli_query($link,$sql1);
   //       while($row1 = mysqli_fetch_assoc($result1)){
@@ -25,12 +31,15 @@
       	
       	
 	}
+	
+	// print_r($iidArr);
+		
 
 	if(isset($_POST['con'])){
 		$uid = $_POST['uid'];
 		$oid = $_POST['oid'];
-		$orderID = $_POST['orderID'];
-		$orderIDArr = explode(',', $orderID);
+		// $orderID = $_POST['orderID'];
+		// $orderIDArr = explode(',', $orderID);
 		// $sql = "SELECT * FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid'";
 		// $result1 = mysqli_query($link,$sql);
 		$sqlSuccess = false;
@@ -62,6 +71,8 @@
 		// $sql1 = "UPDATE orders SET `Order_Status`= '02',`Order_ConStaffID`= '$sid', `Order_ConDateTime`= now(), `Order_TrackNo`= '$trackNo' WHERE orders.User_ID='$uid' AND Order_Status = '01' AND `Order_ID` = '$oID'";
 		// echo '<script>alert('.$uid.$oid.')</script>';
     	$sql1 = "UPDATE orders SET `Order_Status`= '02' WHERE orders.User_ID='$uid' AND Order_Status = '01' AND `Order_perOrderID` = '$oid'";
+
+
 //     	if ($i == $len - 1) {
 //     		$sql2 = "INSERT INTO `perorder` VALUES (null,'$sid',now(),'$trackNo')";
 			// if($queryResult2 = mysqli_query($link, $sql2)){
@@ -78,6 +89,37 @@
 			// echo "<script>alert('Failed');</script>";
 			$sqlSuccess = false;
 		}
+
+		$sql5 = "SELECT * FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '02' AND Order_perOrderID='$oid' ORDER BY Order_DateTime";
+		$item5 = mysqli_query($link,$sql5);
+		
+		while ($row5 = mysqli_fetch_assoc($item5)) {
+			// echo $row2['Order_ItemID']." ".$row2['Order_ItemSize']." ".$row2['Order_ItemQuan'].", ";
+			$iid = $row5['Order_ItemID'];
+			$isize = $row5['Order_ItemSize'];
+			$sql4 = "SELECT * FROM stock WHERE Item_ID = '$iid' AND Item_Size = '$isize'";
+			$item4 = mysqli_query($link,$sql4);
+			while ($row4 = mysqli_fetch_assoc($item4)) { 
+			 	// echo $row4['Item_ID']." ".$row4['Item_Size']." ".$row4['Stock_Quan'].", ";
+			 	$sid = $row4['Item_ID'];
+			 	$ssize = $row4['Item_Size'];
+			 	$squan = $row4['Stock_Quan'];
+			}
+			$isize = $row5['Order_ItemSize'];
+			$iquan = $row5['Order_ItemQuan'];
+			if ($squan >= $iquan) {
+    			$sql3 = "UPDATE stock SET `Stock_Quan`= (`Stock_Quan` - '$iquan') WHERE Item_ID = '$sid' AND `Item_Size` = '$ssize'";
+    			if ($item3 = mysqli_query($link,$sql3)) {
+    				// echo $sid."success";
+					$sqlSuccess = true;
+	    		} else {
+					$sqlSuccess = false;
+	    		}
+			} else {
+				echo "<script>alert('Insufficient stock');</script>";
+			}
+		}
+
 
 
 

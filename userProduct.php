@@ -19,6 +19,38 @@
 	crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
+		$(document).ready(function () {
+		    $('#pdSelectSize').change(function(){
+		        $.ajax({
+		            url: "php/userProductQuery1.php",
+		            type: "post",
+		            data: {option: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
+		            success: function(data){
+		                //adds the echoed response to our container
+		                $("#stockNo").html(data + " piece available");
+		                $stockAvailable = data;
+		                var quanInput = document.getElementById('pdQuanInput');
+						quanInput.max = $stockAvailable;
+	                	// alert($stockAvailable);
+		            }
+		        });
+		    });
+
+	    	$.ajax({
+	            url: "php/userProductQuery1.php",
+	            type: "post",
+	            data: {option: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
+	            success: function(data){
+	                //adds the echoed response to our container
+	                $("#stockNo").html(data + " piece available");
+	                $stockAvailable = data;
+	                var quanInput = document.getElementById('pdQuanInput');
+					quanInput.max = $stockAvailable;
+	                // alert($stockAvailable);
+	            }
+	        });
+		});
+
 		function tabChange(tabName) {
 			var tab = document.getElementsByClassName("tab");
 			var tabBtn = document.getElementsByClassName("tabBtn");
@@ -51,7 +83,7 @@
 		echo '<div id="pdOutermost">
 				<div id="pdImgOuter"><img id="pdImg" src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" width="400" height="auto" alt=""></div>
 				<div id="pdDetailsOuter">
-					<input style="display: none;" type="text" name="iid" value="'.$row['Item_ID'].'"></p>
+					<input style="display: none;" type="text" id="itemID" name="iid" value="'.$row['Item_ID'].'"></p>
 					<p id="pdName">'.$row['Item_Name'].'</p>
 					<p id="pdPrice">RM '.$row['Item_Price'].'</p>
 					<p id="pdSize"><label id="pdSizeTxt">Size</label><select name="isize" id="pdSelectSize">';
@@ -61,7 +93,13 @@
 			}
 					
 				echo '</select></p>
-					<p id="pdQuan"><label id="pdQuanTxt">Quantity</label><input type="number" id="pdQuanInput" name="pdquan" min="1" value="1" title="Item Quantity" required></p>
+					<p id="pdQuan">
+						<label id="pdQuanTxt">Quantity</label>
+						<input type="number" onkeyup="limitQuan()" id="pdQuanInput" name="pdquan" min="1" value="1" title="Item Quantity" required>
+						<span id="stockNo">';
+				// echo $sizeArr['S'];
+				echo '</span>
+					</p>
 					<p id="pdSubmit"><input class="contentSubmit user" type="submit" name="buy" value="BUY NOW">
 					<input class="contentSubmit user" type="submit" name="cart" value="ADD TO CART"></p>
 					</div>
@@ -172,6 +210,16 @@
 				}
 			}
 		}
+
+
+		function limitQuan(){
+			// alert($stockAvailable);
+			// var max_quan = $stockAvailable;
+			// if(event.target.value > max_quan) { 
+			//     event.target.value = $stockAvailable;
+			// }
+		}
+
 	</script>
 </body>
 </html>

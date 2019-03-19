@@ -54,7 +54,7 @@
       <p>
         <input class="contentInput" type="text" name="oid" title="Item Name" style="display:none;" required value="<?php echo $oid ?>">
       </p>
-      <p>
+      <!-- <p>
         <input class="contentInput" type="text" name="orderID" title="Item Name" style="display:none;" required 
         value="<?php 
         $i = 0;
@@ -68,7 +68,7 @@
           $i++; 
         }
         ?>">
-      </p>
+      </p> -->
       
       <p>
         <label><b>Order ID</b></label>
