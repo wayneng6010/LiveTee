@@ -79,11 +79,11 @@
       </p>
       <?php
         if(isset($_GET['success'])){
-    echo "<script>
-      var e = document.getElementById('successMsg');
-      e.style.display = 'block';
-    </script>";
-  }
+          echo "<script>
+            var e = document.getElementById('successMsg');
+            e.style.display = 'block';
+          </script>";
+        }
       ?>
     </form>
 	</div>

@@ -97,11 +97,12 @@
           echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
                 <th>Item ID</th>
+                <th>Stock Available</th>
                 <th>Item Name</th>
                 <th>Size</th>
                 <th>Quantity</th>';
           } 
-          echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+          echo "<tr><td>".$row['Order_ItemID']."</td><td class='stock'>".$row['Stock_Quan']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td class='order'>".$row['Order_ItemQuan']."</td></tr>";
 
           
           $counter+=1;
@@ -119,37 +120,32 @@
       </p>
       <p>
         <input class="contentSubmit" type="submit" value="Confirm Order" name="con">
+        <div id="successMsg" style="line-height: 1.5; color: darkred; display: none;">Insufficient stock</div>
       </p>
       
     </form>
 	</div>
-  <script type="text/javascript">
 
-  // $('#selectCat').on('change', function(e) {
-  //     document.sorting.submit();
+  <?php
+    if(isset($_GET['failed'])){
+      echo "<script>
+        var e = document.getElementById('successMsg');
+        e.style.display = 'block';
+      </script>";
+    }
+  ?>
 
-  //     function refresh_div() {
+<script type="text/javascript">
+  var table = document.getElementById("tableClothing");
+  var stock = table.getElementsByClassName("stock");
+  var order = table.getElementsByClassName("order");
+  for (i = 0; i < stock.length; i++) {
+    if (stock[i].innerHTML < order[i].innerHTML) {
+      stock[i].style.color = "darkred";
+      stock[i].innerHTML += " (Insufficient)";
+    }
+  }
 
-  //       jQuery.ajax({
-  //           url:'adminClothingEdit.php',
-  //           type:'POST',
-  //           success:function(msg) {
-  //             alert("yes");
-
-  //             $( "#tableClothing" ).load(document.URL + "#tableClothing" );
-              
-  //               // jQuery(".result1").html(results);
-  //               // $('#content_container').fadeOut(800, function(){
-
-  //               //             $('#content_container').html(msg).fadeIn().delay(2000);
-
-  //               //         });
-  //           }
-  //       });
-  //   }
-  //   // var t = setInterval(refresh_div,1000);
-    
-  //     })
 </script>
 
 <?php include_once 'headers/adminHeaders.html';  include 'verficationAdminRole.php';?>

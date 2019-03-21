@@ -4,11 +4,11 @@
 	require_once '../conn.php';
 	
 	// $itemID = $_GET['item'];
-	$isize = $_POST['option'];
+	$isize = $_POST['isize'];
 	$itemID = $_POST['itemID'];
 
 	$sql1 = "SELECT Stock_Quan FROM stock WHERE Item_ID='$itemID' AND Item_Size='$isize'";
-	$sql2 = "SELECT SUM(`Order_ItemQuan`) AS `orderQuan` FROM `orders` WHERE `Order_ItemID` = 47 AND `Order_ItemSize` = 'S'";
+	$sql2 = "SELECT SUM(`Order_ItemQuan`) AS `orderQuan` FROM `orders` WHERE `Order_ItemID` = '$itemID' AND `Order_ItemSize` = '$isize'";
 
 	$result1 = mysqli_query($link,$sql1);
 	$result2 = mysqli_query($link,$sql2);

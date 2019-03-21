@@ -10,10 +10,15 @@
 	$result1 = mysqli_query($link,$sql1);
 	$result2 = mysqli_query($link,$sql1);
 	$result3 = mysqli_query($link,$sql1);
+	$result5 = mysqli_query($link,$sql1);
 	
 	$result4 = mysqli_query($link,$sql4);
 	$item = mysqli_fetch_assoc($result3);
+	$itemAvailable = mysqli_fetch_assoc($result5);
 
+	if (!$itemAvailable['Item_Status']) {
+		header("Location: userHome.php");
+	}
 	// print_r($sizeArr);
 
 
@@ -23,23 +28,39 @@
 	}
 
 	if(isset($_POST['cart'])){
-		if ($uLogin != ""){
-			$iid = $_POST['iid'];
-			$iname = $item['Item_ID'];
-			$iprice = $item['Item_Price'];
-			$iquan = $_POST['pdquan'];
-			$isize = $_POST['isize'];
-			$sql2 = "INSERT INTO cart VALUES(null, '$uID', '$iid', '$iquan', '$isize', now())";
-			if($result2 = mysqli_query($link,$sql2)){
+		$iid = $_POST['iid'];
+		$iquan = $_POST['pdquan'];
+		$isize = $_POST['isize'];
+
+		$sql1 = "SELECT Stock_Quan FROM stock WHERE Item_ID='$iid' AND Item_Size='$isize'";
+		$sql2 = "SELECT SUM(`Order_ItemQuan`) AS `orderQuan` FROM `orders` WHERE `Order_ItemID` = '$iid' AND `Order_ItemSize` = '$isize'";
+
+		$result1 = mysqli_query($link,$sql1);
+		$result2 = mysqli_query($link,$sql2);
+		$row1 = mysqli_fetch_assoc($result1);
+		$row2 = mysqli_fetch_assoc($result2);
+		$stockAvailable = $row1['Stock_Quan'] - $row2['orderQuan'];
+
+		if ($iquan <= $stockAvailable) {
+			if ($uLogin != ""){
+				$iname = $item['Item_ID'];
+				$iprice = $item['Item_Price'];
+				$sql2 = "INSERT INTO cart VALUES(null, '$uID', '$iid', '$iquan', '$isize', now())";
+				if($result2 = mysqli_query($link,$sql2)){
+					// echo "<script>alert('".$uLogin."')</script>";
+					header("Location: userProduct.php?item=".$iid);
+				} else{
+					echo "<script>alert('Error add to cart.')</script>";
+				}
 				// echo "<script>alert('".$uLogin."')</script>";
-				header("Location: userProduct.php?item=".$iid);
-			} else{
-				echo "<script>alert('Error add to cart.')</script>";
+			} else {
+				header("Location: userLogin.php");
 			}
-			// echo "<script>alert('".$uLogin."')</script>";
 		} else {
-			header("Location: userLogin.php");
+			header("Location: userHome.php");
 		}
+
+		
 	}
 
 	if(isset($_POST['buy'])){

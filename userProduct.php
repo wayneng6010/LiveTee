@@ -24,7 +24,7 @@
 		        $.ajax({
 		            url: "php/userProductQuery1.php",
 		            type: "post",
-		            data: {option: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
+		            data: {isize: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
 		            success: function(data){
 		                //adds the echoed response to our container
 		                $("#stockNo").html(data + " piece available");
@@ -39,7 +39,7 @@
 	    	$.ajax({
 	            url: "php/userProductQuery1.php",
 	            type: "post",
-	            data: {option: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
+	            data: {isize: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
 	            success: function(data){
 	                //adds the echoed response to our container
 	                $("#stockNo").html(data + " piece available");
@@ -95,7 +95,7 @@
 				echo '</select></p>
 					<p id="pdQuan">
 						<label id="pdQuanTxt">Quantity</label>
-						<input type="number" onkeyup="limitQuan()" id="pdQuanInput" name="pdquan" min="1" value="1" title="Item Quantity" required>
+						<input type="number" oninput="limitQuan()" id="pdQuanInput" name="pdquan" min="1" value="1" title="Item Quantity" required>
 						<span id="stockNo">';
 				// echo $sizeArr['S'];
 				echo '</span>
@@ -213,11 +213,15 @@
 
 
 		function limitQuan(){
-			// alert($stockAvailable);
-			// var max_quan = $stockAvailable;
-			// if(event.target.value > max_quan) { 
-			//     event.target.value = $stockAvailable;
-			// }
+			$max_quan = $stockAvailable;
+			// alert(event.target.value);
+			// alert($max_quan);
+			// alert(Number(event.target.value) > Number($max_quan));
+			if(Number(event.target.value) > Number($max_quan)) { 
+				// alert($stockAvailable);
+			    event.target.value = $max_quan;
+			}
+			event.target.value = event.target.value.replace('e','');
 		}
 
 	</script>

@@ -7,7 +7,7 @@
 	if(isset($_GET['uid'])) {
 		$uid = $_GET['uid'];
 		$oid = $_GET['oid'];
-		$sql = "SELECT * FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '01' AND Order_perOrderID='$oid' ORDER BY Order_DateTime";
+		$sql = "SELECT * FROM orders, user, item, stock WHERE stock.Item_ID = orders.Order_ItemID AND stock.Item_Size = orders.Order_ItemSize AND orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '01' AND Order_perOrderID='$oid' ORDER BY Order_DateTime";
 
 		$item = mysqli_query($link,$sql);
 		// $item1 = mysqli_query($link,$sql);
@@ -47,12 +47,7 @@
 		$sid = $_SESSION['sID'];
         $trackNo = $_POST['trackNo'];
 
-        $sql2 = "UPDATE perorder SET `perOrder_ConStaffID`= '$sid', `perOrder_ConDateTime` = now(), `perOrder_TrackNo`= '$trackNo' WHERE perOrder_ID='$oid'";
-        if($queryResult2 = mysqli_query($link, $sql2)){
-			$sqlSuccess = true;
-		} else {
-			$sqlSuccess = false;
-		}
+        
 		// $i = 0;
 		// $len = count($orderIDArr);
 		// $last_row;
@@ -70,7 +65,7 @@
     	
 		// $sql1 = "UPDATE orders SET `Order_Status`= '02',`Order_ConStaffID`= '$sid', `Order_ConDateTime`= now(), `Order_TrackNo`= '$trackNo' WHERE orders.User_ID='$uid' AND Order_Status = '01' AND `Order_ID` = '$oID'";
 		// echo '<script>alert('.$uid.$oid.')</script>';
-    	$sql1 = "UPDATE orders SET `Order_Status`= '02' WHERE orders.User_ID='$uid' AND Order_Status = '01' AND `Order_perOrderID` = '$oid'";
+    	
 
 
 //     	if ($i == $len - 1) {
@@ -81,19 +76,15 @@
 			// 	$sqlSuccess = false;
 			// }
 // 		}
-		if($queryResult1 = mysqli_query($link, $sql1)){
-			// echo "<script>alert('Order Confirmed');</script>";
-			$sqlSuccess = true;
-			// header("location: adminOrderManage.php?success=true");
-		}else{
-			// echo "<script>alert('Failed');</script>";
-			$sqlSuccess = false;
-		}
-
-		$sql5 = "SELECT * FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '02' AND Order_perOrderID='$oid' ORDER BY Order_DateTime";
-		$item5 = mysqli_query($link,$sql5);
 		
+
+		$sql5 = "SELECT * FROM orders, user, item WHERE orders.User_ID = user.User_ID AND orders.Order_ItemID = item.Item_ID AND orders.User_ID='$uid' AND Order_Status = '01' AND Order_perOrderID='$oid' ORDER BY Order_DateTime";
+		$item5 = mysqli_query($link,$sql5);
+
+		for ($x = 0; $x < 2; $x++) {
+
 		while ($row5 = mysqli_fetch_assoc($item5)) {
+					$gg = "0";
 			// echo $row2['Order_ItemID']." ".$row2['Order_ItemSize']." ".$row2['Order_ItemQuan'].", ";
 			$iid = $row5['Order_ItemID'];
 			$isize = $row5['Order_ItemSize'];
@@ -107,22 +98,62 @@
 			}
 			$isize = $row5['Order_ItemSize'];
 			$iquan = $row5['Order_ItemQuan'];
-			if ($squan >= $iquan) {
+
+			if ($x == 0) {
+				if ($squan >= $iquan) {
+					$sqlSuccess = true;
+				} else {	
+					$sqlSuccess = false;
+					echo "<script>alert('Insufficient stock');</script>";
+					break 2;
+				}
+			}
+			
+
+			if ($x == 1 && $sqlSuccess) {
+				if ($squan >= $iquan) {
     			$sql3 = "UPDATE stock SET `Stock_Quan`= (`Stock_Quan` - '$iquan') WHERE Item_ID = '$sid' AND `Item_Size` = '$ssize'";
     			if ($item3 = mysqli_query($link,$sql3)) {
     				// echo $sid."success";
 					$sqlSuccess = true;
 	    		} else {
 					$sqlSuccess = false;
+					$gg = "1";
 	    		}
-			} else {
-				echo "<script>alert('Insufficient stock');</script>";
+				} else {	
+					$sqlSuccess = false;
+					$gg = "2";
+					echo "<script>alert('Insufficient stock');</script>";
+				}
+			}
+			
 			}
 		}
 
+		if ($sqlSuccess) {
+			$sid = $_SESSION['sID'];
+			$sql2 = "UPDATE perorder SET `perOrder_ConStaffID`= '$sid', `perOrder_ConDateTime` = now(), `perOrder_TrackNo`= '$trackNo' WHERE perOrder_ID='$oid'";
+	        if($queryResult2 = mysqli_query($link, $sql2)){
+				$sqlSuccess = true;
+			} else {
+				$sqlSuccess = false;
+			}
 
+			$sql1 = "UPDATE orders SET `Order_Status`= '02' WHERE orders.User_ID='$uid' AND Order_Status = '01' AND `Order_perOrderID` = '$oid'";
 
+			if($queryResult1 = mysqli_query($link, $sql1)){
+				// echo "<script>alert('Order Confirmed');</script>";
+				$sqlSuccess = true;
+				// header("location: adminOrderManage.php?success=true");
+			}else{
+				// echo "<script>alert('Failed');</script>";
+				$sqlSuccess = false;
+			}
+		} else {
+			// echo "<script>alert('Insufficient stock');</script>";
+			header("location: adminOrderManage_Manage.php?uid=$uid&oid=$oid&failed=true&gg=".$gg);
 
+		}
 		
         if ($sqlSuccess){
 			header("location: adminOrderManage.php?success=true");

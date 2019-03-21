@@ -76,6 +76,7 @@
 
   <div id="content_container" class="container_below">
     <table id="tableClothing">
+      <th>Clothing ID</th>
       <th>Clothing Name</th>
       <th>Category</th>
       <th>Size Available</th>
@@ -85,7 +86,7 @@
                 $counter=0;
                 while($row = mysqli_fetch_assoc($result1)){
                 (($row['Item_Status'])? $sStatus="Available":$sStatus="Unavailable");
-                echo "<tr><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>
+                echo "<tr><td>".$row['Item_ID']."</td><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>
                 <a href='adminStockAdd_Add.php?iid=$row[Item_ID]' title='Add Stock' style='color: darkred;'>Add Stock</a>
                 </td></tr>";
                  $counter+=1;

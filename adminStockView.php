@@ -86,7 +86,7 @@
         $counter=0;
         while($row = mysqli_fetch_assoc($result1)){
           (($row['Item_Status'])? $sStatus="Available":$sStatus="Unavailable");
-          echo "<tr><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>".
+          echo "<tr><td>".$row['Item_ID']."</td><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>".
           $row['ttlStock']
           ."</td><td><a href='adminStockView_View.php?iid=$row[Item_ID]' title='View Stock' style='color: darkred;'>View Stock</a>
           </td></tr>";
