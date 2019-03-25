@@ -20,7 +20,7 @@ if(isset($_POST['add'])){
 	$fullname = htmlentities($fullname, ENT_QUOTES, "UTF-8");
 	$email = $_POST['email'];
 	$role = $_POST['role'];
-	$sql = "INSERT INTO staff VALUES(null,'$email','$fullname', true, '$randomPassHashed','$role', null, 0, now())";
+	$sql = "INSERT INTO staff VALUES(null,'$email','$fullname', true, '$randomPassHashed','$role', 0, now())";
 	
 	if($result=mysqli_query($link,$sql)){
 

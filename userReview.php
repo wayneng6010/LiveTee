@@ -123,7 +123,7 @@
 			    		</table>
 					</td>
 					<td>'.nl2br($rowRv['Rv_Txt']).'</td>
-					<td>'.$rowRv['Item_Name'].'</td>
+					<td><a target="_blank" href="userProduct.php?item='.$rowRv['Item_ID'].'" class="reviewItem">'.$rowRv['Item_Name'].'</a></td>
 					<td>'.date("Y-m-d h:iA", strtotime($rowRv['Rv_DateTime'])).'</td>
 				</tr>';
 

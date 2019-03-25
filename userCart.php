@@ -17,15 +17,28 @@
 	crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
-		// function validatePass(){
-		// 	var pass = event.target.value;
-		// 	var warn = document.getElementById("invalidWarn");
-		// 	if (pass.length >= 8) {
-		// 		warn.style.display = "none";
-		// 	} else {
-		// 		warn.style.display = "block";
-		// 	}
-		// }
+		$(document).ready(function () {
+		    $('.pdSelectSize').change(function(){
+		        $.ajax({
+		            url: "php/userCartQuery1.php",
+		            type: "post",
+		            data: {isize: $(this).find("option:selected").val(), cartID: $('.citem').val(), iquan: $('.pdQuanInput').val()},
+		            success: function(data){
+	                	alert(data);
+		            }
+		        });
+		    });
+		    $('.pdQuanInput').bind('input', function(){
+			  	$.ajax({
+		            url: "php/userCartQuery1.php",
+		            type: "post",
+		            data: {isize: $('.pdSelectSize').find("option:selected").val(), cartID: $('.citem').val(), iquan: $('.pdQuanInput').val()},
+		            success: function(data){
+	                	alert(data);
+		            }
+		        });
+			});
+		});
 		
 	</script>
 </head>
@@ -57,7 +70,7 @@
 		            		echo '
 		            		<tr>
 			            	<td style="width: 2%;">
-			            		<input type="checkbox" class="citem" name="cartID[]" value="'.$row['Cart_ID'].'" style="">
+			            		<input type="checkbox" class="citem" id="cartID" name="cartID[]" value="'.$row['Cart_ID'].'" style="">
 			            	</td>
 							<td style="width: 20%;">
 								<!-- <div style="display: flex; align-items: center; justify-content: center; border: 1px solid; width: 100%;"> -->
@@ -65,7 +78,7 @@
 								<!-- </div> -->
 							</td>
 							<td style="width: 30%;">'.$row['Item_Name'].'</td>
-		            		<td style="width: 12%;"><select name="isize" id="pdSelectSize" style="width: 80px; min-width: 80px;">';
+		            		<td style="width: 12%;"><select name="isize" class="pdSelectSize" id="pdSelectSize" style="width: 80px; min-width: 80px;">';
 
 							$itemSize = explode(',', $row['Item_Size']);
 		            		foreach($itemSize as $i) {
@@ -78,7 +91,7 @@
 
 		            		echo '</select></td>
 		            		<td style="width: 12%;">RM'.$row['Item_Price'].'</td>
-		            		<td style="width: 12%;"><input type="number" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required></td>
+		            		<td style="width: 12%;"><input type="number" class="pdQuanInput" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required></td>
 		            		<td class="iprice" style="width: 12%; position: relative;">
 		            		RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'
 							<img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart">

@@ -15,6 +15,13 @@
 
 		$result = mysqli_query($link,$sql);
 
+		$sqlNotIn = "SELECT * FROM `orders` WHERE orders.User_ID='$uid' AND Order_Status = '01' AND Order_perOrderID='$oid' AND Order_ItemID NOT IN (SELECT Item_ID FROM `item`)";
+		$resultNotIn = mysqli_query($link,$sqlNotIn);
+
+        while($rowNotIn = mysqli_fetch_assoc($resultNotIn)){
+        	echo "<script>alert('Order ID ".$rowNotIn['Order_ItemID']." is placed. This item had been deleted from system.')</script>";
+		}
+
 		// while($rowiid = mysqli_fetch_assoc($item1)){
 		//     $iidArr[] = $rowiid['Order_ItemID']; 
 		//   	$iidArr[$rowiid['Order_ItemID']] = $rowiid['value'];
