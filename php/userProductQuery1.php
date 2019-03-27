@@ -8,7 +8,7 @@
 	$itemID = $_POST['itemID'];
 
 	$sql1 = "SELECT Stock_Quan FROM stock WHERE Item_ID='$itemID' AND Item_Size='$isize'";
-	$sql2 = "SELECT SUM(`Order_ItemQuan`) AS `orderQuan` FROM `orders` WHERE `Order_ItemID` = '$itemID' AND `Order_ItemSize` = '$isize'";
+	$sql2 = "SELECT SUM(`Order_ItemQuan`) AS `orderQuan` FROM `orders` WHERE `Order_ItemID` = '$itemID' AND `Order_ItemSize` = '$isize' AND `Order_Status` = '01';";
 
 	$result1 = mysqli_query($link,$sql1);
 	$result2 = mysqli_query($link,$sql2);

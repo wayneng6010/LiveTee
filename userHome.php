@@ -65,11 +65,12 @@
 	<div id="sorting">
 		<p>Sort By</p>
 		<select id="sortSelect">
-			<option value="Relevance">Relevance</option>
-			<option value="Popularity">Popularity</option>
-			<option value="Lowest Price">Lowest Price</option>
-			<option value="Highest Price">Highest Price</option>
-			<option value="Latest Arrival">Latest Arrival</option>
+			<?php $sort = $_GET['sort']; ?>
+			<option value="Relevance" <?php if ($sort=="Relevance") echo 'selected' ?>>Relevance</option>
+			<option value="Popularity" <?php if ($sort=="Popularity") echo 'selected' ?>>Popularity</option>
+			<option value="Lowest Price" <?php if ($sort=="Lowest Price") echo 'selected' ?>>Lowest Price</option>
+			<option value="Highest Price" <?php if ($sort=="Highest Price") echo 'selected' ?>>Highest Price</option>
+			<option value="Latest Arrival" <?php if ($sort=="Latest Arrival") echo 'selected' ?>>Latest Arrival</option>
 		</select>
 	</div>
 	
@@ -101,8 +102,46 @@
 			?>
 			
 		</div>
-			
+		<div id="paging">
+			<ul class="pagination">
+		        
+				<!-- link to first page -->
+		        <li>
+		        	<a href="?pageno=1">1</a>
+		        </li>
+
+				<!-- previous icon -->
+		        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+		            <a href="?sort=<?php echo $sort; if($pageno <= 1){ echo '#'; } else { echo "&pageno=".($pageno - 1); } ?>">
+		            	<img src="Asset/Image/prev.svg" width="15">
+		            </a>
+		        </li>
+				
+				<!-- current page number -->
+		        <li>
+	        		<span id="currentPg">
+						<?php echo $pageno; ?>
+	        		</span>
+		        </li>
+
+				<!-- next icon -->
+		        <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+		            <a href="?sort=<?php echo $sort; if($pageno >= $totalPages){ echo '#'; } else { echo "&pageno=".($pageno + 1); } ?>">
+		            	<img src="Asset/Image/next.svg" width="15">
+		            </a>
+		        </li>
+
+				<!-- link to last page -->
+		        <li>
+		        	<a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+		        </li>
+	    	</ul>
+		</div>	
 	</div>
+	
+
+	
+
 	<script type="text/javascript">
 		var e = document.getElementById('sortSelect');
 		$('#sortSelect').on('change', function() {

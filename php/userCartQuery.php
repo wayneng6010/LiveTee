@@ -5,7 +5,7 @@
 
 	if (isset($_SESSION['uID'])){
 		$uid = $_SESSION['uID'];
-		$sql = "SELECT * FROM cart, item WHERE cart.Cart_ItemID = item.Item_ID AND cart.User_ID	= $uid";
+		$sql = "SELECT * FROM cart, item WHERE cart.Cart_ItemID = item.Item_ID AND cart.User_ID	= $uid ORDER BY cart.Cart_DateTime DESC";
 		$result = mysqli_query($link,$sql);
 	} else {
 		header('Location: userLogin.php');

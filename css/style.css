@@ -1663,3 +1663,47 @@ a.reviewItem {
 a.reviewItem:hover {
 	color: grey;
 }
+
+div#paging {
+	width: 300px;
+	height: auto;
+	/*border: 1px solid black;*/
+	/*background-color: rgba(0, 0, 0, .1);*/
+	float: right;
+}
+
+div#paging ul.pagination {
+	text-align: right;
+	margin: 0px 10% 0px 0px;
+	
+}
+
+div#paging ul.pagination li {
+	list-style-type: none;
+	display: inline-block;
+	padding-right: 20px;
+}
+
+div#paging ul.pagination li a {
+	font-size: 14px;
+	color: grey;
+}
+
+div#paging ul.pagination li.disabled {
+	/*display: none;*/
+}
+
+span#currentPg {
+	width: 20px;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: black;
+	font-size: 22px;
+}
+
+#chart-container {
+    width: 640px;
+    height: auto;
+}

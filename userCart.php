@@ -18,26 +18,37 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function () {
-		    $('.pdSelectSize').change(function(){
+			$('.citem').each(function(i, obj){
+		    $('.pdSelectSize').eq(i).change(function(){
 		        $.ajax({
 		            url: "php/userCartQuery1.php",
 		            type: "post",
-		            data: {isize: $(this).find("option:selected").val(), cartID: $('.citem').val(), iquan: $('.pdQuanInput').val()},
+		            data: {isize: $(this).find("option:selected").val(), cartID: $('.citem').eq(i).val(), iquan: $('.pdQuanInput').eq(i).val()},
 		            success: function(data){
-	                	alert(data);
+			            var e = document.getElementById('popUpMsg');
+			            e.style.display = 'flex';
+			            $('.iprice').eq(i).html('RM'+data);
+			            // alert(e.innerHTML);
 		            }
 		        });
 		    });
-		    $('.pdQuanInput').bind('input', function(){
+
+		    $('.pdQuanInput').eq(i).bind('input', function(){
 			  	$.ajax({
 		            url: "php/userCartQuery1.php",
 		            type: "post",
-		            data: {isize: $('.pdSelectSize').find("option:selected").val(), cartID: $('.citem').val(), iquan: $('.pdQuanInput').val()},
+		            data: {isize: $('.pdSelectSize').eq(i).find("option:selected").val(), cartID: $('.citem').eq(i).val(), iquan: $(this).val()},
 		            success: function(data){
-	                	alert(data);
+	                	var e = document.getElementById('popUpMsg');
+			            e.style.display = 'flex';
+			            $('.iprice').eq(i).html('RM'+data);
+			            // alert(e.innerHTML);
 		            }
 		        });
 			});
+
+			});
+
 		});
 		
 	</script>
@@ -48,6 +59,7 @@
 	<?php include 'php/userCartQuery.php'; ?>
 
 	<br>
+	<div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Changes Saved</div>
 	<div id="regOuter" style="height: 810px; width: 95%; border: none;">
 		<p id="regLabel">Cart</p>
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
@@ -94,7 +106,7 @@
 		            		<td style="width: 12%;"><input type="number" class="pdQuanInput" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required></td>
 		            		<td class="iprice" style="width: 12%; position: relative;">
 		            		RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'
-							<img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart">
+		            		<img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart">
 		            		</td>
 		            		</tr>
 		              		';
@@ -168,6 +180,12 @@
 					// alert(itemChecked);
 				}
 			}
+
+			setInterval(function(){
+		      	var msg = document.getElementById('popUpMsg');
+		      	msg.style.opacity = "0";
+		      	msg.style.visibility = "hidden";
+		    }, 1000);
     	</script>
 	
 </body>

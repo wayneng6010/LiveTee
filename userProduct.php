@@ -27,10 +27,14 @@
 		            data: {isize: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
 		            success: function(data){
 		                //adds the echoed response to our container
-		                $("#stockNo").html(data + " piece available");
 		                $stockAvailable = data;
+		                if ($stockAvailable < 0) {
+							$stockAvailable = 0;
+						}
+	                	$("#stockNo").html($stockAvailable + " piece available");
 		                var quanInput = document.getElementById('pdQuanInput');
 						quanInput.max = $stockAvailable;
+						
 	                	// alert($stockAvailable);
 		            }
 		        });
@@ -42,10 +46,14 @@
 	            data: {isize: $(this).find("option:selected").val(), itemID: $('#itemID').val()},
 	            success: function(data){
 	                //adds the echoed response to our container
-	                $("#stockNo").html(data + " piece available");
 	                $stockAvailable = data;
+	                if ($stockAvailable < 0) {
+						$stockAvailable = 0;
+					}
+	                $("#stockNo").html($stockAvailable + " piece available");
 	                var quanInput = document.getElementById('pdQuanInput');
 					quanInput.max = $stockAvailable;
+					
 	                // alert($stockAvailable);
 	            }
 	        });
