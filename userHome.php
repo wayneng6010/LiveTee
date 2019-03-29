@@ -112,7 +112,14 @@
 
 				<!-- previous icon -->
 		        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-		            <a href="?sort=<?php echo $sort; if($pageno <= 1){ echo '#'; } else { echo "&pageno=".($pageno - 1); } ?>">
+		        	<?php 
+		        		if ($pageno <= 1) {
+		        			echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+		        		} else {
+		        			echo "<a href='?sort=".$sort."&pageno=".($pageno - 1)."'>";
+
+		        		}
+		        	?>
 		            	<img src="Asset/Image/prev.svg" width="15">
 		            </a>
 		        </li>
@@ -126,7 +133,14 @@
 
 				<!-- next icon -->
 		        <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
-		            <a href="?sort=<?php echo $sort; if($pageno >= $totalPages){ echo '#'; } else { echo "&pageno=".($pageno + 1); } ?>">
+		        	<?php 
+		        		if ($pageno >= $totalPages) {
+		        			echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+		        		} else {
+		        			echo "<a href='?sort=".$sort."&pageno=".($pageno + 1)."'>";
+
+		        		}
+		        	?>
 		            	<img src="Asset/Image/next.svg" width="15">
 		            </a>
 		        </li>

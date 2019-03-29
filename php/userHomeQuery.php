@@ -11,13 +11,25 @@
 
     $recordPerPage = 2;
     $offset = ($pageno-1) * $recordPerPage;
-
-    $ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1;";
+    
+    if(isset($_GET['searchTxt'])) { 
+    	$searchTxt = $_GET['searchTxt'];
+    	$ttlPagesSql = "SELECT * FROM item WHERE `Item_Name` LIKE '%$searchTxt%' AND `Item_Status` = 1;";
+	} else {
+    	$ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1;";
+	}
     $result = mysqli_query($link, $ttlPagesSql);
     $totalRows = mysqli_num_rows($result);
     $totalPages = ceil($totalRows / $recordPerPage);
 
-    $sql1 = "SELECT * FROM item WHERE `Item_Status` = 1 LIMIT $offset, $recordPerPage";
+    $sql1 = "";
+
+    if(isset($_GET['searchTxt'])) { 
+    	$searchTxt = $_GET['searchTxt'];
+		$sql1 = "SELECT * FROM item WHERE `Item_Name` LIKE '%$searchTxt%' AND `Item_Status` = 1 LIMIT $offset, $recordPerPage";
+	} else {
+    	$sql1 = "SELECT * FROM item WHERE `Item_Status` = 1 LIMIT $offset, $recordPerPage";
+	}
 
 	// require_once 'html/userHome.html';
 
@@ -47,6 +59,9 @@
 	// header('Location: '.$_SERVER['REQUEST_URI'].'?sort=Relevance');
 
 	}
+
+
+
 
 	$result1 = mysqli_query($link,$sql1);
 

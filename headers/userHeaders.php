@@ -29,7 +29,7 @@
 			</a>
 		</div>
 		<div id="flexMiddle">
-			<form action="/action_page.php" method="get">
+			<form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
 				<input type="text" name="searchTxt">
 				<input type="image" src="Asset/Image/search.png" width="20" height="auto" name="searchBtn">
 			</form>
