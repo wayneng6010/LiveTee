@@ -48,8 +48,8 @@
 	<h1 id="content_header">Order - History</h1>
 	<div id="content_container">
     <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
-        <input class="contentSubmit filter_btn" type="submit" name="add" value="Search">
-        <input class="contentInput filter_txt" type="text" name="isearch" required>
+        <input class="contentSubmit filter_btn" type="submit" name="search" value="Search">
+        <input class="contentInput filter_txt" type="text" name="isearch">
       </p>
     </form>
   </div>
@@ -88,11 +88,58 @@
                  $counter+=1;
                 }
               if($counter==0){
-                echo "<tr><td colspan='5' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
+                echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
               }
 
             ?>
     </table>
+    <div id="paging">
+      <ul class="pagination">
+        <!-- link to first page -->
+            <li>
+              <a href="?pageno=1">1</a>
+            </li>
+
+        <!-- previous icon -->
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno <= 1) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  echo "<a href='?pageno=".($pageno - 1)."'>";
+
+                }
+              ?>
+                  <img src="Asset/Image/prev.svg" width="15">
+                </a>
+            </li>
+        
+        <!-- current page number -->
+            <li>
+              <span id="currentPg">
+            <?php echo $pageno; ?>
+              </span>
+            </li>
+
+        <!-- next icon -->
+            <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno >= $totalPages) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/next.svg" width="15">
+                </a>
+            </li>
+
+        <!-- link to last page -->
+            <li>
+              <a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+            </li>
+        </ul>
+    </div> 
       <?php
         if(isset($_GET['success'])){
           echo "<script>

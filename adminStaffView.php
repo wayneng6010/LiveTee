@@ -45,8 +45,21 @@
 	</div>
 	<div id="includedContent"></div>
 	<h1 id="content_header">Staff - View</h1>
-
-  <div id="content_container" class="container_below" style="margin-top: -140px;">
+  <div id="content_container" style="height: 70px;">
+    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: 10px;">
+        <label class="filter_lbl"><b>Role</b></label>
+        <select id="selectCat" name="role">
+          <option disabled>Role</option>
+          <option value="All">All</option>
+          <option value=1>Admin</option>
+          <option value=0>Staff</option>
+        </select>
+        <input class="contentSubmit filter_btn" type="submit" name="search" value="Search">
+        <input class="contentInput filter_txt" type="text" name="isearch">
+      </p>
+    </form>
+  </div>
+  <div id="content_container" class="container_below" style="margin-top: -50px;">
     <table id="tableClothing">
       <th>Staff ID</th>
       <th>Staff Name</th>
@@ -67,12 +80,67 @@
                  $counter+=1;
                 }
               if($counter==0){
-                echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No item found</td></tr>";
+                echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No staff found</td></tr>";
               }
 
             ?>
     </table>
-          
+    <div id="paging">
+      <ul class="pagination">
+        <!-- link to first page -->
+            <li>
+              <a href="?pageno=1">1</a>
+            </li>
+
+        <!-- previous icon -->
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno <= 1) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  echo "<a href='?pageno=".($pageno - 1)."'>";
+
+                }
+              ?>
+                  <img src="Asset/Image/prev.svg" width="15">
+                </a>
+            </li>
+        
+        <!-- current page number -->
+            <li>
+              <span id="currentPg">
+            <?php echo $pageno; ?>
+              </span>
+            </li>
+
+        <!-- next icon -->
+            <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno >= $totalPages) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/next.svg" width="15">
+                </a>
+            </li>
+
+        <!-- link to last page -->
+            <li>
+              <a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+            </li>
+        </ul>
+    </div> 
+      <?php
+        if(isset($_GET['success'])){
+          echo "<script>
+            var e = document.getElementById('popUpMsg');
+            e.style.display = 'flex';
+          </script>";
+        }
+      ?>
+  </div>     
 	</div>
   <script type="text/javascript">
 

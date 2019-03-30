@@ -68,14 +68,15 @@
           <option value="1">Available</option>
           <option value="0">Not Available</option>
         </select>
-        <input class="contentSubmit filter_btn" type="submit" name="add" value="Search">
-        <input class="contentInput filter_txt" type="text" name="isearch" required>
+        <input class="contentSubmit filter_btn" type="submit" name="search" value="Search">
+        <input class="contentInput filter_txt" type="text" name="isearch">
       </p>
     </form>
   </div>
 
   <div id="content_container" class="container_below">
     <table id="tableClothing">
+      <th>Clothing ID</th>
       <th>Clothing Name</th>
       <th>Category</th>
       <th>Size Available</th>
@@ -85,19 +86,65 @@
                 $counter=0;
                 while($row = mysqli_fetch_assoc($result1)){
                 (($row['Item_Status'])? $sStatus="Available":$sStatus="Unavailable");
-                echo "<tr><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>
+                echo "<tr><td>".$row['Item_ID']."</td><td>".$row['Item_Name']."</td><td>".$row['Item_Cat']."</td><td>".$row['Item_Size']."</td><td>".$sStatus."</td><td>
                 <a href='adminClothingEdit_Edit.php?eid=$row[Item_ID]' title='Edit'><img class='icon' src='./Asset/Image/edit.svg'></a>
                 <a onclick='return confirm(".'"Are you sure you want to delete?"'.")' href='adminClothingEdit.php?did=$row[Item_ID]' title='Delete'><img class='icon' src='./Asset/Image/delete.svg'></a>
                 </td></tr>";
                  $counter+=1;
                 }
               if($counter==0){
-                echo "<tr><td colspan='5' style='background-color: #f2f2f2;'>No item found</td></tr>";
+                echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No item found</td></tr>";
               }
 
             ?>
     </table>
-          
+    <div id="paging">
+      <ul class="pagination">
+        <!-- link to first page -->
+            <li>
+              <a href="?pageno=1">1</a>
+            </li>
+
+        <!-- previous icon -->
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno <= 1) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  echo "<a href='?pageno=".($pageno - 1)."'>";
+
+                }
+              ?>
+                  <img src="Asset/Image/prev.svg" width="15">
+                </a>
+            </li>
+        
+        <!-- current page number -->
+            <li>
+              <span id="currentPg">
+            <?php echo $pageno; ?>
+              </span>
+            </li>
+
+        <!-- next icon -->
+            <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno >= $totalPages) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/next.svg" width="15">
+                </a>
+            </li>
+
+        <!-- link to last page -->
+            <li>
+              <a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+            </li>
+        </ul>
+    </div>  
 	</div>
   <script type="text/javascript">
 

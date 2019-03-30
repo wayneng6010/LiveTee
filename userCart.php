@@ -25,8 +25,16 @@
 		            type: "post",
 		            data: {isize: $(this).find("option:selected").val(), cartID: $('.citem').eq(i).val(), iquan: $('.pdQuanInput').eq(i).val()},
 		            success: function(data){
-			            var e = document.getElementById('popUpMsg');
-			            e.style.display = 'flex';
+			            // var e = document.getElementById('popUpMsg');
+			            // e.style.display = 'flex';
+			            $("#popUpMsg").css("display", "flex");
+			            $("#popUpMsg").css("visibility", "visible");
+			            $("#popUpMsg").css("opacity", "1");
+			            setTimeout(function(){
+					      	var msg = document.getElementById('popUpMsg');
+					      	msg.style.opacity = "0";
+					      	msg.style.visibility = "hidden";
+					    }, 1000);
 			            $('.iprice').eq(i).html('RM'+data);
 			            // alert(e.innerHTML);
 		            }
@@ -39,8 +47,16 @@
 		            type: "post",
 		            data: {isize: $('.pdSelectSize').eq(i).find("option:selected").val(), cartID: $('.citem').eq(i).val(), iquan: $(this).val()},
 		            success: function(data){
-	                	var e = document.getElementById('popUpMsg');
-			            e.style.display = 'flex';
+	              //   	var e = document.getElementById('popUpMsg');
+			            // e.style.display = 'flex';
+			            $("#popUpMsg").css("display", "flex");
+			            $("#popUpMsg").css("visibility", "visible");
+			            $("#popUpMsg").css("opacity", "1");
+			            setTimeout(function(){
+					      	var msg = document.getElementById('popUpMsg');
+					      	msg.style.opacity = "0";
+					      	msg.style.visibility = "hidden";
+					    }, 1000);
 			            $('.iprice').eq(i).html('RM'+data);
 			            // alert(e.innerHTML);
 		            }
@@ -181,11 +197,7 @@
 				}
 			}
 
-			setInterval(function(){
-		      	var msg = document.getElementById('popUpMsg');
-		      	msg.style.opacity = "0";
-		      	msg.style.visibility = "hidden";
-		    }, 1000);
+			
     	</script>
 	
 </body>
