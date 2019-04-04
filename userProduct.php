@@ -137,7 +137,7 @@
 				echo '</span>
 					<span id="oos" style="display: none; font-size: 14px; color: darkred; margin-top: 15px; margin-bottom: -15px; font-weight: bold;">Sorry, this size is temporary out of stock.</span>
 					</p>
-					<p id="pdSubmit"><input class="contentSubmit user" type="submit" name="buy" value="BUY NOW">
+					<p id="pdSubmit"><input style="display: none;" class="contentSubmit user" type="submit" name="buy" value="BUY NOW">
 					<input class="contentSubmit user" type="submit" name="cart" value="ADD TO CART"></p>
 					</div>
 					</div>

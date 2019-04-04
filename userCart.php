@@ -83,6 +83,7 @@
 			            // alert(e.innerHTML);
 		            }
 		        });
+		        totalup();
 		    });
 
 		    $('.pdQuanInput').eq(i).bind('input', function(){
@@ -105,6 +106,7 @@
 			            // alert(e.innerHTML);
 		            }
 		        });
+		        totalup();
 			});
 
 			});
@@ -197,6 +199,7 @@
     	</form>
 
     	<script type="text/javascript">
+    	function totalup() {
     		var itemChecked = 0;
     		var shippingFee = 0;
     		var total = 0;
@@ -245,6 +248,9 @@
 					// alert(itemChecked);
 				}
 			}
+    	}
+
+    	totalup();
 
 			
     	</script>

@@ -31,7 +31,14 @@
 				$items = array();
 				$total = 0;
 				$price = 0;
+
+				$_SESSION['post_cartID'] = array();
+				// $_SESSION['post_cartID'] = $_POST['cartID'];
+
 				foreach($_POST['cartID'] as $i=>$checked){
+
+					array_push($_SESSION['post_cartID'], $checked);
+
 					$sql1 = "SELECT * FROM cart, item WHERE cart.Cart_ItemID = item.Item_ID AND `User_ID` = '$uid1' AND `Cart_ID` = '$checked'";
 					$result1 = mysqli_query($link,$sql1);
 					$row1 = mysqli_fetch_assoc($result1);
