@@ -47,7 +47,7 @@
 	<div id="includedContent"></div>
 	<h1 id="content_header">Order - History</h1>
 	<div id="content_container">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
+    <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
         <input class="contentSubmit filter_btn" type="submit" name="search" value="Search">
         <input class="contentInput filter_txt" type="text" name="isearch">
       </p>
@@ -61,34 +61,35 @@
       <th>Email</th>
       <th>Order Confirmed On</th>
       <th>Tracking Number</th>
+      <th>Order Status</th>
       <th>Action</th>
       <?php 
                 $counter=0;
                 while($row = mysqli_fetch_assoc($result1)){
-                // switch ($row['Order_Status']){
-                //   case '01':
-                //     $status = "Processing";
-                //     break;
-                //   case '02':
-                //     $status = "Delivering";
-                //     break;
-                //   case '03':
-                //     $status = "Received";
-                //     break;  
-                //   default:
-                //     $status = "Unknown";
-                //     break;
-                // }
+                switch ($row['Order_Status']){
+                  case '01':
+                    $status = "Processing";
+                    break;
+                  case '02':
+                    $status = "Delivering";
+                    break;
+                  case '03':
+                    $status = "Received";
+                    break;  
+                  default:
+                    $status = "Unknown";
+                    break;
+                }
                 $ConDateTime = date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime']));
                 
-                echo "<tr><td>".$row['perOrder_ID']."</td><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['perOrder_TrackNo']."</td>";
+                echo "<tr><td>".$row['perOrder_ID']."</td><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['perOrder_TrackNo']."</td><td>".$status."</td>";
 
                 echo "<td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&oid=$row[perOrder_ID]' title='View Order' style='color: darkred;'>View Order</a>
                 </td></tr>";
                  $counter+=1;
                 }
               if($counter==0){
-                echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
+                echo "<tr><td colspan='7' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
               }
 
             ?>
@@ -106,7 +107,12 @@
                 if ($pageno <= 1) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno - 1)."'>";
+                  if (isset($_GET['isearch3'])){
+                    echo "<a href='?isearch3=".$_GET['isearch3']."&pageno=".($pageno - 1)."'>";
+                  } else {
+                    echo "<a href='?isearch3=&pageno=".($pageno - 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno - 1)."'>";
 
                 }
               ?>
@@ -127,7 +133,12 @@
                 if ($pageno >= $totalPages) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                  if (isset($_GET['isearch3'])){
+                    echo "<a href='?isearch3=".$_GET['isearch3']."&pageno=".($pageno + 1)."'>";
+                  } else {
+                    echo "<a href='?isearch3=&pageno=".($pageno + 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno + 1)."'>";
                 }
               ?>
                   <img src="Asset/Image/next.svg" width="15">

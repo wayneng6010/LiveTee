@@ -12,8 +12,6 @@
 
 		$pass = $_POST['pass'];
 		$cpass = $_POST['cpass'];
-		$passHash = password_hash($pass, PASSWORD_DEFAULT);
-
 
 		$phone1 = $_POST['phone1'];
 		$phone2 = $_POST['phone2'];
@@ -22,14 +20,20 @@
 		$state = $_POST['state'];
 		$postal = $_POST['postal'];
 		$address = $_POST['address'];
+		if ($pass == $cpass) {
+			$passHash = password_hash($pass, PASSWORD_DEFAULT);
 
-		$sql1 = "INSERT INTO user VALUES(null, '$fname', '$email', '$passHash', '$phone', '$address', now(), '$postal', '$state')";
-		
-		if ($result1 = mysqli_query($link,$sql1)){
-			echo "<script>alert('Added Successfully')</script>";
+			$sql1 = "INSERT INTO user VALUES(null, '$fname', '$email', '$passHash', '$phone', '$address', now(), '$postal', '$state')";
+			
+			if ($result1 = mysqli_query($link,$sql1)){
+				echo "<script>alert('Added Successfully')</script>";
+			} else {
+				echo "<script>alert('Email has been registered before')</script>";
+			}
 		} else {
-			echo "<script>alert('Email has been registered before')</script>";
+			echo "<script>alert('Password does not match')</script>";
 		}
+		
 	}
 
 ?>

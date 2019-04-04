@@ -34,6 +34,21 @@
 	                	$("#stockNo").html($stockAvailable + " piece available");
 		                var quanInput = document.getElementById('pdQuanInput');
 						quanInput.max = $stockAvailable;
+						if ($stockAvailable == 0) {
+							$("#oos").css("display", "block");
+							$("#pdQuanInput").attr("disabled", true);
+							$(".contentSubmit.user").eq(0).attr("disabled", true);
+							$(".contentSubmit.user").eq(0).css("background-color", "lightgrey");
+							$(".contentSubmit.user").eq(1).attr("disabled", true);
+							$(".contentSubmit.user").eq(1).css("background-color", "lightgrey");
+						} else {
+							$("#oos").css("display", "none");
+							$("#pdQuanInput").attr("disabled", false);
+							$(".contentSubmit.user").eq(0).attr("disabled", false);
+							$(".contentSubmit.user").eq(0).css("background-color", "grey");
+							$(".contentSubmit.user").eq(1).attr("disabled", false);
+							$(".contentSubmit.user").eq(1).css("background-color", "#303132");
+						}
 						
 	                	// alert($stockAvailable);
 		            }
@@ -53,7 +68,20 @@
 	                $("#stockNo").html($stockAvailable + " piece available");
 	                var quanInput = document.getElementById('pdQuanInput');
 					quanInput.max = $stockAvailable;
-					
+					if ($stockAvailable == 0) {
+						$("#oos").css("display", "block");
+						$(".contentSubmit.user").eq(0).attr("disabled", true);
+						$(".contentSubmit.user").eq(0).css("background-color", "lightgrey");
+						$(".contentSubmit.user").eq(1).attr("disabled", true);
+						$(".contentSubmit.user").eq(1).css("background-color", "lightgrey");
+					} else {
+							$("#oos").css("display", "none");
+							$("#pdQuanInput").attr("disabled", false);
+							$(".contentSubmit.user").eq(0).attr("disabled", false);
+							$(".contentSubmit.user").eq(0).css("background-color", "grey");
+							$(".contentSubmit.user").eq(1).attr("disabled", false);
+							$(".contentSubmit.user").eq(1).css("background-color", "#303132");
+						}
 	                // alert($stockAvailable);
 	            }
 	        });
@@ -107,6 +135,7 @@
 						<span id="stockNo">';
 				// echo $sizeArr['S'];
 				echo '</span>
+					<span id="oos" style="display: none; font-size: 14px; color: darkred; margin-top: 15px; margin-bottom: -15px; font-weight: bold;">Sorry, this size is temporary out of stock.</span>
 					</p>
 					<p id="pdSubmit"><input class="contentSubmit user" type="submit" name="buy" value="BUY NOW">
 					<input class="contentSubmit user" type="submit" name="cart" value="ADD TO CART"></p>

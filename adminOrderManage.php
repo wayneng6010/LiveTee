@@ -47,7 +47,7 @@
 	<div id="includedContent"></div>
 	<h1 id="content_header">Order - Manage</h1>
 	<div id="content_container">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
+    <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: -15px;">
         <input class="contentSubmit filter_btn" type="submit" name="search" value="Search">
         <input class="contentInput filter_txt" type="text" name="isearch">
       </p>
@@ -89,7 +89,12 @@
                 if ($pageno <= 1) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno - 1)."'>";
+                  if (isset($_GET['isearch2'])){
+                    echo "<a href='?isearch2=".$_GET['isearch2']."&pageno=".($pageno - 1)."'>";
+                  } else {
+                    echo "<a href='?isearch2=&pageno=".($pageno - 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno - 1)."'>";
 
                 }
               ?>
@@ -110,7 +115,12 @@
                 if ($pageno >= $totalPages) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                   if (isset($_GET['isearch2'])){
+                    echo "<a href='?isearch2=".$_GET['isearch2']."&pageno=".($pageno + 1)."'>";
+                  } else {
+                    echo "<a href='?isearch2=&pageno=".($pageno + 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno + 1)."'>";
                 }
               ?>
                   <img src="Asset/Image/next.svg" width="15">

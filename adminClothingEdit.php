@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Clothing - Edit | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -46,7 +46,7 @@
 	<div id="includedContent"></div>
 	<h1 id="content_header">Clothing - Edit</h1>
 	<div id="content_container">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+    <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <p>
         <label class="filter_lbl"><b>Category</b></label>
         <select id="selectCat" name="icat">
@@ -111,8 +111,11 @@
                 if ($pageno <= 1) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno - 1)."'>";
-
+                  if ((isset($_GET['icat']) && isset($_GET['istatus']) && isset($_GET['isearch']))){
+                    echo "<a href='?icat=".$_GET['icat']."&istatus=".$_GET['istatus']."&isearch=".$_GET['isearch']."&pageno=".($pageno - 1)."'>";
+                  } else {
+                    echo "<a href='?icat=&istatus=&isearch=&pageno=".($pageno - 1)."'>";
+                  }
                 }
               ?>
                   <img src="Asset/Image/prev.svg" width="15">
@@ -132,7 +135,12 @@
                 if ($pageno >= $totalPages) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                  if ((isset($_GET['icat']) && isset($_GET['istatus']) && isset($_GET['isearch']))){
+                    echo "<a href='?icat=".$_GET['icat']."&istatus=".$_GET['istatus']."&isearch=".$_GET['isearch']."&pageno=".($pageno + 1)."'>";
+                  } else {
+                    echo "<a href='?icat=&istatus=&isearch=&pageno=".($pageno + 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno + 1)."'>";
                 }
               ?>
                   <img src="Asset/Image/next.svg" width="15">

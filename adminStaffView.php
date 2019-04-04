@@ -46,7 +46,7 @@
 	<div id="includedContent"></div>
 	<h1 id="content_header">Staff - View</h1>
   <div id="content_container" style="height: 70px;">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: 10px;">
+    <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: 10px;">
         <label class="filter_lbl"><b>Role</b></label>
         <select id="selectCat" name="role">
           <option disabled>Role</option>
@@ -98,7 +98,12 @@
                 if ($pageno <= 1) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno - 1)."'>";
+                  if (isset($_GET['isearch4']) && isset($_GET['role4'])){
+                    echo "<a href='?isearch4=".$_GET['isearch4']."&role4=".$_GET['role4']."&pageno=".($pageno - 1)."'>";
+                  } else {
+                    echo "<a href='?isearch4=&role4=&pageno=".($pageno - 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno - 1)."'>";
 
                 }
               ?>
@@ -119,7 +124,12 @@
                 if ($pageno >= $totalPages) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                  if (isset($_GET['isearch4']) && isset($_GET['role4'])){
+                    echo "<a href='?isearch4=".$_GET['isearch4']."&role4=".$_GET['role4']."&pageno=".($pageno + 1)."'>";
+                  } else {
+                    echo "<a href='?isearch4=&role4=&pageno=".($pageno + 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno + 1)."'>";
                 }
               ?>
                   <img src="Asset/Image/next.svg" width="15">

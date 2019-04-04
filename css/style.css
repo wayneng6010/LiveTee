@@ -1708,3 +1708,15 @@ span#currentPg {
     height: auto;
 }
 
+td>#pdQuanInput {
+	margin-top: 20px;
+}
+
+td>.cartStockAvailable {
+	/*position: relative;*/
+}
+
+.cartStockAvailable {
+	/*position: absolute;*/
+	color: grey;
+}

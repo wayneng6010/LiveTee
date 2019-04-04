@@ -19,7 +19,51 @@
 	<script type="text/javascript">
 		$(document).ready(function () {
 			$('.citem').each(function(i, obj){
+			$.ajax({
+	            url: "php/userProductQuery1.php",
+	            type: "post",
+	            data: {isize: $('.pdSelectSize').eq(i).find("option:selected").val(), itemID: $('.itemID').eq(i).val()},
+	            success: function(data){
+	                //adds the echoed response to our container
+	                $stockAvailable = data;
+	                if ($stockAvailable < 0) {
+						$stockAvailable = 0;
+					}
+	                $("#stockNo").html($stockAvailable + " piece available");
+	                var quanInput = document.getElementsByClassName('pdQuanInput')[i];
+					quanInput.max = $stockAvailable;
+	                var stockAvailable = document.getElementsByClassName('cartStockAvailable')[i];
+					stockAvailable.innerHTML = "Stock: " + $stockAvailable;
+	                // alert($stockAvailable);
+	            }
+	        });
 		    $('.pdSelectSize').eq(i).change(function(){
+		    	$.ajax({
+	            url: "php/userProductQuery1.php",
+	            type: "post",
+	            data: {isize: $('.pdSelectSize').eq(i).find("option:selected").val(), itemID: $('.itemID').eq(i).val()},
+	            success: function(data){
+	                //adds the echoed response to our container
+	                $stockAvailable = data;
+	                if ($stockAvailable < 0) {
+						$stockAvailable = 0;
+					}
+	                $("#stockNo").html($stockAvailable + " piece available");
+	                var quanInput = document.getElementsByClassName('pdQuanInput')[i];
+					quanInput.max = $stockAvailable;
+	                var stockAvailable = document.getElementsByClassName('cartStockAvailable')[i];
+					stockAvailable.innerHTML = "Stock: " + $stockAvailable;
+					if (quanInput.value >  $stockAvailable) {
+						alert('Out of Stock');
+						if ($stockAvailable == 0){
+							quanInput.value = 1;
+						} else {
+							quanInput.value = $stockAvailable;
+						}
+					}
+	                // alert($stockAvailable);
+	            }
+	        	});
 		        $.ajax({
 		            url: "php/userCartQuery1.php",
 		            type: "post",
@@ -78,7 +122,7 @@
 	<div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Changes Saved</div>
 	<div id="regOuter" style="height: 810px; width: 95%; border: none;">
 		<p id="regLabel">Cart</p>
-		<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+		<form method="post" action="vendor/checkout.php">
 			<div class="regHalf" id="regLeft" style="width: 100%;">
 	            <div class="cartHeader">
 	            	<table class="cartHeaderTable">
@@ -99,6 +143,7 @@
 		            		<tr>
 			            	<td style="width: 2%;">
 			            		<input type="checkbox" class="citem" id="cartID" name="cartID[]" value="'.$row['Cart_ID'].'" style="">
+			            		<input type="text" id="itemID" class="itemID" name="itemID" value="'.$row['Item_ID'].'" style="display: none;">
 			            	</td>
 							<td style="width: 20%;">
 								<!-- <div style="display: flex; align-items: center; justify-content: center; border: 1px solid; width: 100%;"> -->
@@ -119,7 +164,11 @@
 
 		            		echo '</select></td>
 		            		<td style="width: 12%;">RM'.$row['Item_Price'].'</td>
-		            		<td style="width: 12%;"><input type="number" class="pdQuanInput" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required></td>
+		            		<td style="width: 12%;">
+		            		<input type="number" class="pdQuanInput" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required>
+		            		<br><span class="cartStockAvailable"></span>
+		            		</td>
+
 		            		<td class="iprice" style="width: 12%; position: relative;">
 		            		RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'
 		            		<img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart">

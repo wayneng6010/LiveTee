@@ -54,6 +54,8 @@
 					}
 				}
 				
+			} else {
+				echo "<script>alert('No item selected.')</script>";
 			}
 		}
 	}

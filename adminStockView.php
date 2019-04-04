@@ -46,7 +46,7 @@
 	<div id="includedContent"></div>
 	<h1 id="content_header">Stock - View</h1>
 	<div id="content_container">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+    <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <p>
         <label class="filter_lbl"><b>Category</b></label>
         <select id="selectCat" name="icat">
@@ -117,8 +117,12 @@
                 if ($pageno <= 1) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno - 1)."'>";
-
+                  if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=".($pageno - 1)."'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=".($pageno - 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno - 1)."'>";
                 }
               ?>
                   <img src="Asset/Image/prev.svg" width="15">
@@ -138,7 +142,12 @@
                 if ($pageno >= $totalPages) {
                   echo "<a href='".$_SERVER['REQUEST_URI']."'>";
                 } else {
-                  echo "<a href='?pageno=".($pageno + 1)."'>";
+                  if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=".($pageno + 1)."'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=".($pageno + 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno + 1)."'>";
                 }
               ?>
                   <img src="Asset/Image/next.svg" width="15">
