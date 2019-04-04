@@ -79,11 +79,11 @@
 					      	msg.style.opacity = "0";
 					      	msg.style.visibility = "hidden";
 					    }, 1000);
-			            $('.iprice').eq(i).html('RM'+data);
+			            $('.iprice > .ipricein').eq(i).html('RM'+data);
 			            // alert(e.innerHTML);
 		            }
+
 		        });
-		        totalup();
 		    });
 
 		    $('.pdQuanInput').eq(i).bind('input', function(){
@@ -102,11 +102,11 @@
 					      	msg.style.opacity = "0";
 					      	msg.style.visibility = "hidden";
 					    }, 1000);
-			            $('.iprice').eq(i).html('RM'+data);
+			            $('.iprice > .ipricein').eq(i).html('RM'+data);
+		        		// totalup();
 			            // alert(e.innerHTML);
 		            }
 		        });
-		        totalup();
 			});
 
 			});
@@ -172,8 +172,8 @@
 		            		</td>
 
 		            		<td class="iprice" style="width: 12%; position: relative;">
-		            		RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'
-		            		<img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart">
+		            		<span class="ipricein">RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'</span>
+		            		<a onclick="return confirm('."'Are you sure you want to delete?'".')" href="?did='.$row['Cart_ID'].'"><img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart"></a>
 		            		</td>
 		            		</tr>
 		              		';
@@ -238,6 +238,9 @@
 						    if (children[y].classList == "iprice") {
 						    	var iprice = parseInt(children[y].innerHTML.split('RM')[1]);
 						        total -= iprice;
+						        if (total < 0) {
+						        	total = 0;
+						        }
 						        subtotal.innerHTML = "RM" + total;
 						        totalCheckout.innerHTML = "RM" + (total + shippingFee);
  								// alert(total);
@@ -252,6 +255,12 @@
 
     	totalup();
 
+		// $('.citem').each(function(i, obj){
+		//     $('.pdQuanInput').eq(i).bind('input', function(){
+		//         totalup();
+		//         alert('af');
+		// 	});
+		// });
 			
     	</script>
 	

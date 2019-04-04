@@ -11,10 +11,17 @@
 
     $recordPerPage = 2;
     $offset = ($pageno-1) * $recordPerPage;
-    
+    $cat="";
+    $col="";
     if(isset($_GET['searchTxt'])) { 
     	$searchTxt = $_GET['searchTxt'];
     	$ttlPagesSql = "SELECT * FROM item WHERE `Item_Name` LIKE '%$searchTxt%' AND `Item_Status` = 1;";
+	} else if(isset($_GET['cat'])) {
+		$cat = $_GET['cat'];
+		$ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1 AND `Item_Cat` = '$_GET[cat]';";
+	} else if(isset($_GET['col'])) {
+		$col = $_GET['col'];
+		$ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1 AND `Item_Tag` = '$_GET[col]';";
 	} else {
     	$ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1;";
 	}
@@ -33,7 +40,7 @@
 
 	// require_once 'html/userHome.html';
 
-	if(isset($_GET['sort'])) {
+	if(isset($_GET['sort']) AND $_GET['sort'] != "") {
 		$sort = $_GET['sort'];
 		if ($sort == "Relevance"){
 			$sql1 = "SELECT * FROM item WHERE `Item_Status` = 1 LIMIT $offset, $recordPerPage";
@@ -50,7 +57,7 @@
 		else if ($sort == "Latest Arrival"){
 			$sql1 = "SELECT * FROM item WHERE `Item_Status` = 1 ORDER BY `Item_Price` DESC LIMIT $offset, $recordPerPage";
 		}
-
+			
 		// echo "<script>
 		// 	var e = document.getElementById('sortSelect');
 		// 	e.value = 'highPri';
@@ -59,6 +66,15 @@
 	// header('Location: '.$_SERVER['REQUEST_URI'].'?sort=Relevance');
 
 	}
+
+	if(isset($_GET['cat']) AND $_GET['cat'] != "") {
+		$sql1 = "SELECT * FROM item WHERE `Item_Status` = 1 AND `Item_Cat` = '$_GET[cat]' LIMIT $offset, $recordPerPage";
+	}
+
+	if(isset($_GET['col']) AND $_GET['col'] != "") {
+		$sql1 = "SELECT * FROM item WHERE `Item_Status` = 1 AND `Item_Tag` = '$_GET[col]' LIMIT $offset, $recordPerPage";
+	}
+
 
 
 

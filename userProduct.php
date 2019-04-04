@@ -106,8 +106,8 @@
 </head>
 
 <body id="userBody">
-	<?php include 'php/userProductQuery.php'; ?>
-	<?php include "headers/userHeaders.php" ?>
+<?php include 'php/userProductQuery.php'; ?>
+<?php include "headers/userHeaders.php"; ?>
 
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 	

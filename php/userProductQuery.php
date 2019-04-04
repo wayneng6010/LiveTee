@@ -16,9 +16,11 @@
 	$item = mysqli_fetch_assoc($result3);
 	$itemAvailable = mysqli_fetch_assoc($result5);
 
-	if (!$itemAvailable['Item_Status']) {
-		header("Location: userHome.php");
-	}
+	// if (!$itemAvailable['Item_Status']) {
+	// 	// header("Location: userHome.php"); 
+	// 	echo '<script> location.replace("userHome.php"); </script>';
+
+	// }
 	// print_r($sizeArr);
 
 
@@ -48,7 +50,8 @@
 				$sql2 = "INSERT INTO cart VALUES(null, '$uID', '$iid', '$iquan', '$isize', now())";
 				if($result2 = mysqli_query($link,$sql2)){
 					// echo "<script>alert('".$uLogin."')</script>";
-					header("Location: userProduct.php?item=".$iid);
+					echo '<script> location.replace("userProduct.php?item='.$iid.'"); </script>';
+					// header("Location: userProduct.php?item=".$iid);
 				} else{
 					echo "<script>alert('Error add to cart.')</script>";
 				}
@@ -70,7 +73,4 @@
 			header("Location: userLogin.php");
 		}
 	}
-
-	
-
 ?>

@@ -45,19 +45,19 @@
 
 		<div id="collSidebar">
 			<p>Collection</p>
-			<a href="#">Sales</a><br>
-			<a href="#">New</a><br>
+			<a href="?col=Sales">Sales</a><br>
+			<a href="?col=New">New</a><br>
 		</div>
 		<hr>
 
 		<div id="clothSidebar">
 			<p>Clothing</p>
-			<a href="#">Dresses</a><br>
-			<a href="#">Tops</a><br>
-			<a href="#">T-Shirts</a><br>
-			<a href="#">Pants</a><br>
-			<a href="#">Shorts</a><br>
-			<a href="#">Jeans</a><br>
+			<a href="?cat=Dresses">Dresses</a><br>
+			<a href="?cat=Tops">Tops</a><br>
+			<a href="?cat=T-Shirts">T-Shirts</a><br>
+			<a href="?cat=Pants">Pants</a><br>
+			<a href="?cat=Shorts">Shorts</a><br>
+			<a href="?cat=Jeans">Jeans</a><br>
 		</div>
 		<hr>
 	</div>
@@ -137,7 +137,7 @@
 		        		if ($pageno >= $totalPages) {
 		        			echo "<a href='".$_SERVER['REQUEST_URI']."'>";
 		        		} else {
-		        			echo "<a href='?sort=".$sort."&pageno=".($pageno + 1)."'>";
+		        			echo "<a href='?sort=".$sort."&col=".$col."&cat=".$cat."&pageno=".($pageno + 1)."'>";
 
 		        		}
 		        	?>

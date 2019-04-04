@@ -60,4 +60,14 @@
 		}
 	}
 
+	if(isset($_GET['did'])){
+		$id = $_GET['did'];
+		$sql2 = "DELETE FROM `cart` WHERE `Cart_ID` = '$id'";
+		if($result2 = mysqli_query($link,$sql2)){
+			echo "<script>alert('Item has been deleted.');
+					window.location='userCart.php';
+				</script>";
+		}
+	}
+
 ?>
