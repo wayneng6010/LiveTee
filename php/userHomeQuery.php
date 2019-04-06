@@ -13,13 +13,14 @@
     $offset = ($pageno-1) * $recordPerPage;
     $cat="";
     $col="";
-    if(isset($_GET['searchTxt'])) { 
+    $searchTxt="";
+    if(isset($_GET['searchTxt']) AND $_GET['searchTxt'] != "") { 
     	$searchTxt = $_GET['searchTxt'];
     	$ttlPagesSql = "SELECT * FROM item WHERE `Item_Name` LIKE '%$searchTxt%' AND `Item_Status` = 1;";
-	} else if(isset($_GET['cat'])) {
+	} else if(isset($_GET['cat']) AND $_GET['cat'] != "") {
 		$cat = $_GET['cat'];
 		$ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1 AND `Item_Cat` = '$_GET[cat]';";
-	} else if(isset($_GET['col'])) {
+	} else if(isset($_GET['col']) AND $_GET['col'] != "") {
 		$col = $_GET['col'];
 		$ttlPagesSql = "SELECT * FROM item WHERE `Item_Status` = 1 AND `Item_Tag` = '$_GET[col]';";
 	} else {

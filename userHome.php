@@ -107,7 +107,8 @@
 		        
 				<!-- link to first page -->
 		        <li>
-		        	<a href="?pageno=1">1</a>
+		        	<a href="<?php echo "?sort=".$sort."&searchTxt=".$searchTxt."&col=".$col."&cat=".$cat."&pageno=1"; ?>">1</a>
+		        	<!-- <a href="?pageno=1">1</a> -->
 		        </li>
 
 				<!-- previous icon -->
@@ -116,8 +117,7 @@
 		        		if ($pageno <= 1) {
 		        			echo "<a href='".$_SERVER['REQUEST_URI']."'>";
 		        		} else {
-		        			echo "<a href='?sort=".$sort."&pageno=".($pageno - 1)."'>";
-
+							echo "<a href='?sort=".$sort."&searchTxt=".$searchTxt."&col=".$col."&cat=".$cat."&pageno=".($pageno - 1)."'>";
 		        		}
 		        	?>
 		            	<img src="Asset/Image/prev.svg" width="15">
@@ -137,8 +137,7 @@
 		        		if ($pageno >= $totalPages) {
 		        			echo "<a href='".$_SERVER['REQUEST_URI']."'>";
 		        		} else {
-		        			echo "<a href='?sort=".$sort."&col=".$col."&cat=".$cat."&pageno=".($pageno + 1)."'>";
-
+		        			echo "<a href='?sort=".$sort."&searchTxt=".$searchTxt."&col=".$col."&cat=".$cat."&pageno=".($pageno + 1)."'>";
 		        		}
 		        	?>
 		            	<img src="Asset/Image/next.svg" width="15">
@@ -147,7 +146,7 @@
 
 				<!-- link to last page -->
 		        <li>
-		        	<a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+		        	<a href="<?php echo "?sort=".$sort."&searchTxt=".$searchTxt."&col=".$col."&cat=".$cat."&pageno=".$totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
 		        </li>
 	    	</ul>
 		</div>	

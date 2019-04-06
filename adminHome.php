@@ -27,6 +27,37 @@
 			<img src="Asset/Image/profile.svg" width="30" height="auto">
 		</div>
 	</div>
+
+	<div id="dashboard">
+		<div class="dashrow">
+			<div class="dashitem">
+				<div class="dashinner first">
+					<a href="adminOrderManage.php" class="dashlink">Orders</a>
+				</div>
+			</div>
+
+			<div class="dashitem">
+				<div class="dashinner second">
+					<a href="adminClothingEdit.php" class="dashlink">Items</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="dashrow">
+			<div class="dashitem">
+				<div class="dashinner third">
+					<a href="adminSales.php" class="dashlink">Sales Report</a>
+				</div>
+			</div>
+
+			<div class="dashitem">
+				<div class="dashinner forth">
+					<a href="adminStaffView.php" class="dashlink">Staff</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
 	<?php include_once 'headers/adminHeaders.html';  include 'verficationAdminRole.php';?>
 	
 </body>

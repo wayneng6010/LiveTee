@@ -1,6 +1,8 @@
 <?php 
 	session_start();
 ?>
+<?php include 'php/userProductQuery.php'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -88,6 +90,7 @@
 		});
 
 		function tabChange(tabName) {
+			// alert(tabName);
 			var tab = document.getElementsByClassName("tab");
 			var tabBtn = document.getElementsByClassName("tabBtn");
 		  	for (i = 0; i < tab.length; i++) {
@@ -100,13 +103,11 @@
 		  	document.getElementById(tabName).style.display = "block";
 		  	event.target.style.color = "black";
 		    event.target.style.borderBottom = "3px solid black";
-		  	
 	  	}
 	</script>
 </head>
 
 <body id="userBody">
-<?php include 'php/userProductQuery.php'; ?>
 <?php include "headers/userHeaders.php"; ?>
 
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
@@ -210,6 +211,55 @@
 			<hr>';
 		}
 		?>
+		<div id="paging">
+      <ul class="pagination">
+        <!-- link to first page -->
+            <li>
+              <!-- <a href="?pageno=1"> -->
+              <?php echo "<a href='?item=".$itemID."&pageno=1'>1</a>"; ?>
+
+            </li>
+
+        <!-- previous icon -->
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno <= 1) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                    echo "<a href='?item=".$itemID."&pageno=".($pageno - 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/prev.svg" width="15">
+                </a>
+            </li>
+        
+        <!-- current page number -->
+            <li>
+              <span id="currentPg">
+            <?php echo $pageno; ?>
+              </span>
+            </li>
+
+        <!-- next icon -->
+            <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno >= $totalPages) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                    echo "<a href='?item=".$itemID."&pageno=".($pageno + 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/next.svg" width="15">
+                </a>
+            </li>
+
+        <!-- link to last page -->
+            <li>
+              <?php echo "<a href='?item=".$itemID."&pageno=$totalPages'>"; ?>
+              	<?php if ($totalPages > 1) echo $totalPages; ?></a>
+            </li>
+        </ul>
+    </div> 
 		</div>
 		<div id="underTabBar"></div>
 	</div>

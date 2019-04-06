@@ -767,6 +767,65 @@ div#content_container{
 	color: black;
 }
 
+div#dashboard{
+	position: absolute;
+	left: 18%;
+	top: 80px;
+	/*border: 1px solid black;*/
+	width: 80%;
+	height: auto;
+}
+
+div.dashrow {
+	display: flex;
+	width: 100%;
+}
+
+/*div.dashrow:nth-child(1) {
+	margin-bottom: 50px;
+}*/
+
+div.dashitem{
+	flex: .5;
+	/*border: 1px solid pink;*/
+	height: 200px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div.dashinner {
+	width: 80%;
+	height: 80%;
+	background-color: #515151;
+}
+
+div.dashinner.first {
+	background: linear-gradient(to right, #485563, #29323c);
+}
+
+div.dashinner.second {
+	background: linear-gradient(to right, #24c6dc, #514a9d);
+}
+
+div.dashinner.third {
+	background: linear-gradient(to right, #ff4b1f, #ff9068);
+}
+
+div.dashinner.forth {
+	background: linear-gradient(to right, #2b5876, #4e4376);
+}
+
+a.dashlink {
+	color: white;
+	display: block;
+	/*float: right;*/
+	padding-left: 10%;
+	padding-top: 110px;
+	padding-bottom: 20px;
+	overflow: hidden;
+}
+
 div#content_container.container_below{
 	top: 240px !important;
 	padding: 10px 1%;

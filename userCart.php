@@ -1,6 +1,8 @@
 <?php 
 	session_start();
 ?>
+<?php include 'php/userCartQuery.php'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +40,7 @@
 	            }
 	        });
 		    $('.pdSelectSize').eq(i).change(function(){
+		    	$('.citem').eq(i).click();
 		    	$.ajax({
 	            url: "php/userProductQuery1.php",
 	            type: "post",
@@ -87,6 +90,7 @@
 		    });
 
 		    $('.pdQuanInput').eq(i).bind('input', function(){
+		    	$('.citem').eq(i).click();
 			  	$.ajax({
 		            url: "php/userCartQuery1.php",
 		            type: "post",
@@ -94,6 +98,8 @@
 		            success: function(data){
 	              //   	var e = document.getElementById('popUpMsg');
 			            // e.style.display = 'flex';
+		    	
+
 			            $("#popUpMsg").css("display", "flex");
 			            $("#popUpMsg").css("visibility", "visible");
 			            $("#popUpMsg").css("opacity", "1");
@@ -103,6 +109,7 @@
 					      	msg.style.visibility = "hidden";
 					    }, 1000);
 			            $('.iprice > .ipricein').eq(i).html('RM'+data);
+			            $('.citem').eq(i).click();
 		        		// totalup();
 			            // alert(e.innerHTML);
 		            }
@@ -118,7 +125,6 @@
 
 <body id="userBody">
 	<?php include "headers/userHeaders.php" ?>
-	<?php include 'php/userCartQuery.php'; ?>
 
 	<br>
 	<div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Changes Saved</div>
@@ -189,8 +195,9 @@
 			<div id="checkOutDiv">
             	<table id="checkOutDivTable">
 					<tr>
+						<td style="width: 15%;"><input type="checkbox" onClick="selectAll(this)"><span style="font-size: 14px;">Select All</span></td>
 						<td style="width: 25%;"><div style="margin-left: 20px;" class="checkoutTxt">Subtotal ( <span class="bold num">0</span> items ): <span class="bold sub">RM0</span></div></td>
-						<td style="width: 25%;"><div class="checkoutTxt">Shipping Fee: <span class="bold fee">RM0</span></div></td>
+						<!-- <td style="width: 25%;"><div class="checkoutTxt">Shipping Fee: <span class="bold fee">RM0</span></div></td> -->
 						<td style="width: 25%; text-align: right"><div class="checkoutTxt ttl">Total: <span class="bold total">RM0</span></div></td>
             			<td style="width: 25%;"><input class="contentSubmit checkout" type="submit" value="CHECKOUT" name="checkout"></td>
             		</tr>
@@ -255,13 +262,30 @@
 
     	totalup();
 
+    	function selectAll(source) {
+		  	checkboxes = document.getElementsByClassName('citem');
+		  	for(var i = 0; i < checkboxes.length; i++) {
+		    	// checkboxes[i].checked = source.checked;
+		    	checkboxes[i].click();
+		  	}
+		}
+
 		// $('.citem').each(function(i, obj){
 		//     $('.pdQuanInput').eq(i).bind('input', function(){
 		//         totalup();
 		//         alert('af');
 		// 	});
 		// });
-			
+		// $('.citem').each(function(i, obj){
+
+		
+		    // $('.pdSelectSize').eq(i).change(function(){
+
+		    	// $('.citem').eq(0).click();
+
+		    // });
+		// });
+
     	</script>
 	
 </body>

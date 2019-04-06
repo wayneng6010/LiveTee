@@ -108,7 +108,11 @@
 				header("LOcation: {$approvalUrl}");
 
 			} else {
-				echo "<script>alert('No item selected.')</script>";
+				// echo "<script>alert('No item selected.')</script>";
+				// // header("Location: ../userCart.php");
+				echo "<script>alert('No item selected.');
+					window.location='../userCart.php';
+				</script>";
 			}
 		}
 	}

@@ -4,17 +4,38 @@
 	require_once 'conn.php';
 	
 	$itemID = $_GET['item'];
+
 	$sql1 = "SELECT * FROM item WHERE item.Item_ID='$itemID'";
-	$sql4 = "SELECT Rv_Txt, Rv_Rating, Rv_DateTime, User_Name FROM review, orders, user WHERE review.Rv_OrderID = orders.Order_ID AND orders.User_ID = user.User_ID AND Order_ItemID='$itemID'";
 	
 	$result1 = mysqli_query($link,$sql1);
 	$result2 = mysqli_query($link,$sql1);
 	$result3 = mysqli_query($link,$sql1);
 	$result5 = mysqli_query($link,$sql1);
 	
-	$result4 = mysqli_query($link,$sql4);
 	$item = mysqli_fetch_assoc($result3);
 	$itemAvailable = mysqli_fetch_assoc($result5);
+
+
+	if (isset($_GET['pageno'])) {
+        $pageno = $_GET['pageno'];
+    } else {
+       	$pageno = 1;
+    }
+
+    $recordPerPage = 1;
+    $offset = ($pageno-1) * $recordPerPage;
+
+	$ttlPagesSql = "SELECT Rv_Txt, Rv_Rating, Rv_DateTime, User_Name FROM review, orders, user WHERE review.Rv_OrderID = orders.Order_ID AND orders.User_ID = user.User_ID AND Order_ItemID='$itemID'";
+
+	// $result4 = mysqli_query($link,$sql4);
+
+    $result4 = mysqli_query($link, $ttlPagesSql);
+    $totalRows = mysqli_num_rows($result4);
+    $totalPages = ceil($totalRows / $recordPerPage);
+
+    $sql4 = "SELECT Rv_Txt, Rv_Rating, Rv_DateTime, User_Name FROM review, orders, user WHERE review.Rv_OrderID = orders.Order_ID AND orders.User_ID = user.User_ID AND Order_ItemID='$itemID' LIMIT $offset, $recordPerPage";
+
+    $result4 = mysqli_query($link, $sql4);
 
 	// if (!$itemAvailable['Item_Status']) {
 	// 	// header("Location: userHome.php"); 
@@ -22,7 +43,9 @@
 
 	// }
 	// print_r($sizeArr);
-
+	if (isset($_GET['pageno'])){
+		// echo "<script>tabChange('RevTab');</script>";
+	}
 
 	if (isset($_SESSION['uLogin'])){
 		$uLogin = $_SESSION['uLogin'];
@@ -58,9 +81,11 @@
 				// echo "<script>alert('".$uLogin."')</script>";
 			} else {
 				header("Location: userLogin.php");
+				// echo '<script> location.replace("userLogin.php"); </script>';
 			}
 		} else {
-			header("Location: userHome.php");
+			// header("Location: userHome.php");
+			echo '<script> location.replace("userProduct.php?item='.$iid.'"); </script>';
 		}
 
 		
@@ -70,7 +95,8 @@
 		if ($uLogin != ""){
 
 		} else {
-			header("Location: userLogin.php");
+			echo '<script> location.replace("userLogin.php"); </script>';
+			// header("Location: userLogin.php");
 		}
 	}
 ?>
