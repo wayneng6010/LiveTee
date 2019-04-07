@@ -34,13 +34,13 @@
 	<?php include "headers/userHeaders.php" ?>
 	<div id="userSidebar">
 
-		<div id="genderSidebar">
+		<!-- <div id="genderSidebar">
 			<p>Gender</p>
 			<div id="genderFlex">
 				<div id="gender1"><a href="#">Women</a></div>
 				<div id="gender2"><a href="#">Men</a><br></div>
 			</div>
-		</div>
+		</div> -->
 		<hr>
 
 		<div id="collSidebar">

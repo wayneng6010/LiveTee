@@ -13,7 +13,7 @@
 	crossorigin="anonymous"></script>
 	<script>
         $(function(){
-            // $("#includedContent").load("html/adminHeaders.html");
+            // $("#includedContent").load("html/adminHeaders.php");
         });
     </script>
 </head>
@@ -22,11 +22,11 @@
     require 'php/adminFirstLoginQuery.php';
   ?>
 	<div id="header">
-		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
+		<div id="flexLeft"><a href="adminHome.php"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
 		<div id="flexMiddle"><span>First Login - Change Password</span></div>
 		<div id="flexRight">
 			<!-- <img src="Asset/Image/noti.svg" width="30" height="auto"> -->
-			<!-- <img src="Asset/Image/chat.svg" width="30" height="auto"> -->
+			<!-- <img src="Asset/Image/chat.svg" style="display: none;" width="30" height="auto"> -->
 			<img src="Asset/Image/profile.svg" width="30" height="auto">
 		</div>
 	</div>

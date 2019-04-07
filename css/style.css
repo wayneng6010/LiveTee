@@ -519,7 +519,8 @@ div#sideBar button img{
 
 .notiBox a{
 	color: black;
-	height: 80px;
+	height: 60px;
+	font-size: 14px;
 	border-bottom: 1.5px solid rgba(0, 0, 0, 0.2);
 	background-color: white;
 	padding-left: 15px;

@@ -35,11 +35,11 @@
     require 'php/adminStockAdd_AddQuery.php';
   ?>
 	<div id="header">
-		<div id="flexLeft"><a href="html/adminHome.html"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
+		<div id="flexLeft"><a href="adminHome.php"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
 		<div id="flexMiddle"><span>Stock - Add</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
-			<img src="Asset/Image/chat.svg" width="30" height="auto">
+			<img src="Asset/Image/chat.svg" style="display: none;" width="30" height="auto">
 			<img src="Asset/Image/profile.svg" width="30" height="auto">
 		</div>
 	</div>
@@ -116,7 +116,7 @@
   //     })
 </script>
 
-<?php include_once 'headers/adminHeaders.html';  include 'verficationAdminRole.php';?>
+<?php include_once 'headers/adminHeaders.php';  include 'verficationAdminRole.php';?>
 
 </body>
 </html>
