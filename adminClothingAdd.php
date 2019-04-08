@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Add Clothing | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -88,7 +88,8 @@
             </p>
             <p>
               	<label><b>Image</b></label>
-              	<input class="contentInput" type="file" name="iimg" accept="image/*" required>
+              	<input class="contentInput" type="file" name="iimg" accept="image/*" onchange="readURL(this);" required>
+                <br><img id="clothingPic" src="#" alt="Chosen image" style="display: none;"/>
             </p>
             <p>
               	<label><b>Tag</b></label>
@@ -110,5 +111,22 @@
 	</div>
   <?php include_once 'headers/adminHeaders.php';  include 'verficationAdminRole.php';?>
   
+  <script type="text/javascript">
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#clothingPic')
+                    .attr('src', e.target.result)
+                    .attr('style', 'display: block')
+                    .attr('style', 'margin-left: 200px')
+                    .width('20%');
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+  </script>
 </body>
 </html>

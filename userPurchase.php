@@ -145,6 +145,8 @@
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 							<td>'.$row['Item_Name'].'</td>
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
+							<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
+							<td>'.$row['Order_ItemSize'].'</td>
 							<td><span>'.$status.'</span></td>
 							<td>'.$review.'</td>
 						</tr>';
@@ -157,9 +159,11 @@
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 							<td>'.$row['Item_Name'].'</td>
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
+							<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
+							<td>'.$row['Order_ItemSize'].'</td>
 							<td><span>'.$status.'</span></td>
 							<td>'.$review.'</td>
-						</tr>';
+						</tr></td></tr>';
 				} else {
 				echo '</table></div><hr>
 						<div class="perOrder" id="'.$row['perOrder_ID'].'">
@@ -176,6 +180,8 @@
 										<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 										<td>'.$row['Item_Name'].'</td>
 										<td>Qty: '.$row['Order_ItemQuan'].'</td>
+										<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
+										<td>'.$row['Order_ItemSize'].'</td>
 										<td><span>'.$status.'</span></td>
 										<td>'.$review.'</td>
 									</tr>';

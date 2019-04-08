@@ -1499,37 +1499,45 @@ table.tableOrder tr td:nth-child(1){
 }
 
 table.tableOrder tr td:nth-child(2){
-	width: 40%;
+	width: 25%;
 }
 
 table.tableOrder tr td:nth-child(3){
-	width: 15%;
+	width: 10%;
 }
 
 table.tableOrder tr td:nth-child(4){
-	width: 15%;
+	width: 5%;
 }
 
 table.tableOrder tr td:nth-child(5){
-	width: 20%;
+	width: 5%;
 }
 
-table.tableOrder tr td:nth-child(4) span{
+table.tableOrder tr td:nth-child(6){
+	width: 10%;
+}
+
+table.tableOrder tr td:nth-child(7){
+	width: 15%;
+}
+
+table.tableOrder tr td:nth-child(6) span{
 	background-color: lightgrey;
 	padding: 5px 13px;
 	border-radius: 20px;
-	font-size: 12px;
+	font-size: 12px !important;
 }
 
-table.tableOrder tr td:nth-child(5) a{
+table.tableOrder tr td:nth-child(7) a{
 	color: black;
 }
 
-table.tableOrder tr td:nth-child(5) a:hover{
+table.tableOrder tr td:nth-child(7) a:hover{
 	color: grey;
 }
 
-table.tableOrder tr td:nth-child(5) span{
+table.tableOrder tr td:nth-child(7) span{
 	font-size: 16px;
 	font-weight: bold;
 }

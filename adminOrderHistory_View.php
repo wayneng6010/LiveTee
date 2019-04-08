@@ -59,7 +59,7 @@
 
       <p>
         <label><b>Staff in Charge</b></label>
-        <?php echo $row['Staff_Name']; ?>
+        <?php echo $row['Staff_Name'].' ('.$row['Staff_ID'].')'; ?>
       </p>
 
       <p>
@@ -69,6 +69,8 @@
       
       <?php 
         $counter = 0;
+        $total = 0;
+        $numResults = mysqli_num_rows($item);
         while($row = mysqli_fetch_assoc($result)){
         if ($counter == 0){
           echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
@@ -76,11 +78,12 @@
                 <th>Item ID</th>
                 <th>Item Name</th>
                 <th>Size</th>
-                <th>Quantity</th>';
-          echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+                <th>Quantity</th>
+                <th>Price (Total)</th>';
+          echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td><td>RM".$row['Item_Price']*$row['Order_ItemQuan']."</td></tr>";
         } else {
           if ($row['Order_DateTime'] == $dateTime){
-            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td><td>RM".$row['Item_Price']*$row['Order_ItemQuan']."</td></tr>";
           } else {
             echo '</table><hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
                 <table id="tableClothing">
@@ -88,15 +91,19 @@
                 <th>Item Name</th>
                 <th>Size</th>
                 <th>Quantity</th>';
-            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td></tr>";
+            echo "<tr><td>".$row['Order_ItemID']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td>".$row['Order_ItemQuan']."</td><td>RM".$row['Item_Price']*$row['Order_ItemQuan']."</td></tr>";
           }
         }
             $dateTime = $row['Order_DateTime'];
             $counter+=1;
+            $total += $row['Item_Price']*$row['Order_ItemQuan'];
+            if ($counter == $numResults) { 
+              echo "<tr><td></td><td></td><td></td><td></td><td><b>RM".$total."</b></td></tr>";
+            }
           }
           if($counter==0){
             echo "<table id='tableClothing'><th>Item ID</th><th>Item Name</th><th>Size</th>
-                <th>Quantity</th>'<tr><td colspan='4' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
+                <th>Quantity</th>'<tr><td colspan='5' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
           }
 
             ?>

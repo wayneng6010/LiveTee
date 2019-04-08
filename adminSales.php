@@ -66,16 +66,30 @@
 				<option value="line" <?php if ($gtype=="line") echo 'selected' ?>>Line</option>
 				<option value="pie" <?php if ($gtype=="pie") echo 'selected' ?>>Pie</option>
 			</select>
+			<br><br><a id='link' download='salesReport.png' style="color: white; background-color: #515151; padding: 10px 15px; cursor: pointer;">Save as Image</a>
+
 		</div>
-  		<div id="chart-container" style="width: 97%;">
-			<canvas id="mycanvas"></canvas>
+  		<div id="chart-container" style="width: 97%; background-color: white;">
+			<canvas id="mycanvas" style="background-color: white;"></canvas>
 			<script type="text/javascript" src="jquery.min.js"></script>
 		    <script type="text/javascript" src="Chart.min.js"></script>
 		    <script type="text/javascript" src="app.js"></script>
+		    <script type="text/javascript" src="FileSaver.min.js"></script>
+		    <script type="text/javascript" src="canvas-toBlob.js"></script>
 		</div>
 	</div>
 
 	<script type="text/javascript">
+		// var url_base64 = document.getElementById('mycanvas').toDataURL('image/png');
+		// var link = document.getElementById('link');
+		// link.href = url_base64;
+
+		$("#link").click(function() {
+ 	    $("#mycanvas").get(0).toBlob(function(blob) {
+    		saveAs(blob, "chart_1.jpg");
+			});
+		});
+
 		var gtype = "default";
 		var durate = "default";
 		$('#graphTypeSelect').on('change', function() {

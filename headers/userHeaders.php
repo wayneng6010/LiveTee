@@ -19,6 +19,7 @@
 					<a href="userAccount.php">My Account</a>';
 				}
 			?>
+			<a href="userContactAbout.php">Contact / About Us</a>
 		</div>
 	</div>
 	

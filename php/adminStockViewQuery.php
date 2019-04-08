@@ -8,7 +8,7 @@
        	$pageno = 1;
     }
 
-    $recordPerPage = 2;
+    $recordPerPage = 10;
     $offset = ($pageno-1) * $recordPerPage;
    	
     if(isset($_GET['search']) || (isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))) {

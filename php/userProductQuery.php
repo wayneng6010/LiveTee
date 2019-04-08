@@ -73,8 +73,8 @@
 				$sql2 = "INSERT INTO cart VALUES(null, '$uID', '$iid', '$iquan', '$isize', now())";
 				if($result2 = mysqli_query($link,$sql2)){
 					// echo "<script>alert('".$uLogin."')</script>";
-					echo '<script> location.replace("userProduct.php?item='.$iid.'"); </script>';
-					// header("Location: userProduct.php?item=".$iid);
+					// echo '<script> location.replace("userProduct.php?item='.$iid.'&success=true"); </script>';
+					header("Location: userProduct.php?item=".$iid."&success=true");
 				} else{
 					echo "<script>alert('Error add to cart.')</script>";
 				}

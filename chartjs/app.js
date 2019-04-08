@@ -14,6 +14,9 @@ $(document).ready(function(){
         quan.push(dataJS[i].quan);
       }
 
+      alert('asd');
+
+
       var chartdata = {
         labels: dates,
         datasets : [
@@ -29,6 +32,16 @@ $(document).ready(function(){
       };
 
       var ctx = $("#mycanvas");
+
+      ctx.style.backgroundColor = 'blue';
+
+      Chart.plugins.register({
+        beforeDraw: function(chartInstance) {
+          var ctx = chartInstance.chart.ctx;
+          ctx.fillStyle = "white";
+          ctx.fillRect(0, 0, chartInstance.chart.width, chartInstance.chart.height);
+        }
+      });
 
       var barGraph = new Chart(ctx, {
         type: 'bar',

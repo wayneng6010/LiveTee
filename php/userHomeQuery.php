@@ -9,7 +9,7 @@
        	$pageno = 1;
     }
 
-    $recordPerPage = 2;
+    $recordPerPage = 16;
     $offset = ($pageno-1) * $recordPerPage;
     $cat="";
     $col="";

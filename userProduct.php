@@ -109,7 +109,7 @@
 
 <body id="userBody">
 <?php include "headers/userHeaders.php"; ?>
-
+	<div id="popUpMsg" style=""><img src="Asset/Image/tick.png" width="auto" height="15" style="margin-right: 10px;">Added to Cart</div>
 	<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
 	
 	<?php
@@ -264,6 +264,15 @@
 		<div id="underTabBar"></div>
 	</div>
 	
+	<?php 
+		if(isset($_GET['success'])){
+          echo "<script>
+            var e = document.getElementById('popUpMsg');
+            e.style.display = 'flex';
+          </script>";
+        }
+	?>
+	
 	<script type="text/javascript">
 		var table = document.getElementsByClassName('rateTable');
 		
@@ -310,6 +319,12 @@
 			}
 			event.target.value = event.target.value.replace('e','');
 		}
+
+		setInterval(function(){
+	      	var msg = document.getElementById('popUpMsg');
+	      	msg.style.opacity = "0";
+	      	msg.style.visibility = "hidden";
+	    }, 1000);
 
 	</script>
 </body>

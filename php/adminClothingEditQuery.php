@@ -8,7 +8,7 @@
        	$pageno = 1;
     }
 
-    $recordPerPage = 2;
+    $recordPerPage = 10;
     $offset = ($pageno-1) * $recordPerPage;
 	// $istatus = "";
 	// $icat = "";

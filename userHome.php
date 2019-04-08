@@ -67,10 +67,10 @@
 		<select id="sortSelect">
 			<?php $sort = $_GET['sort']; ?>
 			<option value="Relevance" <?php if ($sort=="Relevance") echo 'selected' ?>>Relevance</option>
-			<option value="Popularity" <?php if ($sort=="Popularity") echo 'selected' ?>>Popularity</option>
+			<!-- <option value="Popularity" <?php if ($sort=="Popularity") echo 'selected' ?>>Popularity</option> -->
 			<option value="Lowest Price" <?php if ($sort=="Lowest Price") echo 'selected' ?>>Lowest Price</option>
 			<option value="Highest Price" <?php if ($sort=="Highest Price") echo 'selected' ?>>Highest Price</option>
-			<option value="Latest Arrival" <?php if ($sort=="Latest Arrival") echo 'selected' ?>>Latest Arrival</option>
+			<!-- <option value="Latest Arrival" <?php if ($sort=="Latest Arrival") echo 'selected' ?>>Latest Arrival</option> -->
 		</select>
 	</div>
 	
@@ -149,6 +149,7 @@
 		        	<a href="<?php echo "?sort=".$sort."&searchTxt=".$searchTxt."&col=".$col."&cat=".$cat."&pageno=".$totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
 		        </li>
 	    	</ul>
+	    	<br>
 		</div>	
 	</div>
 	

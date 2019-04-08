@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Stock - Add | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">

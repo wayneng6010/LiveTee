@@ -1,7 +1,7 @@
-S<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Stock - View | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -56,7 +56,8 @@ S<!DOCTYPE html>
         $counter=0;
         while($row = mysqli_fetch_assoc($result1)){
           if ($counter==0){
-            echo "<tr><td rowspan=".$num_rows.">".$row['Item_Name']."</td>";
+            echo "<tr><td rowspan=".$num_rows.">".$row['Item_Name'];
+            echo '<br><img class="image" src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" width="40%" alt=""></td>';
           }
           echo "<td>".$row['ssize']."</td><td>".$row['Stock_Quan']."</td></tr>";
           $counter+=1;
