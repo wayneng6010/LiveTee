@@ -43,9 +43,7 @@
 
 	// }
 	// print_r($sizeArr);
-	if (isset($_GET['pageno'])){
-		// echo "<script>tabChange('RevTab');</script>";
-	}
+	
 
 	if (isset($_SESSION['uLogin'])){
 		$uLogin = $_SESSION['uLogin'];

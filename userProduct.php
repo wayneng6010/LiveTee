@@ -89,7 +89,7 @@
 	        });
 		});
 
-		function tabChange(tabName) {
+		function tabChange(tabName, index) {
 			// alert(tabName);
 			var tab = document.getElementsByClassName("tab");
 			var tabBtn = document.getElementsByClassName("tabBtn");
@@ -101,9 +101,10 @@
 		    	tabBtn[x].style.borderBottom = "none";
 		  	}
 		  	document.getElementById(tabName).style.display = "block";
-		  	event.target.style.color = "black";
-		    event.target.style.borderBottom = "3px solid black";
+		  	tabBtn[index].style.color = "black";
+		    tabBtn[index].style.borderBottom = "3px solid black";
 	  	}
+
 	</script>
 </head>
 
@@ -150,8 +151,8 @@
 
 	<div id="tabOuter">
 		<div id="tabBar">
-			<button class="tabBtn" id="details" onclick="tabChange('detTab')">Details</button>
-			<button class="tabBtn" id="reviews" onclick="tabChange('RevTab')">Reviews</button>
+			<button class="tabBtn" id="details" onclick="tabChange('detTab', 0)">Details</button>
+			<button class="tabBtn" id="reviews" onclick="tabChange('RevTab', 1)">Reviews</button>
 		</div>
 		<div class="tab" id="detTab">
 			<?php
@@ -327,5 +328,18 @@
 	    }, 1000);
 
 	</script>
+	<?php
+	if (isset($_GET['pageno'])){
+		echo "<script>$('#reviews').click();</script>";
+		echo "<script>
+        $(document).ready(function () {
+		  	$('html, body').animate({
+		    	scrollTop: $('#reviews').offset().top
+		  	}, 10)
+		});
+      	</script>";
+	}
+
+	?>
 </body>
 </html>

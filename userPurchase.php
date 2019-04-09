@@ -136,6 +136,9 @@
 							<p>Order #'.$row['perOrder_ID'].'</p>';
 							// if ($row['Order_Status'] == '01') {
 								echo '<p>Placed on '.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>';
+								if ($row['Order_Status']=='02'){
+									echo '<a target="_black" class="trackLink" href="https://www.tracking.my/poslaju/'.$row['perOrder_TrackNo'].'">Track&nbsp;&#62;</a>';
+								}
 							// } else {
 								// echo '<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime'])).'</p>';
 							// }
@@ -171,6 +174,9 @@
 								<p>Order #'.$row['perOrder_ID'].'</p>';
 							// if ($row['Order_Status'] == '01') {
 								echo '<p>Placed on '.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>';
+								if ($row['Order_Status']=='02'){
+									echo '<a target="_black" class="trackLink" href="https://www.tracking.my/poslaju/'.$row['perOrder_TrackNo'].'">Track&nbsp;&#62;</a>';
+								}
 							// } else {
 								// echo '<p>Confirmed on '.date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime'])).'</p>';
 							// }	

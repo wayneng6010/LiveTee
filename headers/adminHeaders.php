@@ -1,11 +1,12 @@
 	<div class="notiBox">
+		<div class="notiContent">
 		<div class="title"><b>Notification</b></div>
 		<a href="adminOrderManage.php">
 		<?php 
 			$sqlNoti = "SELECT * FROM perorder, orders WHERE orders.Order_perOrderID = perorder.perOrder_ID AND orders.Order_Status = '01' GROUP BY perorder.perOrder_ID";
 	    	$resultNoti = mysqli_query($link, $sqlNoti);
 			// $itemNoti = mysqli_fetch_assoc($resultNoti);
-			echo '<b>'.mysqli_num_rows($resultNoti).'</b>&nbsp;new orders'; 
+			echo '<b>'.mysqli_num_rows($resultNoti).'</b>&nbsp;new orders</a>'; 
 			$sqlNotiAll = "SELECT * FROM orders, perorder, user WHERE orders.Order_perOrderID = perorder.perOrder_ID AND orders.User_ID = user.User_ID AND orders.Order_Status = '01' GROUP BY perorder.perOrder_ID ORDER BY orders.Order_DateTime DESC";
 	    	$resultNotiAll = mysqli_query($link, $sqlNotiAll);
 			while ($itemNotiAll = mysqli_fetch_assoc($resultNotiAll)) {
@@ -13,8 +14,19 @@
 			}
 
 		?>
-		</a>
+		</div>
 		
+		<script type="text/javascript">
+		function loadlink(){
+			$('.notiBox').load(document.URL +  ' .notiContent');
+			// $('.notiBox').load('headers/adminHeaders.php',function () {
+   //       		$(this).unwrap();
+   //  		});
+		}
+		setInterval(function(){
+    		loadlink();
+		}, 2000);
+		</script>
 		<!-- <a href="#"><div>1st notification</div></a>
 		<a href="#"><div>1st notification</div></a>
 		<a href="#"><div>1st notification</div></a> -->
