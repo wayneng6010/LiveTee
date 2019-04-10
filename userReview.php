@@ -129,8 +129,59 @@
 
 		}
 		?>
-        </table>
+
 	</div>
+    </table>
+	
+	<div id="paging">
+      <ul class="pagination">
+        <!-- link to first page -->
+            <li>
+              <!-- <a href="?pageno=1"> -->
+              <?php echo "<a href='?pageno=1'>1</a>"; ?>
+
+            </li>
+
+        <!-- previous icon -->
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno <= 1) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                    echo "<a href='?pageno=".($pageno - 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/prev.svg" width="15">
+                </a>
+            </li>
+        
+        <!-- current page number -->
+            <li>
+              <span id="currentPg">
+            <?php echo $pageno; ?>
+              </span>
+            </li>
+
+        <!-- next icon -->
+            <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno >= $totalPages) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                    echo "<a href='?pageno=".($pageno + 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/next.svg" width="15">
+                </a>
+            </li>
+
+        <!-- link to last page -->
+            <li>
+              <?php echo "<a href='?pageno=$totalPages'>"; ?>
+              	<?php if ($totalPages > 1) echo $totalPages; ?></a>
+            </li>
+        </ul>
+    </div> 
 
 
 	<script type="text/javascript">

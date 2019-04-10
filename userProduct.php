@@ -163,6 +163,7 @@
 		</div>
 		<div class="tab" id="RevTab">
 		<?php
+		$counter = 0;
 		while ($rowRv = mysqli_fetch_assoc($result4)){
 			echo '<div class="eachRv">
 				<div class="profileRv">
@@ -210,6 +211,11 @@
 				</div>
 			</div>
 			<hr>';
+			$counter += 1;
+		}
+
+		if ($counter == 0) {
+			echo "<p style='font-size: 16px;'>No review at the moment.</p>";
 		}
 		?>
 		<div id="paging">

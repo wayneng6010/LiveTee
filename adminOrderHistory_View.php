@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Order - History</h1>
+	<h1 id="content_header">Order - History<a href="adminOrderHistory.php" class="backLink">&#10094;&nbsp;Back</a></h1>
 
   <div id="content_container" class="container_below" style="margin-top: -140px; padding: 10px 40px;">
       <p>

@@ -46,7 +46,7 @@
 	<div id="includedContent"></div>
 	<h1 id="content_header">Stock - Add</h1>
 	<div id="content_container">
-    <form method="post" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
+    <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <p>
         <label class="filter_lbl"><b>Category</b></label>
         <select id="selectCat" name="icat">
@@ -68,8 +68,8 @@
           <option value="1">Available</option>
           <option value="0">Not Available</option>
         </select>
-        <input class="contentSubmit filter_btn" type="submit" name="add" value="Search">
-        <input class="contentInput filter_txt" type="text" name="isearch" required>
+        <input class="contentSubmit filter_btn" type="submit" name="search" value="Search">
+        <input class="contentInput filter_txt" type="text" name="isearch">
       </p>
     </form>
   </div>
@@ -92,13 +92,83 @@
                  $counter+=1;
                 }
               if($counter==0){
-                echo "<tr><td colspan='5' style='background-color: #f2f2f2;'>No item found</td></tr>";
+                echo "<tr><td colspan='6' style='background-color: #f2f2f2;'>No item found</td></tr>";
               }
 
             ?>
     </table>
-          
+    <div id="paging">
+      <ul class="pagination">
+        <!-- link to first page -->
+            <li>
+              <?php 
+                if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=1'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=1'>";
+                  }
+              ?>
+            1</a>
+            </li>
+
+        <!-- previous icon -->
+            <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno <= 1) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=".($pageno - 1)."'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=".($pageno - 1)."'>";
+                  }
+                }
+              ?>
+                  <img src="Asset/Image/prev.svg" width="15">
+                </a>
+            </li>
+        
+        <!-- current page number -->
+            <li>
+              <span id="currentPg">
+            <?php echo $pageno; ?>
+              </span>
+            </li>
+
+        <!-- next icon -->
+            <li class="<?php if($pageno >= $totalPages){ echo 'disabled'; } ?>">
+              <?php 
+                if ($pageno >= $totalPages) {
+                  echo "<a href='".$_SERVER['REQUEST_URI']."'>";
+                } else {
+                  if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=".($pageno + 1)."'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=".($pageno + 1)."'>";
+                  }
+                  // echo "<a href='?pageno=".($pageno + 1)."'>";
+                }
+              ?>
+                  <img src="Asset/Image/next.svg" width="15">
+                </a>
+            </li>
+
+        <!-- link to last page -->
+            <li>
+              <?php 
+                if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=".$totalPages."'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=".$totalPages."'>";
+                  }
+                if ($totalPages > 1) echo $totalPages;
+              ?>
+              </a>
+            </li>
+        </ul>
+    </div>        
 	</div>
+
   <script type="text/javascript">
 
   // $('#selectCat').on('change', function(e) {

@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Stock - Add</h1>
+	<h1 id="content_header">Stock - Add<a href="adminStockAdd.php" class="backLink">&#10094;&nbsp;Back</a></h1>
 
   <div id="content_container" class="container_below" style="margin-top: -130px; padding: 10px 40px;">
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data" id="editForm">

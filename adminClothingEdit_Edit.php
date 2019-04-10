@@ -26,7 +26,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Clothing - Edit</h1>
+	<h1 id="content_header">Clothing - Edit<a href="adminClothingEdit.php" class="backLink">&#10094;&nbsp;Back</a></h1>
 	<div id="content_container">
           <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>" enctype="multipart/form-data" id="editForm">
                 <input class="contentInput" type="text" name="eid" title="Item Name" required value="<?php echo $_GET['eid']; ?>" style="display: none;">

@@ -86,7 +86,7 @@
 
 		$("#link").click(function() {
  	    $("#mycanvas").get(0).toBlob(function(blob) {
-    		saveAs(blob, "chart_1.jpg");
+    		saveAs(blob, "Sales Report.jpg");
 			});
 		});
 

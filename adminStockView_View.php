@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Stock - View</h1>
+	<h1 id="content_header">Stock - View<a href="adminStockView.php" class="backLink">&#10094;&nbsp;Back</a></h1>
 
   <div id="content_container" class="container_below" style="margin-top: -135px;">
     <table id="tableClothing">

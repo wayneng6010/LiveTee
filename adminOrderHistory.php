@@ -98,7 +98,14 @@
       <ul class="pagination">
         <!-- link to first page -->
             <li>
-              <a href="?pageno=1">1</a>
+              <?php 
+                if (isset($_GET['isearch3'])){
+                    echo "<a href='?isearch3=".$_GET['isearch3']."&pageno=1'>";
+                  } else {
+                    echo "<a href='?isearch3=&pageno=1'>";
+                  }
+              ?>
+            1</a>
             </li>
 
         <!-- previous icon -->
@@ -147,7 +154,15 @@
 
         <!-- link to last page -->
             <li>
-              <a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+              <?php 
+                if (isset($_GET['isearch3'])){
+                    echo "<a href='?isearch3=".$_GET['isearch3']."&pageno=".$totalPages."'>";
+                  } else {
+                    echo "<a href='?isearch3=&pageno=".$totalPages."'>";
+                  }
+                if ($totalPages > 1) echo $totalPages;
+              ?>
+              </a>
             </li>
         </ul>
     </div> 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Stock View | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -108,7 +108,14 @@
       <ul class="pagination">
         <!-- link to first page -->
             <li>
-              <a href="?pageno=1">1</a>
+              <?php 
+                if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=1'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=1'>";
+                  }
+              ?>
+            1</a>
             </li>
 
         <!-- previous icon -->
@@ -156,7 +163,15 @@
 
         <!-- link to last page -->
             <li>
-              <a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+              <?php 
+                if ((isset($_GET['icat1']) && isset($_GET['istatus1']) && isset($_GET['isearch1']))){
+                    echo "<a href='?icat1=".$_GET['icat1']."&istatus1=".$_GET['istatus1']."&isearch1=".$_GET['isearch1']."&pageno=".$totalPages."'>";
+                  } else {
+                    echo "<a href='?icat1=&istatus1=&isearch1=&pageno=".$totalPages."'>";
+                  }
+                if ($totalPages > 1) echo $totalPages;
+              ?>
+              </a>
             </li>
         </ul>
     </div>      

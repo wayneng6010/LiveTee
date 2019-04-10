@@ -264,10 +264,15 @@
 
     	function selectAll(source) {
 		  	checkboxes = document.getElementsByClassName('citem');
-		  	for(var i = 0; i < checkboxes.length; i++) {
-		    	// checkboxes[i].checked = source.checked;
-		    	checkboxes[i].click();
-		  	}
+		    if (source.checked) {
+			  	for(var i = 0; i < checkboxes.length; i++) {
+		    		checkboxes[i].checked = true;
+				}
+			} else {
+				for(var i = 0; i < checkboxes.length; i++) {
+		    		checkboxes[i].checked = false;
+				}
+			}
 		}
 
 		// $('.citem').each(function(i, obj){

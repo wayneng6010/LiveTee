@@ -102,7 +102,14 @@
       <ul class="pagination">
         <!-- link to first page -->
             <li>
-              <a href="?pageno=1">1</a>
+              <?php 
+                if ((isset($_GET['icat']) && isset($_GET['istatus']) && isset($_GET['isearch']))){
+                    echo "<a href='?icat=".$_GET['icat']."&istatus=".$_GET['istatus']."&isearch=".$_GET['isearch']."&pageno=1'>";
+                  } else {
+                    echo "<a href='?icat=&istatus=&isearch=&pageno=1'>";
+                  }
+              ?>
+            1</a>
             </li>
 
         <!-- previous icon -->
@@ -149,7 +156,15 @@
 
         <!-- link to last page -->
             <li>
-              <a href="?pageno=<?php echo $totalPages; ?>"><?php if ($totalPages > 1) echo $totalPages; ?></a>
+              <?php 
+                if ((isset($_GET['icat']) && isset($_GET['istatus']) && isset($_GET['isearch']))){
+                    echo "<a href='?icat=".$_GET['icat']."&istatus=".$_GET['istatus']."&isearch=".$_GET['isearch']."&pageno=".$totalPages."'>";
+                  } else {
+                    echo "<a href='?icat=&istatus=&isearch=&pageno=".$totalPages."'>";
+                  }
+                if ($totalPages > 1) echo $totalPages;
+              ?>
+              </a>
             </li>
         </ul>
     </div>  

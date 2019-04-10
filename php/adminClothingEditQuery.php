@@ -72,7 +72,6 @@
 			$_GET['istatus'] = $istatus;
 			$_GET['isearch'] = $isearch;
 		} else if (isset($_GET['icat']) && isset($_GET['istatus']) && isset($_GET['isearch'])) {
-
 			$icat = $_GET['icat'];
 			$istatus = $_GET['istatus'];
 			$isearch = $_GET['isearch'];
@@ -101,6 +100,7 @@
 				FROM item LIMIT $offset, $recordPerPage";
 		}
 		$result1 = mysqli_query($link,$sql1);
+
 	} else {
 		$sql1 = "SELECT * FROM item LIMIT $offset, $recordPerPage";
 		$result1 = mysqli_query($link,$sql1);

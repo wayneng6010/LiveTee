@@ -53,12 +53,12 @@
 				}
 				if (!$isInclude){
 					// break;
-					echo "<script>alert('".$item2['Item_ID']."')</script>";
+					// echo "<script>alert('".$item2['Item_ID']."')</script>";
 					$ssize = $item2['ssize'];
 					$sid = $item2['Item_ID'];
 					$sqlDel = "DELETE FROM stock WHERE Item_Size='$ssize' AND Item_ID='$sid'";
 					if ($resultDel = mysqli_query($link,$sqlDel)){
-						echo "<script>alert('Delete successfully')</script>";
+						// echo "<script>alert('Delete successfully')</script>";
 					}
 
 				}
@@ -81,13 +81,13 @@
 				if ($isAdd){
            	 		$sql4 = "INSERT INTO stock VALUES(null, '$eid', '$i', 0)";
            	 		if ($result4 = mysqli_query($link,$sql4)){
-						echo "<script>alert('".$i."Add successfully')</script>";
+						// echo "<script>alert('Add successfully')</script>";
            	 		}
 				}
 			}
 
 			echo "<script>
-				alert('".$eid."Update successfully');
+				alert('Update successfully');
 				location.assign('adminClothingEdit.php'); 
 			</script>";
 		}else{
