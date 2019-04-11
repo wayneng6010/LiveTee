@@ -47,6 +47,34 @@
 	<h1 id="content_header">My Account</h1>
 
   <div id="content_container" class="container_below" style="margin-top: -140px;">
+    <div style="padding: 0 20px;">
+      <p>
+        <label><b>ID</b></label>
+        <?php echo $row['Staff_ID']; ?>
+      </p>
+      
+      <p>
+        <label><b>Name</b></label>
+        <?php echo $row['Staff_Name']; ?>
+      </p>
+
+      <p>
+        <label><b>Email</b></label>
+        <?php echo $row['Staff_Email']; ?>
+      </p>
+
+      <p>
+        <label><b>Role</b></label>
+        <?php echo $row['Staff_Role']; ?>
+      </p>
+
+      <p>
+        <label><b>Created On</b></label>
+        <?php echo date("Y-m-d h:iA", strtotime($row['Staff_Created'])); ?>
+      </p>
+    </div>
+    <hr>
+    <p style="padding: 0 20px; font-weight: bold; font-size: 18px; margin-bottom: 0px; text-decoration-line: underline;">Change Password</p>
     <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
       <div class="regHalf" id="regLeft" style="width: 100%">
         <p>

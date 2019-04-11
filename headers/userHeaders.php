@@ -12,7 +12,7 @@
 					echo '<a href="userRegister.php">Sign Up</a>';
 				}
 			?>
-			<a href="userHome.php">Shop</a>
+			<a href="userShop.php">Shop</a>
 			<?php
 				if(isset($_SESSION['uLogin'])){
 					echo '<a href="userPurchase.php">My Purchase</a>
@@ -30,7 +30,7 @@
 			</a>
 		</div>
 		<div id="flexMiddle">
-			<form action="<?php echo 'userHome.php' ?>" method="get">
+			<form action="<?php echo 'userShop.php' ?>" method="get">
 				<input type="text" name="searchTxt">
 				<input type="image" src="Asset/Image/search.png" width="20" height="auto" name="searchBtn">
 			</form>

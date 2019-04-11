@@ -106,7 +106,7 @@
 										<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 										<td>'.$row['Item_Name'].'</td>
 										<td>Qty: '.$row['Order_ItemQuan'].'</td>
-										<td>Qty: '.$row['Order_ItemSize'].'</td>
+										<td>Size: '.$row['Order_ItemSize'].'</td>
 										<td><span>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</span></td>
 									</tr></table>';
 		}

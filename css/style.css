@@ -125,7 +125,7 @@ div#headerUserTopNav{
 	background-color: #f5f5f5;
 	display: flex;
 	position: fixed;
-	z-index: 1;
+	z-index: 10;
 	color: #535151;
 }
 
@@ -161,7 +161,7 @@ div#headerUser{
 	background-color: #535151;
 	display: flex;
 	position: fixed;
-	z-index: 1;
+	z-index: 10;
 	margin-top: 30px;
 }
 
@@ -1727,6 +1727,8 @@ div#logoutBtn {
 
 div#logoutBtn a {
 	padding: 5px 0px;
+	width: 100%;
+	text-align: center;
 }
 
 span#stockNo {
@@ -1803,3 +1805,10 @@ td>.cartStockAvailable {
 	/*position: absolute;*/
 	color: grey;
 }
+
+div.w3-content.w3-display-container {
+	margin-top: 70px;
+	margin-bottom: 50px;
+	width: 800px;
+}
+

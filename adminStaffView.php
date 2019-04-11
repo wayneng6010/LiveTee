@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Edit Staff | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
   <link rel="icon" href="Asset/Image/icon.png">
@@ -36,7 +36,7 @@
   ?>
 	<div id="header">
 		<div id="flexLeft"><a href="adminHome.php"><img src="Asset/Image/logo.jpg" width="auto" height="50"></a></div>
-		<div id="flexMiddle"><span>Staff - View</span></div>
+		<div id="flexMiddle"><span>Staff - Edit</span></div>
 		<div id="flexRight">
 			<img src="Asset/Image/noti.svg" width="30" height="auto">
 			<img src="Asset/Image/chat.svg" style="display: none;" width="30" height="auto">
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 	<div id="includedContent"></div>
-	<h1 id="content_header">Staff - View</h1>
+	<h1 id="content_header">Staff - Edit</h1>
   <div id="content_container" style="height: 70px;">
     <form method="get" id="sorting" name="sorting" action="<?php echo $_SERVER['PHP_SELF'] ?>" style="margin-top: 10px;">
         <label class="filter_lbl"><b>Role</b></label>

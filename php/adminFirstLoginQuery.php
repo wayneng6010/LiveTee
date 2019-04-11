@@ -7,8 +7,10 @@
 		header('Location:adminLogin.php');
 	} 
 
-	if($_SESSION['kick']=="sFirstLog"){
-		echo "<script>alert('You have to change your password before you can access to the system')</script>";
+	if(isset($_SESSION['kick'])){
+		if($_SESSION['kick']=="sFirstLog"){
+			echo "<script>alert('You have to change your password before you can access to the system')</script>";
+		}
 	}
 	// if($_SESSION['sFirstLog'] == 0){
 	// 	header('location: adminHome.php');

@@ -49,3 +49,21 @@
 [09-04-2019 16:53:27] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
 [09-04-2019 16:53:28] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LSWLDUY6BH28979S7117174F/execute
 [09-04-2019 16:53:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 05:38:30] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[11-04-2019 05:38:32] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 05:38:32] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[11-04-2019 05:38:33] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[11-04-2019 05:40:37] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[11-04-2019 05:40:38] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 05:40:38] PayPal\Core\PayPalHttpConnection : INFO: GET https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LSXLNOY8TH51578RE082093F
+[11-04-2019 05:40:40] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 05:40:40] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment/PAYID-LSXLNOY8TH51578RE082093F/execute
+[11-04-2019 05:40:43] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 15:31:27] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[11-04-2019 15:31:29] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 15:31:29] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[11-04-2019 15:31:31] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
+[11-04-2019 15:35:16] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/oauth2/token
+[11-04-2019 15:35:17] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 200
+[11-04-2019 15:35:17] PayPal\Core\PayPalHttpConnection : INFO: POST https://api.sandbox.paypal.com/v1/payments/payment
+[11-04-2019 15:35:18] PayPal\Core\PayPalHttpConnection : INFO: Response Status 	: 201
