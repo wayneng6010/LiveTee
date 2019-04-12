@@ -22,7 +22,7 @@
        	$pageno = 1;
     }
 
-    $recordPerPage = 1;
+    $recordPerPage = 5;
     $offset = ($pageno-1) * $recordPerPage;
 
 	$ttlPagesSql = "SELECT Rv_Txt, Rv_Rating, Rv_DateTime, User_Name FROM review, orders, user WHERE review.Rv_OrderID = orders.Order_ID AND orders.User_ID = user.User_ID AND Order_ItemID='$itemID'";

@@ -96,7 +96,7 @@
 	  	<img class="mySlides" src="https://cdn.store-assets.com/s/174255/f/2542229.jpeg" style="width:100%">
   		<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
   		<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
-  		<a href="userShop.php" style="position: absolute; bottom: 0; background-color: #515151; width: 100%; padding: 5px; text-align: center; opacity: .9; height: 50px; display: flex; align-items: center; justify-content: center;">Shop Now</a>
+  		<a href="userShop.php" class="shopNowHome" style="position: absolute; bottom: 0; background-color: #515151; width: 100%; padding: 5px; text-align: center; opacity: .9; height: 50px; display: flex; align-items: center; justify-content: center; transition: .2s ease-in-out;">Shop Now</a>
 	</div>
 
 	<div class="headerHome" style="width: 100%; background-color: #515151; opacity: 0; height: 70px; display: flex; align-items: center; justify-content: center;">
@@ -120,12 +120,12 @@
 	<div class="fade-in fade-centerLine" style="background:#515151; height: 3px; float: right; margin-right: -60px; margin-top: -200px; position: relative; z-index: 1;"></div>
 
 	<!-- Paragraph Content -->
-	<p class="fade-left fade-paragraphContent" style="width: 50%; max-width: 330px; color: #95989A; line-height: 1.2; font-size: 14px; transform: translate(0,-40px);"> 
+	<p class="fade-left fade-paragraphContent" style="width: 50%; max-width: 330px; color: #95989A; line-height: 1.2; font-size: 14px; transform: translate(0,-60px);"> 
 	Clear lines and reduce waiting time with easy orders and allocating order chits to your customers for seamless picks ups when their orders are done.
 	</p>
 
 	<!-- Get Quote Button -->
-	<div class="fade-left fade-getQuoteBtn" style="width: 100%; max-width: 350px; color: #95989A; line-height: 1.2; z-index: 1; transform: translate(0,-40px);">
+	<div class="fade-left fade-getQuoteBtn" style="width: 100%; max-width: 350px; color: #95989A; line-height: 1.2; z-index: 1; transform: translate(0,-60px);">
 	<div class="getQuoteBtnAll" id="getQuoteBtn1" style="background: #515151; height: 37px; display: table;">
 	<a href="userShop.php" style="text-align: center; vertical-align: middle; display: table-cell; color: white; font-size: 14px; width: 50%;">SHOP NOW</a>
 	</div>
@@ -172,12 +172,12 @@
 	<div class="fade-in fade-centerLine" style="background:#515151; height: 3px; float: right; margin-right: -60px; margin-top: -200px; position: relative; z-index: 1;"></div>
 
 	<!-- Paragraph Content -->
-	<p class="fade-left fade-paragraphContent" style="width: 50%; max-width: 330px; color: #95989A; line-height: 1.2; font-size: 14px; transform: translate(0,-40px);"> 
+	<p class="fade-left fade-paragraphContent" style="width: 50%; max-width: 330px; color: #95989A; line-height: 1.2; font-size: 14px; transform: translate(0,-60px);"> 
 	Our customised Tee Shirts are made using the finest material and the latest printing technology and go through a rigorous quality check to provide you with a superior unmatched quality.
 	</p>
 
 	<!-- Get Quote Button -->
-	<div class="fade-left fade-getQuoteBtn" style="width: 100%; max-width: 350px; color: #95989A; line-height: 1.2; z-index: 1; transform: translate(0,-40px);">
+	<div class="fade-left fade-getQuoteBtn" style="width: 100%; max-width: 350px; color: #95989A; line-height: 1.2; z-index: 1; transform: translate(0,-60px);">
 	<div class="getQuoteBtnAll" id="getQuoteBtn1" style="background: #515151; height: 37px; display: table;">
 	<a href="userShop.php" style="text-align: center; vertical-align: middle; display: table-cell; color: white; font-size: 14px; width: 50%; z-index: 0;">SHOP NOW</a>
 	</div>

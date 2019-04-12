@@ -146,7 +146,7 @@
 						<table class="tableOrder">
 						<tr>
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
-							<td>'.$row['Item_Name'].'</td>
+							<td><a target="_blank" style="color: black;" href="userProduct.php?item='.$row['Item_ID'].'">'.$row['Item_Name'].'</td>
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
 							<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
 							<td>'.$row['Order_ItemSize'].'</td>
@@ -160,7 +160,7 @@
 				echo '
 						<tr>
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
-							<td>'.$row['Item_Name'].'</td>
+							<td><a target="_blank" style="color: black;" href="userProduct.php?item='.$row['Item_ID'].'">'.$row['Item_Name'].'</td>
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
 							<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
 							<td>'.$row['Order_ItemSize'].'</td>
@@ -184,7 +184,7 @@
 								<table class="tableOrder">
 									<tr>
 										<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
-										<td>'.$row['Item_Name'].'</td>
+										<td><a target="_blank" style="color: black;" href="userProduct.php?item='.$row['Item_ID'].'">'.$row['Item_Name'].'</td>
 										<td>Qty: '.$row['Order_ItemQuan'].'</td>
 										<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
 										<td>'.$row['Order_ItemSize'].'</td>

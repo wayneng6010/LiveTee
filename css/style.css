@@ -1812,3 +1812,10 @@ div.w3-content.w3-display-container {
 	width: 800px;
 }
 
+a.shopNowHome:hover {
+	filter: brightness(1.4);
+	transition: .2s ease-in-out;
+}
+/*tr.grayscale {
+	filter: grayscale(1);
+}*/

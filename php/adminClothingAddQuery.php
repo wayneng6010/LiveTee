@@ -3,7 +3,7 @@
 	require_once 'conn.php';
 
 	if(isset($_POST['add'])){
-		$iname = $_POST['iname'];
+		$iname = mysql_real_escape_string($_POST['iname']);
 		$iprice = $_POST['iprice'];
 		$idescription = mysql_real_escape_string($_POST['idescription']);
 		// $isize = $_POST['isize'];

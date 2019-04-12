@@ -2,7 +2,6 @@
 	// include 'verficationAdmin.php';
 	// session_start();
 	require_once 'conn.php';
-	
 
 	if(isset($_POST['login'])){
 		$email = $_POST['email'];

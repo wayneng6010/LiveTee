@@ -82,7 +82,7 @@
                 }
                 $ConDateTime = date("Y-m-d h:iA", strtotime($row['perOrder_ConDateTime']));
                 
-                echo "<tr><td>".$row['perOrder_ID']."</td><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['perOrder_TrackNo']."</td><td>".$status."</td>";
+                echo "<tr><td>#".$row['perOrder_ID']."</td><td>".$row['User_Name']."</td><td>".$row['User_Email']."</td><td>".$ConDateTime."</td><td>".$row['perOrder_TrackNo']."</td><td>".$status."</td>";
 
                 echo "<td><a href='adminOrderHistory_View.php?uid=$row[User_ID]&oid=$row[perOrder_ID]' title='View Order' style='color: darkred;'>View Order</a>
                 </td></tr>";

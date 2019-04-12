@@ -19,6 +19,7 @@
 	crossorigin="anonymous"></script>
 	
 	<script type="text/javascript">
+		// var doubleClick = false;
 		$(document).ready(function () {
 			$('.citem').each(function(i, obj){
 			$.ajax({
@@ -37,10 +38,26 @@
 	                var stockAvailable = document.getElementsByClassName('cartStockAvailable')[i];
 					stockAvailable.innerHTML = "Stock: " + $stockAvailable;
 	                // alert($stockAvailable);
+	                if (quanInput.value >  $stockAvailable) {
+						// alert('This size is out of stock');
+						$('.citem').eq(i).prop('checked', false);
+						$('.citem').eq(i).attr("disabled", true);
+						$('.pdQuanInput').eq(i).attr("disabled", true);
+						$('.citem').eq(i).parent().parent().css({ 'border-left' : '2px solid darkred' });
+						if ($stockAvailable == 0){
+							quanInput.value = 1;
+						} else {
+							quanInput.value = $stockAvailable;
+						}
+					} else {
+						$('.citem').eq(i).removeAttr("disabled");
+						$('.pdQuanInput').eq(i).removeAttr("disabled");
+						$('.citem').eq(i).parent().parent().css({ 'border-left' : 'none' });
+					}
 	            }
 	        });
 		    $('.pdSelectSize').eq(i).change(function(){
-		    	$('.citem').eq(i).click();
+		    	// $('.citem').eq(i).click();
 		    	$.ajax({
 	            url: "php/userProductQuery1.php",
 	            type: "post",
@@ -57,12 +74,20 @@
 	                var stockAvailable = document.getElementsByClassName('cartStockAvailable')[i];
 					stockAvailable.innerHTML = "Stock: " + $stockAvailable;
 					if (quanInput.value >  $stockAvailable) {
-						alert('Out of Stock');
+						// alert('This size is out of stock');
+						$('.citem').eq(i).prop('checked', false);
+						$('.citem').eq(i).attr("disabled", true);
+						$('.pdQuanInput').eq(i).attr("disabled", true);
+						$('.citem').eq(i).parent().parent().css({ 'border-left' : '2px solid darkred' });
 						if ($stockAvailable == 0){
 							quanInput.value = 1;
 						} else {
 							quanInput.value = $stockAvailable;
 						}
+					} else {
+						$('.citem').eq(i).removeAttr("disabled");
+						$('.pdQuanInput').eq(i).removeAttr("disabled");
+						$('.citem').eq(i).parent().parent().css({ 'border-left' : 'none' });
 					}
 	                // alert($stockAvailable);
 	            }
@@ -90,7 +115,7 @@
 		    });
 
 		    $('.pdQuanInput').eq(i).bind('input', function(){
-		    	$('.citem').eq(i).click();
+		    	// $('.citem').eq(i).click();
 			  	$.ajax({
 		            url: "php/userCartQuery1.php",
 		            type: "post",
@@ -98,8 +123,7 @@
 		            success: function(data){
 	              //   	var e = document.getElementById('popUpMsg');
 			            // e.style.display = 'flex';
-		    	
-
+			            // doubleClick = false;
 			            $("#popUpMsg").css("display", "flex");
 			            $("#popUpMsg").css("visibility", "visible");
 			            $("#popUpMsg").css("opacity", "1");
@@ -109,9 +133,21 @@
 					      	msg.style.visibility = "hidden";
 					    }, 1000);
 			            $('.iprice > .ipricein').eq(i).html('RM'+data);
-			            $('.citem').eq(i).click();
+			            if ($('.citem').is(':checked')) {
+			            	$('.citem').eq(i).click();
+			            	$('.citem').eq(i).click();
+			            	// $('.pdQuanInput').eq(i).html();
+			    //         	$currentTtl = $('.bold.total').eq(0).html();
+							// $currentTtl = $currentTtl.substr($currentTtl.indexOf('M')+1);
+			    //         	$perUnit = $('.unitPrice').eq(i).html();
+							// $perUnit = $perUnit.substr($perUnit.indexOf('M')+1);
+			    //         	$newTtl = $currentTtl - $perUnit;
+			    //         	alert($newTtl);
+			    //         	$('.bold.total').eq(0).html("RM"+$newTtl);
+			            	// doubleClick = true;
+			            }
 		        		// totalup();
-			            // alert(e.innerHTML);
+			            	// alert('up'+doubleClick);
 		            }
 		        });
 			});
@@ -171,7 +207,7 @@
 							}
 
 		            		echo '</select></td>
-		            		<td style="width: 12%;">RM'.$row['Item_Price'].'</td>
+		            		<td style="width: 12%;" class="unitPrice">RM'.$row['Item_Price'].'</td>
 		            		<td style="width: 12%;">
 		            		<input type="number" class="pdQuanInput" id="pdQuanInput" name="pdquan" min="1" value="'.$row['Cart_ItemQuan'].'" title="Item Quantity" style="width: 60px;" required>
 		            		<br><span class="cartStockAvailable"></span>
@@ -206,71 +242,125 @@
     	</form>
 
     	<script type="text/javascript">
+    		
+
     	function totalup() {
     		var itemChecked = 0;
     		var shippingFee = 0;
     		var total = 0;
     		var citem = document.getElementsByClassName('citem');
-
     		var subtotal = document.getElementsByClassName('bold sub')[0];
     		var itemNum = document.getElementsByClassName('bold num')[0];
     		var totalCheckout = document.getElementsByClassName('bold total')[0];
     		for (let i = 0; i < citem.length; i++) {
-				citem[i].onclick = function() {
-					if (citem[i].checked) {
-						itemChecked += 1;
-						itemNum.innerHTML = itemChecked;
-						var parentofChecked = citem[i].parentNode.parentNode;
-						var children = parentofChecked.childNodes;
-						// alert(parentofChecked.outerHTML);
-						for (var x = 0; x < children.length; x++) {
-							// alert(children[x].classList);
-						    if (children[x].classList == "iprice") {
-						    	var iprice = parseInt(children[x].innerHTML.split('RM')[1]);
-						        total += iprice;
-						        subtotal.innerHTML = "RM" + total;
-						        totalCheckout.innerHTML = "RM" + (total + shippingFee);
- 								// alert(total);
-						        break;
-						    }
-						}
-					} else {
-						itemChecked -= 1;
-						itemNum.innerHTML = itemChecked;
-						var parentofChecked = citem[i].parentNode.parentNode;
-						var children = parentofChecked.childNodes;
-						// alert(parentofChecked.outerHTML);
-						for (var y = 0; y < children.length; y++) {
-							// alert(children[x].classList);
-						    if (children[y].classList == "iprice") {
-						    	var iprice = parseInt(children[y].innerHTML.split('RM')[1]);
-						        total -= iprice;
-						        if (total < 0) {
-						        	total = 0;
-						        }
-						        subtotal.innerHTML = "RM" + total;
-						        totalCheckout.innerHTML = "RM" + (total + shippingFee);
- 								// alert(total);
-						        break;
-						    }
-						}
+				if (citem[i].checked) {
+					itemChecked += 1;
+					var parentofChecked = citem[i].parentNode.parentNode;
+					var children = parentofChecked.childNodes;
+					for (var x = 0; x < children.length; x++) {
+					    if (children[x].classList == "iprice") {
+					    	var iprice = parseInt(children[x].innerHTML.split('RM')[1]);
+					        total += iprice;
+					    }
 					}
-					// alert(itemChecked);
-				}
-			}
+					
+				} 
+    		}
+    		itemNum.innerHTML = itemChecked;
+		    subtotal.innerHTML = "RM" + total;
+			totalCheckout.innerHTML = "RM" + (total + shippingFee);
     	}
 
-    	totalup();
+    	setInterval(function() {
+    		totalup();
+		}, 200);
+
+   //  	function totalup1() {
+    		
+   //  		var citem = document.getElementsByClassName('citem');
+
+   //  		var subtotal = document.getElementsByClassName('bold sub')[0];
+   //  		var itemNum = document.getElementsByClassName('bold num')[0];
+   //  		var totalCheckout = document.getElementsByClassName('bold total')[0];
+   //  		for (let i = 0; i < citem.length; i++) {
+			// 	citem[i].onclick = function() {
+			// 		if (citem[i].checked) {
+			// 			itemChecked += 1;
+			// 			itemNum.innerHTML = itemChecked;
+			// 			var parentofChecked = citem[i].parentNode.parentNode;
+			// 			var children = parentofChecked.childNodes;
+			// 			// alert(parentofChecked.outerHTML);
+			// 			for (var x = 0; x < children.length; x++) {
+			// 				// alert(children[x].classList);
+			// 			    if (children[x].classList == "iprice") {
+			// 			    	var iprice = parseInt(children[x].innerHTML.split('RM')[1]);
+			// 			        total += iprice;
+			// 			// alert("."+total);
+
+			// 			        subtotal.innerHTML = "RM" + total;
+			// 			        totalCheckout.innerHTML = "RM" + (total + shippingFee);
+ 		// 						// alert(total);
+			// 			        break;
+			// 			    }
+			// 			}
+			// 		} else {
+			// 			itemChecked -= 1;
+			// 			itemNum.innerHTML = itemChecked;
+			// 			var parentofChecked = citem[i].parentNode.parentNode;
+			// 			var children = parentofChecked.childNodes;
+			// 			for (var y = 0; y < children.length; y++) {
+			// 				// alert(children[x].classList);
+			// 			    if (children[y].classList == "iprice") {
+
+			// 			    	var iprice = parseInt(children[y].innerHTML.split('RM')[1]);
+			// 			// alert(doubleClick);
+			// 			        // if (doubleClick) {
+			// 				 	// alert('12');
+			// 			       		// total -= iprice * 2;
+			// 			        // } else {
+			// 			        	total -= iprice;
+			// 			        // }
+			// 			        // doubleClick = false;
+			// 			// alert(total);
+
+			// 			        if (total < 0) {
+			// 			        	total = 0;
+			// 			        }
+			// 			        subtotal.innerHTML = "RM" + total;
+			// 			        totalCheckout.innerHTML = "RM" + (total + shippingFee);
+ 		// 						// alert(total);
+			// 			        break;
+			// 			    }
+			// 			}
+			// 		}
+			// 		// alert(itemChecked);
+			// 	}
+
+			// }
+   //  	}
+    	
+    	
 
     	function selectAll(source) {
 		  	checkboxes = document.getElementsByClassName('citem');
 		    if (source.checked) {
 			  	for(var i = 0; i < checkboxes.length; i++) {
-		    		checkboxes[i].checked = true;
+			  		if (checkboxes[i].disabled == false) {
+		    			// checkboxes[i].checked = true;
+						if (checkboxes[i].checked) {
+			           	 	$('.citem').eq(i).click();
+			           	 	$('.citem').eq(i).click();
+			           	} else {
+			           	 	$('.citem').eq(i).click();
+			           	}
+		    		}
 				}
 			} else {
 				for(var i = 0; i < checkboxes.length; i++) {
-		    		checkboxes[i].checked = false;
+					if (checkboxes[i].checked) {
+			            $('.citem').eq(i).click();
+					}
+		    		// checkboxes[i].checked = false;
 				}
 			}
 		}

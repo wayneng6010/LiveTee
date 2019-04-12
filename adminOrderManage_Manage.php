@@ -92,6 +92,8 @@
       
       <?php 
         $counter = 0;
+        $total = 0;
+        $numResults = mysqli_num_rows($result);
         while($row = mysqli_fetch_assoc($result)){
         if ($counter == 0){
           echo '<hr><p><label><b>Order Date & Time</b></label>'.date("Y-m-d h:iA", strtotime($row['Order_DateTime'])).'</p>
@@ -100,12 +102,15 @@
                 <th>Stock Available</th>
                 <th>Item Name</th>
                 <th>Size</th>
-                <th>Quantity</th>';
+                <th>Quantity</th>
+                <th>Price (Total)</th>';
           } 
-          echo "<tr><td>".$row['Order_ItemID']."</td><td class='stock'>".$row['Stock_Quan']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td class='order'>".$row['Order_ItemQuan']."</td></tr>";
-
-          
+          echo "<tr><td>".$row['Order_ItemID']."</td><td class='stock'>".$row['Stock_Quan']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td class='order'>".$row['Order_ItemQuan']."</td><td>RM".$row['Item_Price']*$row['Order_ItemQuan']."</td></tr>";
           $counter+=1;
+          $total += $row['Item_Price']*$row['Order_ItemQuan'];
+          if ($counter == $numResults) { 
+              echo "<tr><td></td><td></td><td></td><td></td><td></td><td><b>RM".$total."</b></td></tr>";
+          }
           }
           if($counter==0){
             echo "<tr><td colspan='3' style='background-color: #f2f2f2;'>No order at the moment</td></tr>";
