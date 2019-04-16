@@ -29,6 +29,10 @@
 	</div>
 
 	<div id="dashboard">
+		<p style="float: right; margin-right: 3%; margin-top: -5px; margin-bottom: 5px; color: #515151; font-size: 16px;">
+			Last Login: 
+			<?php echo date("Y-m-d h:iA", strtotime($item['Staff_LastLogin'])); ?>
+		</p>
 		<div class="dashrow">
 			<div class="dashitem">
 				<div class="dashinner first">

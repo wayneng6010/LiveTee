@@ -25,7 +25,7 @@
 				$_SESSION['uBirthday'] = $row['User_Birthday'];
 				$_SESSION['uPhoneNo'] = $row['User_PhoneNo'];
 
-				header('Location: userHome.php');
+				header('Location: userShop.php');
 			}
 			else{
 				echo '<script>

@@ -35,16 +35,16 @@
 	                $("#stockNo").html($stockAvailable + " piece available");
 	                var quanInput = document.getElementsByClassName('pdQuanInput')[i];
 					quanInput.max = $stockAvailable;
-	                var stockAvailable = document.getElementsByClassName('cartStockAvailable')[i];
-					stockAvailable.innerHTML = "Stock: " + $stockAvailable;
+	                var stockAvailable1 = document.getElementsByClassName('cartStockAvailable')[i];
+					stockAvailable1.innerHTML = "Stock: " + $stockAvailable;
 	                // alert($stockAvailable);
-	                if (quanInput.value >  $stockAvailable) {
-						// alert('This size is out of stock');
-						$('.citem').eq(i).prop('checked', false);
-						$('.citem').eq(i).attr("disabled", true);
-						$('.pdQuanInput').eq(i).attr("disabled", true);
-						$('.citem').eq(i).parent().parent().css({ 'border-left' : '2px solid darkred' });
+
+	                if (parseInt(quanInput.value) >  parseInt($stockAvailable)) {
 						if ($stockAvailable == 0){
+							$('.citem').eq(i).prop('checked', false);
+							$('.citem').eq(i).attr("disabled", true);
+							$('.pdQuanInput').eq(i).attr("disabled", true);
+							$('.citem').eq(i).parent().parent().css({ 'border-left' : '2px solid darkred' });
 							quanInput.value = 1;
 						} else {
 							quanInput.value = $stockAvailable;
@@ -71,15 +71,15 @@
 	                $("#stockNo").html($stockAvailable + " piece available");
 	                var quanInput = document.getElementsByClassName('pdQuanInput')[i];
 					quanInput.max = $stockAvailable;
-	                var stockAvailable = document.getElementsByClassName('cartStockAvailable')[i];
-					stockAvailable.innerHTML = "Stock: " + $stockAvailable;
-					if (quanInput.value >  $stockAvailable) {
-						// alert('This size is out of stock');
-						$('.citem').eq(i).prop('checked', false);
-						$('.citem').eq(i).attr("disabled", true);
-						$('.pdQuanInput').eq(i).attr("disabled", true);
-						$('.citem').eq(i).parent().parent().css({ 'border-left' : '2px solid darkred' });
+	                var stockAvailable1 = document.getElementsByClassName('cartStockAvailable')[i];
+					stockAvailable1.innerHTML = "Stock: " + $stockAvailable;
+						// alert($stockAvailable);
+					if (parseInt(quanInput.value) >  parseInt($stockAvailable)) {
 						if ($stockAvailable == 0){
+							$('.citem').eq(i).prop('checked', false);
+							$('.citem').eq(i).attr("disabled", true);
+							$('.pdQuanInput').eq(i).attr("disabled", true);
+							$('.citem').eq(i).parent().parent().css({ 'border-left' : '2px solid darkred' });
 							quanInput.value = 1;
 						} else {
 							quanInput.value = $stockAvailable;
