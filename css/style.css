@@ -1291,7 +1291,7 @@ input.contentSubmit.register:hover{
 	transition-duration: .2s;
 }
 
-p#passWarn, p#cpassWarn, p#formWarn, p#passWarn, p#passWarn1{
+p#passWarn, p#cpassWarn, p#formWarn, p#passWarn, p#passWarn1, p#postalwarn{
 	font-size: 14px; 
 	margin-top: -10px; 
 	color: darkred;

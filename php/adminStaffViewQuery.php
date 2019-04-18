@@ -86,11 +86,11 @@
 		$sql3 = "DELETE FROM `staff` WHERE `Staff_ID` = '$id'";
 		if($result3 = mysqli_query($link,$sql3)){
 			if ($id == $_GET['sID']) {
-				echo "<script>alert('Staff role changed.');
+				echo "<script>alert('Staff has been deleted.');
 				window.location='adminLogin.php';
 				</script>";
 			} else {
-				echo "<script>alert('Staff role changed.');
+				echo "<script>alert('Staff has been deleted.');
 				window.location='adminStaffView.php';
 				</script>";
 			}

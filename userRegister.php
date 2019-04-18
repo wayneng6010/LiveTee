@@ -72,6 +72,7 @@
 	            <p>
 	              	<label><b>Postal Code</b></label>
 	              	<input class="contentInput" type="text" name="postal" placeholder="e.g. 11600" onkeyup="postalValid()" required>
+	              	<p id="postalwarn"><img src="Asset/Image/warn.svg" width="17" height="auto">&nbsp5 character postal code</p>
 	            </p>
 	             <p>
 	              	<label><b>State</b></label>
@@ -129,6 +130,16 @@
 			    event.target.value = event.target.value.substr(0, max_chars);
 			}
 			event.target.value = event.target.value.replace(/\D/g,'');
+
+			var postalwarn = document.getElementById("postalwarn");
+			if(event.target.value.length < 5) { 
+				postalwarn.style.display = "block";
+				validateAll = false;
+			} else {
+				postalwarn.style.display = "none";
+				validateAll = true;
+			}
+
 		}
 
 		function changeColor(){

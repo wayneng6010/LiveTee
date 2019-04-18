@@ -88,6 +88,7 @@
 		<th>Submitted Date Time</th>
 	</tr>
 	<?php
+		$counter = 0;
 		while ($rowRv = mysqli_fetch_assoc($result4)){
 
 		echo '<tr>
@@ -126,12 +127,19 @@
 					<td><a target="_blank" href="userProduct.php?item='.$rowRv['Item_ID'].'" class="reviewItem">'.$rowRv['Item_Name'].'</a></td>
 					<td>'.date("Y-m-d h:iA", strtotime($rowRv['Rv_DateTime'])).'</td>
 				</tr>';
-
+				$counter += 1;
 		}
+		
 		?>
 
 	</div>
     </table>
+
+    <?php
+    	if ($counter == 0) {
+			echo "<p style='font-size: 16px; padding-left: 3%;'>No review yet.</p>";
+		}
+    ?>
 	
 	<div id="paging">
       <ul class="pagination">

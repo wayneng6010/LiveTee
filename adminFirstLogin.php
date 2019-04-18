@@ -36,38 +36,86 @@
       <form method="POST" action="<?php $_SERVER['PHP_SELF'] ?>">
         <p>
           <label>Old Password</label>
-          <input class="contentInput" type="password" name="oldPw" required>
+          <input class="contentInput" type="password" name="oldPw" onkeyup="validatePass1()" required>
+          <p id="passWarn1"><img src="Asset/Image/warn.svg" width="17" height="auto">&nbspPassword must contains at least 8 characters</p>
         </p>
 
         <p>
           <label>New Password</label>
-          <input class="contentInput" type="password" name="newPw" required>
+          <input class="contentInput" type="password" id="pass" name="newPw" onkeyup="validatePass()" required>
+          <p id="passWarn"><img src="Asset/Image/warn.svg" width="17" height="auto">&nbspPassword must contains at least 8 characters</p>
         </p>
         
         <p>
           <label> Confirm New Password</label>
-          <input class="contentInput" type="password" name="newPw2" required>
+          <input class="contentInput" type="password" id="cpass" name="newPw2" onkeyup="confirmPass()" required>
+          <p id="cpassWarn"><img src="Asset/Image/warn.svg" width="17" height="auto">&nbspPassword does not match</p>
         </p>
 
         <p>
           <input class="contentSubmit" type="submit" name="chgPW" value="Save">
         </p>
-
-        <p id="redirectText">Password Changed Successful! Redirecting ...</p>
+        <a href="adminLogout.php" class="backLink">&#10094;&nbsp;Logout</a>
+        <p id="redirectText">Redirecting ...</p>
     </form>
 	</div>
+  <script type="text/javascript">
+    var firstEnterCon = true;
+
+    function validatePass(){
+      var pass = event.target.value;
+      var cwarn = document.getElementById("cpassWarn");
+      var cpass = document.getElementById("cpass").value;
+      var warn = document.getElementById("passWarn");
+      if (!firstEnterCon){
+        cwarn.style.display = "block";
+        if (cpass == pass){
+          cwarn.style.display = "none";
+        } else {
+          cwarn.style.display = "block";
+        }
+      }
+      if (pass.length >= 8) {
+        warn.style.display = "none";
+      } else {
+        warn.style.display = "block";
+      }
+    }
+
+    function validatePass1(){
+      var pass = event.target.value;
+      var warn = document.getElementById("passWarn1");
+      
+      if (pass.length >= 8) {
+        warn.style.display = "none";
+      } else {
+        warn.style.display = "block";
+      }
+    }
+
+    function confirmPass(){
+      var cpass = event.target.value;
+      var pass = document.getElementById("pass").value;
+      var cwarn = document.getElementById("cpassWarn");
+      firstEnterCon = false;
+      if (cpass == pass){
+        cwarn.style.display = "none";
+      } else {
+        cwarn.style.display = "block";
+      }
+    }  
+  </script>
   <?php
     if(isset($_POST['chgPW'])){
       $oldPw = $_POST['oldPw'];
       $newPw = $_POST['newPw'];
       $newPw2 = $_POST['newPw2'];
-      if(password_verify($oldPw, $_SESSION['sPw']) && $newPw == $newPw2){
+      if(password_verify($oldPw, $_SESSION['sPw']) && $newPw == $newPw2) {
         echo "<script type='text/javascript'>
           var btn = document.getElementsByClassName('contentSubmit')[0]; 
           var txt = document.getElementById('redirectText'); 
           btn.style.display = 'none';
           txt.style.display = 'inline-block';
-          setTimeout(function(){ window.location.replace('adminHome.php'); }, 1000);
         </script>";
       }
     }

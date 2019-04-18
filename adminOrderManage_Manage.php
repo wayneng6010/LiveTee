@@ -105,11 +105,11 @@
                 <th>Quantity</th>
                 <th>Price (Total)</th>';
           } 
-          echo "<tr><td>".$row['Order_ItemID']."</td><td class='stock'>".$row['Stock_Quan']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td class='order'>".$row['Order_ItemQuan']."</td><td>RM".$row['Item_Price']*$row['Order_ItemQuan']."</td></tr>";
+          echo "<tr><td>".$row['Order_ItemID']."</td><td class='stock'>".$row['Stock_Quan']."</td><td>".$row['Item_Name']."</td><td>".$row['Order_ItemSize']."</td><td class='order'>".$row['Order_ItemQuan']."</td><td>RM".number_format(($row['Item_Price']*$row['Order_ItemQuan']), 2)."</td></tr>";
           $counter+=1;
           $total += $row['Item_Price']*$row['Order_ItemQuan'];
           if ($counter == $numResults) { 
-              echo "<tr><td></td><td></td><td></td><td></td><td></td><td><b>RM".$total."</b></td></tr>";
+              echo "<tr><td></td><td></td><td></td><td></td><td></td><td><b>RM".number_format($total, 2)."</b></td></tr>";
           }
           }
           if($counter==0){

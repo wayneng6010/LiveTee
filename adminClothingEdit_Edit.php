@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Add Staff | Admin</title>
+	<title>Clothing - Edit | Admin</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -63,14 +63,14 @@
 							cboSize.parentElement.style.border = "1px solid lightgrey";
 						}
 					}
-					for(var x=0; x<2; x++){
-						var cboStatus = document.getElementsByClassName("statusCbo")[x];
-						if (cboStatus.checked == true){
-							cboStatus.parentElement.style.border = "1px solid black";
-						}else{
-							cboStatus.parentElement.style.border = "1px solid lightgrey";
-						}
-					}
+					// for(var x=0; x<2; x++){
+					// 	var cboStatus = document.getElementsByClassName("statusCbo")[x];
+					// 	if (cboStatus.checked == true){
+					// 		cboStatus.parentElement.style.border = "1px solid black";
+					// 	}else{
+					// 		cboStatus.parentElement.style.border = "1px solid lightgrey";
+					// 	}
+					// }
 				}, 10);
 			</script>
 
@@ -88,10 +88,10 @@
             </p>
             <p>
               	<label><b>Image</b></label>
-              	<input class="contentInput" type="file" name="iimg" accept="image/*"><br>
+              	<input class="contentInput" type="file" name="iimg" accept="image/*" onchange="readURL(this);"><br>
                 <p style="margin-left: 205px; color: darkred;"><i>* Uploading a new image will replace current image.</i></p>
                 <?php 
-                  echo '<img class="image" src="data:image/jpeg;base64,'.base64_encode( $item['Item_Image'] ).'" width="200" style="margin-left: 205px; border: solid 1px grey;" alt="">';
+                  echo '<img id="clothingPic" class="image" src="data:image/jpeg;base64,'.base64_encode( $item['Item_Image'] ).'" width="200" style="margin-left: 205px; border: solid 1px grey;" alt="">';
                 ?>
 
             </p>
@@ -124,5 +124,43 @@
       document.getElementById("editForm").submit();
     } 
   </script> -->
+  <script type="text/javascript">
+    setInterval(function(){
+      for(var x=0; x<2; x++){
+        var cboStatus = document.getElementsByClassName("statusCbo")[x];
+        if (cboStatus.checked == true){
+          cboStatus.parentElement.style.border = "1px solid black";
+        }else{
+          cboStatus.parentElement.style.border = "1px solid lightgrey";
+        }
+      }
+    }, 10);
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#clothingPic')
+                    .attr('src', e.target.result)
+                    .attr('style', 'display: block')
+                    .attr('style', 'margin-left: 200px')
+                    .width('20%');
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).ready(function () {
+      function checkboxLimit(){
+        if ($('[name="isize[]"]:checked').length == 0) {
+          $('.sizeCbo')[0].checked = true;
+        }
+      }
+      setInterval(checkboxLimit,100);
+    });
+
+  </script>
 </body>
 </html>

@@ -127,6 +127,15 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+
+    $(document).ready(function () {
+      function checkboxLimit(){
+        if ($('[name="isize[]"]:checked').length == 0) {
+          $('.sizeCbo')[0].checked = true;
+        }
+      }
+      setInterval(checkboxLimit,100);
+    });
   </script>
 </body>
 </html>

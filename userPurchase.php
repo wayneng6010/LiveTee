@@ -148,7 +148,7 @@
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 							<td><a target="_blank" style="color: black;" href="userProduct.php?item='.$row['Item_ID'].'">'.$row['Item_Name'].'</td>
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
-							<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
+							<td>RM'.number_format(($row['Item_Price'] * $row['Order_ItemQuan']), 2).'</td>
 							<td>'.$row['Order_ItemSize'].'</td>
 							<td><span>'.$status.'</span></td>
 							<td>'.$review.'</td>
@@ -162,7 +162,7 @@
 							<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 							<td><a target="_blank" style="color: black;" href="userProduct.php?item='.$row['Item_ID'].'">'.$row['Item_Name'].'</td>
 							<td>Qty: '.$row['Order_ItemQuan'].'</td>
-							<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
+							<td>RM'.number_format(($row['Item_Price'] * $row['Order_ItemQuan']), 2).'</td>
 							<td>'.$row['Order_ItemSize'].'</td>
 							<td><span>'.$status.'</span></td>
 							<td>'.$review.'</td>
@@ -186,7 +186,7 @@
 										<td><img src="data:image/jpeg;base64,'.base64_encode( $row['Item_Image'] ).'" height="100" width="auto"></td>
 										<td><a target="_blank" style="color: black;" href="userProduct.php?item='.$row['Item_ID'].'">'.$row['Item_Name'].'</td>
 										<td>Qty: '.$row['Order_ItemQuan'].'</td>
-										<td>RM'.$row['Item_Price'] * $row['Order_ItemQuan'].'</td>
+										<td>RM'.number_format(($row['Item_Price'] * $row['Order_ItemQuan']), 2).'</td>
 										<td>'.$row['Order_ItemSize'].'</td>
 										<td><span>'.$status.'</span></td>
 										<td>'.$review.'</td>
@@ -196,7 +196,13 @@
 			$dateTime = $row['perOrder_ID'];
             $counter+=1;
 		} 
-		echo "</table></div>";
+		echo "</table>";
+
+		if ($counter == 0) {
+			echo "<p style='font-size: 16px; padding-left: 3%;'>No purchase yet.</p>";
+		}
+
+		echo "</div>";
 	?>
 	</div>
 	<?php

@@ -26,7 +26,8 @@
 			$sql1 = "INSERT INTO user VALUES(null, '$fname', '$email', '$passHash', '$phone', '$address', now(), '$postal', '$state')";
 			
 			if ($result1 = mysqli_query($link,$sql1)){
-				echo "<script>alert('Added Successfully')</script>";
+				echo "<script>alert('Register Successfully')</script>";
+				header('refresh:.5;url=userLogin.php');
 			} else {
 				echo "<script>alert('Email has been registered before')</script>";
 			}

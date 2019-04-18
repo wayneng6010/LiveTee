@@ -31,6 +31,8 @@
 		}
 		else if($newPw != $newPw2){
 			echo "<script>alert('New password not match');</script>";
+		} else if (password_verify($newPw, $_SESSION['sPw'])) {
+			echo "<script>alert('Please enter a new password');</script>";
 		}
 		else{
 			$newHashPw = password_hash($newPw, PASSWORD_DEFAULT);
@@ -43,7 +45,7 @@
 			$_SESSION['kick'] = "none";	
 			$_SESSION['sFirstLog'] = 0;	
 
-			// echo "<script>alert('Password changed successful');</script>";
+			echo "<script>alert('Password changed successful');</script>";
 			// echo "<script>alert('New password is set');</script>";
 			// echo "<script type='text/javascript'>
    //          	var btn = document.getElementsByClassName('contentSubmit')[0]; 
@@ -52,8 +54,8 @@
 			// 	txt.style.display = 'inline-block';
    //          </script>";
 
-			// sleep(3);
-			// header('location: adminHome.php');
+			sleep(1);
+			header('refresh:1;url=adminHome.php');
 		}
 	}
 

@@ -39,7 +39,7 @@
 					stockAvailable1.innerHTML = "Stock: " + $stockAvailable;
 	                // alert($stockAvailable);
 
-	                if (parseInt(quanInput.value) >  parseInt($stockAvailable)) {
+	                if (parseFloat(quanInput.value) >  parseFloat($stockAvailable)) {
 						if ($stockAvailable == 0){
 							$('.citem').eq(i).prop('checked', false);
 							$('.citem').eq(i).attr("disabled", true);
@@ -74,7 +74,7 @@
 	                var stockAvailable1 = document.getElementsByClassName('cartStockAvailable')[i];
 					stockAvailable1.innerHTML = "Stock: " + $stockAvailable;
 						// alert($stockAvailable);
-					if (parseInt(quanInput.value) >  parseInt($stockAvailable)) {
+					if (parseFloat(quanInput.value) >  parseFloat($stockAvailable)) {
 						if ($stockAvailable == 0){
 							$('.citem').eq(i).prop('checked', false);
 							$('.citem').eq(i).attr("disabled", true);
@@ -214,7 +214,7 @@
 		            		</td>
 
 		            		<td class="iprice" style="width: 12%; position: relative;">
-		            		<span class="ipricein">RM'.$row['Item_Price']*$row['Cart_ItemQuan'].'</span>
+		            		<span class="ipricein">RM'.number_format(($row['Item_Price']*$row['Cart_ItemQuan']), 2).'</span>
 		            		<a onclick="return confirm('."'Are you sure you want to delete?'".')" href="?did='.$row['Cart_ID'].'"><img src="Asset/Image/cross.svg" width="10" height="auto" class="delCart"></a>
 		            		</td>
 		            		</tr>
@@ -259,7 +259,7 @@
 					var children = parentofChecked.childNodes;
 					for (var x = 0; x < children.length; x++) {
 					    if (children[x].classList == "iprice") {
-					    	var iprice = parseInt(children[x].innerHTML.split('RM')[1]);
+					    	var iprice = parseFloat(children[x].innerHTML.split('RM')[1]);
 					        total += iprice;
 					    }
 					}
@@ -267,8 +267,8 @@
 				} 
     		}
     		itemNum.innerHTML = itemChecked;
-		    subtotal.innerHTML = "RM" + total;
-			totalCheckout.innerHTML = "RM" + (total + shippingFee);
+		    subtotal.innerHTML = "RM" + total.toFixed(2);
+			totalCheckout.innerHTML = "RM" + (total + shippingFee).toFixed(2);
     	}
 
     	setInterval(function() {
@@ -293,7 +293,7 @@
 			// 			for (var x = 0; x < children.length; x++) {
 			// 				// alert(children[x].classList);
 			// 			    if (children[x].classList == "iprice") {
-			// 			    	var iprice = parseInt(children[x].innerHTML.split('RM')[1]);
+			// 			    	var iprice = parseFloat(children[x].innerHTML.split('RM')[1]);
 			// 			        total += iprice;
 			// 			// alert("."+total);
 
@@ -312,7 +312,7 @@
 			// 				// alert(children[x].classList);
 			// 			    if (children[y].classList == "iprice") {
 
-			// 			    	var iprice = parseInt(children[y].innerHTML.split('RM')[1]);
+			// 			    	var iprice = parseFloat(children[y].innerHTML.split('RM')[1]);
 			// 			// alert(doubleClick);
 			// 			        // if (doubleClick) {
 			// 				 	// alert('12');
